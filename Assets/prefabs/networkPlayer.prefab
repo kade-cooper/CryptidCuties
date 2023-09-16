@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3255338231579511590}
   - component: {fileID: 3255338231579511589}
   - component: {fileID: 3255338231579511588}
+  - component: {fileID: 7560472263767607872}
   m_Layer: 0
   m_Name: networkPlayer
   m_TagString: Untagged
@@ -123,3 +124,17 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 3255338231579511589}
   SimulationBehaviours: []
+--- !u!136 &7560472263767607872
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3255338231579511577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
