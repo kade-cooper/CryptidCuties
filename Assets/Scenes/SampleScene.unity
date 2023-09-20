@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336055771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.56, y: -0.72, z: -3.17}
+  m_LocalPosition: {x: 2.56, y: -0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -491,7 +491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1994527778}
   - component: {fileID: 1994527777}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: backgroundDELETELATER
   m_TagString: Untagged
   m_Icon: {fileID: 0}

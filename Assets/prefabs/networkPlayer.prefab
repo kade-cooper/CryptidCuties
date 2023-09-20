@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1214456193466032836}
   - component: {fileID: 159046290364105976}
   - component: {fileID: 7172655495927131228}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254979111286995303}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3255338231579511591}
-  m_RootOrder: 1
+  m_Father: {fileID: 2052516459864746206}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1214456193466032836
 Camera:
@@ -41,7 +41,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254979111286995303}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -60,8 +60,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 8
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4171030000823513051}
   - component: {fileID: 9176944850442220880}
   - component: {fileID: 7489576615223509650}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: networkPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2052516459864746206}
-  - {fileID: 2387662492113244172}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -245,8 +244,8 @@ MonoBehaviour:
   gravity: 0
   jumpImpulse: 8
   acceleration: 20
-  braking: 20
-  maxSpeed: 5
+  braking: 10
+  maxSpeed: 10
   rotationSpeed: 15
   isHit: 0
   onHit: 0
@@ -293,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2052516459864746206}
   - component: {fileID: 5705807639073788977}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +310,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2387662492113244172}
   m_Father: {fileID: 3255338231579511591}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
