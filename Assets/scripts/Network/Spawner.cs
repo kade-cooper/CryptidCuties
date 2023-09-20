@@ -21,7 +21,8 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (runner.IsServer)
         {
-            Debug.Log("OnplayerJoined we are server. Spawning player  All your base are belong to us");
+            Debug.Log("OnplayerJoined we are server. waiting for selection to spawn player  All your base are belong to us");
+
             runner.Spawn(playerPrefab, Utils.GetRandomSpawnPoint(), Quaternion.identity, player);
         }
         else Debug.Log("OnPlayerJoined");
