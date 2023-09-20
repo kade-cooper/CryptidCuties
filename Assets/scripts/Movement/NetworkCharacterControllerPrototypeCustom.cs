@@ -94,7 +94,7 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
   /// <param name="ignoreGrounded">Jump even if not in a grounded state.</param>
   /// <param name="overrideImpulse">Optional field to override the jump impulse. If null, <see cref="jumpImpulse"/> is used.</param>
   /// </summary>
-  public virtual void Jump(bool ignoreGrounded = true, float? overrideImpulse = null)
+  public virtual void Jump(bool ignoreGrounded = false, float? overrideImpulse = null)
   {
     if (IsGrounded || ignoreGrounded)
     {
@@ -126,7 +126,7 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
         */
     var horizontalVel = default(Vector3);
     horizontalVel.x = moveVelocity.x;
-    horizontalVel.y = moveVelocity.y;
+    horizontalVel.z = moveVelocity.y;
 
     if (direction == default)
     {
@@ -138,7 +138,8 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
     }
 
     moveVelocity.x = horizontalVel.x;
-    moveVelocity.y = horizontalVel.y;
+        //movement is this way because it works, i tried making both variables y but it doesn't work
+    moveVelocity.y = horizontalVel.z;
 
     Controller.Move(moveVelocity * deltaTime);
 
