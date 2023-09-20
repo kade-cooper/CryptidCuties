@@ -94,7 +94,7 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
   /// <param name="ignoreGrounded">Jump even if not in a grounded state.</param>
   /// <param name="overrideImpulse">Optional field to override the jump impulse. If null, <see cref="jumpImpulse"/> is used.</param>
   /// </summary>
-  public virtual void Jump(bool ignoreGrounded = false, float? overrideImpulse = null)
+  public virtual void Jump(bool ignoreGrounded = true, float? overrideImpulse = null)
   {
     if (IsGrounded || ignoreGrounded)
     {
@@ -115,17 +115,18 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
     var moveVelocity = Velocity;
 
     direction = direction.normalized;
-
+    
+        /*
     if (IsGrounded && moveVelocity.y < 0)
     {
       moveVelocity.y = 0f;
     }
-
+        
     moveVelocity.y += gravity * Runner.DeltaTime;
-
+        */
     var horizontalVel = default(Vector3);
     horizontalVel.x = moveVelocity.x;
-    horizontalVel.z = moveVelocity.z;
+    horizontalVel.y = moveVelocity.y;
 
     if (direction == default)
     {
@@ -134,16 +135,15 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
     else
     {
       horizontalVel = Vector3.ClampMagnitude(horizontalVel + direction * acceleration * deltaTime, maxSpeed);
-      transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Runner.DeltaTime);
     }
 
     moveVelocity.x = horizontalVel.x;
-    moveVelocity.z = horizontalVel.z;
+    moveVelocity.y = horizontalVel.y;
 
     Controller.Move(moveVelocity * deltaTime);
 
     Velocity = (transform.position - previousPos) * Runner.Simulation.Config.TickRate;
-    IsGrounded = Controller.isGrounded;
+    //IsGrounded = Controller.isGrounded;
   }
   //Here is the setup for when the health of character reaches 0
   public virtual void DestroyGameObject(float Health)
