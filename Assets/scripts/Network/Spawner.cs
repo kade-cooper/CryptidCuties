@@ -4,11 +4,14 @@ using UnityEngine;
 using Fusion;
 using Fusion.Sockets;
 using System;
+using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 {
 
-    public NetworkPlayer playerPrefab;
+    public NetworkPlayer PlayerPrefab;
+    public NetworkCSelect cSelectPrefab;
+
 
     CharacterInputHandler characterInputHandler;
     // Start is called before the first frame update
@@ -17,16 +20,19 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
         
     }
 
+
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         if (runner.IsServer)
         {
-            Debug.Log("OnplayerJoined we are server. waiting for selection to spawn player  All your base are belong to us");
-
-            runner.Spawn(playerPrefab, Utils.GetRandomSpawnPoint(), Quaternion.identity, player);
+            Debug.Log("OnplayerJoined we are server. waiting for selection to un-ghost.  All your base are belong to us");
+            //runner.Spawn(cSelectPrefab,new Vector3(0,0,0), Quaternion.identity,player);
+            runner.Spawn(PlayerPrefab, Utils.GetRandomSpawnPoint(), Quaternion.identity, player);
         }
         else Debug.Log("OnPlayerJoined");
     }
+
+
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {

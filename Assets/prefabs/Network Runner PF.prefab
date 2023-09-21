@@ -89,4 +89,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850af93dbc3e3ed49bf2da6780fa8e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 3255338231579511589, guid: 14a3799baee00b441b9deed1938829be, type: 3}
+  PlayerPrefab: {fileID: 3255338231579511589, guid: 14a3799baee00b441b9deed1938829be, type: 3}
+  cSelectPrefab: {fileID: 7289140544187993974, guid: ec9ab6bad825d7b4e8ad2ddda6d27e08, type: 3}

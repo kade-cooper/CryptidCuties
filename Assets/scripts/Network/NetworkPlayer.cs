@@ -5,10 +5,26 @@ using Fusion;
 
 public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
 {
+
+    public GameObject canvas;
+    public GameObject blueGuy;
+    public GameObject redGuy;
+
+    public Transform playerUI;
     public static NetworkPlayer Local { get; set; }
     void Start()
     {
         
+    }
+    public void CharacterBlueSelected()
+    {
+        blueGuy.SetActive(true);
+        canvas.SetActive(false);
+    }
+    public void CharacterRedSelected()
+    {
+        redGuy.SetActive(true);
+        canvas.SetActive(false);
     }
 
     public override void Spawned()
@@ -16,6 +32,8 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         if (Object.HasInputAuthority)
         {
             Local = this;
+
+            Utils.SetRenderLayerInChildren(playerUI, LayerMask.NameToLayer("LocalPlayerUI"));
             Camera.main.gameObject.SetActive(false);
             Debug.Log("Spawned local player");
         }
