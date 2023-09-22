@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//kade's branch
+
 public class CharacterInputHandler : MonoBehaviour
 {
     Vector2 moveInputVector = Vector2.zero;

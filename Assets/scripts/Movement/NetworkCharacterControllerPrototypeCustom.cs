@@ -2,6 +2,9 @@ using System;
 using Fusion;
 using UnityEngine;
 
+//kade's branch
+
+
 [RequireComponent(typeof(CharacterController))]
 [OrderBefore(typeof(NetworkTransform))]
 [DisallowMultipleComponent]

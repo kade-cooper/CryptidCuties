@@ -4,6 +4,8 @@ using UnityEngine;
 using Fusion;
 using PhotonHashtable = ExitGames.Client.Photon.Hashtable;
 
+//kade's branch
+
 public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
 {
 
