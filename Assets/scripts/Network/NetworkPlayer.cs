@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using PhotonHashtable = ExitGames.Client.Photon.Hashtable;
 
 public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
 {
@@ -10,20 +11,44 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     public GameObject blueGuy;
     public GameObject redGuy;
 
+    [Networked]
+    [HideInInspector]
+    public int selectedCharacter { get; set; }
+
     public Transform playerUI;
     public static NetworkPlayer Local { get; set; }
     void Start()
     {
-        
     }
-    public void CharacterBlueSelected()
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_ChangeToSelectedCharacter()
+    {
+        Debug.Log(Object.HasInputAuthority);
+        Debug.Log(selectedCharacter);
+        if (selectedCharacter != null)
+        {
+            if (selectedCharacter == 1)
+            {
+                blueGuy.SetActive(true);
+            }
+        }
+    }
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    public void RPC_CharacterBlueSelected()
     {
         blueGuy.SetActive(true);
+        selectedCharacter = 1;
         canvas.SetActive(false);
+
     }
-    public void CharacterRedSelected()
+
+    [Rpc(RpcSources.InputAuthority,RpcTargets.All)]
+    public void RPC_CharacterRedSelected()
     {
         redGuy.SetActive(true);
+       selectedCharacter = 2;
         canvas.SetActive(false);
     }
 
@@ -40,10 +65,11 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         else {
             Camera localCamera = GetComponentInChildren<Camera>();
             localCamera.enabled = false;
-
+            playerUI.gameObject.SetActive(false);
             AudioListener audioListener= GetComponentInChildren<AudioListener>();
             audioListener.enabled = false;
             Debug.Log("Spawned remote player");
+            RPC_ChangeToSelectedCharacter();
         }    
     }
 

@@ -32,6 +32,8 @@ public class CharacterMovementHandler : NetworkBehaviour
             moveDirection.Normalize();
             networkCharacterControllerPrototypeCustom.Move(moveDirection);
         }
+
+
     }
 
 }

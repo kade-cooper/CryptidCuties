@@ -27,13 +27,15 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
   public bool attackLands;
 
 
-  [Networked]
+
+    [Networked]
   [HideInInspector]
   public bool IsGrounded { get; set; }
 
   [Networked]
   [HideInInspector]
   public Vector3 Velocity { get; set; }
+
 
   /// <summary>
   /// Sets the default teleport interpolation velocity to be the CC's current velocity.
@@ -53,6 +55,7 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
   {
     base.Awake();
     CacheController();
+
     isHit = false;
     onHit = false;
     isAttacking = false;
@@ -87,28 +90,28 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
 
     // Re-enable CC
     Controller.enabled = true;
-  }
-
-  /// <summary>
-  /// Basic implementation of a jump impulse (immediately integrates a vertical component to Velocity).
-  /// <param name="ignoreGrounded">Jump even if not in a grounded state.</param>
-  /// <param name="overrideImpulse">Optional field to override the jump impulse. If null, <see cref="jumpImpulse"/> is used.</param>
-  /// </summary>
-  public virtual void Jump(bool ignoreGrounded = false, float? overrideImpulse = null)
-  {
-    if (IsGrounded || ignoreGrounded)
-    {
-      var newVel = Velocity;
-      newVel.y += overrideImpulse ?? jumpImpulse;
-      Velocity = newVel;
     }
-  }
 
-  /// <summary>
-  /// Basic implementation of a character controller's movement function based on an intended direction.
-  /// <param name="direction">Intended movement direction, subject to movement query, acceleration and max speed values.</param>
-  /// </summary>
-  public virtual void Move(Vector3 direction)
+    /// <summary>
+    /// Basic implementation of a jump impulse (immediately integrates a vertical component to Velocity).
+    /// <param name="ignoreGrounded">Jump even if not in a grounded state.</param>
+    /// <param name="overrideImpulse">Optional field to override the jump impulse. If null, <see cref="jumpImpulse"/> is used.</param>
+    /// </summary>
+    public virtual void Jump(bool ignoreGrounded = false, float? overrideImpulse = null)
+    {
+        if (IsGrounded || ignoreGrounded)
+        {
+            var newVel = Velocity;
+            newVel.y += overrideImpulse ?? jumpImpulse;
+            Velocity = newVel;
+        }
+    }
+
+    /// <summary>
+    /// Basic implementation of a character controller's movement function based on an intended direction.
+    /// <param name="direction">Intended movement direction, subject to movement query, acceleration and max speed values.</param>
+    /// </summary>
+    public virtual void Move(Vector3 direction)
   {
     var deltaTime = Runner.DeltaTime;
     var previousPos = transform.position;

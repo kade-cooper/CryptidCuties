@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterInputHandler : MonoBehaviour
 {
     Vector2 moveInputVector = Vector2.zero;
+    GameObject characterSelected = null;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,6 @@ public class CharacterInputHandler : MonoBehaviour
     public NetworkInputData GetNetworkInput()
     {
         NetworkInputData networkInputData = new NetworkInputData();
-
         networkInputData.movementInput = moveInputVector;
 
         return networkInputData;
