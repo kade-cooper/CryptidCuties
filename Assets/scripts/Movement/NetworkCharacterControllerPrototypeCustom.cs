@@ -19,7 +19,15 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
   public float maxSpeed = 2.0f;
   public float rotationSpeed = 15.0f;
 
-  public int Health;
+    [Header("Romance Mechanic Settings")]
+    public bool isHit;
+    public bool onHit;
+    public float Health = 100.0f;
+    public float RomanceMeter = 0.0f;
+    public float RomanceMeterFull = 5.0f;
+    public bool RomanceReady;
+    public bool isAttacking;
+    public bool attackLands;
 
 
     [Networked]
@@ -143,4 +151,38 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform
     Velocity = (transform.position - previousPos) * Runner.Simulation.Config.TickRate;
     //IsGrounded = Controller.isGrounded;
   }
+
+
+
+    //Here is the function for the Romance mechanic, currently passing two bools and a float to build-up and initiate the readiness of the Romance/ULT ability.
+    public void Romance(bool isHit, float RomanceMeter, bool RomanceReady)
+    {
+        if (isHit == true)
+        {
+            RomanceMeter += 1.0f;
+        }
+
+        if (RomanceReady == true)
+        {
+            // When attack is setup insert "ULT" Romance attack here.
+        }
+    }
+    //Function for all attacks and how they operate both for the character/player and the enemy/opponent.
+    public void Attack(float Health, bool isAttacking, bool attackLands)
+    {
+        if (isAttacking == true)
+        {
+
+        }
+
+        if (attackLands == true)
+        {
+
+        }
+
+        if (Health == 0.0f)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

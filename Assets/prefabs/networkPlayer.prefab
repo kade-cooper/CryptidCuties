@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2052516459864746206}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1214456193466032836
 Camera:
@@ -164,7 +164,6 @@ GameObject:
   - component: {fileID: 4171030000823513051}
   - component: {fileID: 9176944850442220880}
   - component: {fileID: 7489576615223509650}
-  - component: {fileID: 7139221096485664915}
   m_Layer: 7
   m_Name: networkPlayer
   m_TagString: player
@@ -186,7 +185,6 @@ Transform:
   m_Children:
   - {fileID: 2052516459864746206}
   - {fileID: 2044257762210241265}
-  - {fileID: 2387662492113244172}
   - {fileID: 605084363637472513}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -207,7 +205,7 @@ MonoBehaviour:
   canvas: {fileID: 2044257762210241277}
   blueGuy: {fileID: 6074026265755732168}
   redGuy: {fileID: 3842718110622998933}
-  nccpc: {fileID: 4171030000823513051}
+  _selectedCharacter: 0
   playerUI: {fileID: 2044257762210241265}
 --- !u!114 &3255338231579511588
 MonoBehaviour:
@@ -287,14 +285,14 @@ MonoBehaviour:
   braking: 10
   maxSpeed: 10
   rotationSpeed: 15
+  isHit: 0
+  onHit: 0
   Health: 100
   RomanceMeter: 0
   RomanceMeterFull: 5
   RomanceReady: 0
   isAttacking: 0
   attackLands: 0
-  blueGuy: {fileID: 6074026265755732168}
-  redGuy: {fileID: 3842718110622998933}
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &9176944850442220880
@@ -322,12 +320,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b207e9d5d4367459ddc8b57d4e8639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &3842718110622998933
-GameObject:
   wasAttacking:
     _value: 0
---- !u!114 &7139221096485664915
-MonoBehaviour:
+--- !u!1 &3842718110622998933
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -335,9 +331,9 @@ MonoBehaviour:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 793311178561453873}
-  - component: {fileID: 5179056738523106702}
   - component: {fileID: 7718038770698905851}
-  m_Layer: 9
+  - component: {fileID: 5179056738523106702}
+  m_Layer: 0
   m_Name: RedCryptid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,8 +353,24 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2052516459864746206}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &7718038770698905851
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842718110622998933}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!212 &5179056738523106702
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -411,22 +423,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &7718038770698905851
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3842718110622998933}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
 --- !u!1 &6074026265755732168
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +454,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2052516459864746206}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8633027604851933156
 SpriteRenderer:
@@ -528,19 +524,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
-  m_GameObject: {fileID: 3255338231579511577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71e75c5111f22454da645ae215c0659c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTimeBtwAttack: 0.3
-  attackPos: {fileID: 605084363637472513}
-  attackRange: 1
-  whatIsEnemies:
-    serializedVersion: 2
-    m_Bits: 256
-  damage: 5
 --- !u!1 &8370445376878287726
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,9 +553,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2387662492113244172}
   - {fileID: 4172131241958454177}
   - {fileID: 793311178561453873}
+  - {fileID: 2387662492113244172}
   m_Father: {fileID: 3255338231579511591}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (runner.IsServer)
         {
-            Debug.Log("OnplayerJoined we are server. waiting for selection to un-ghost.  All your base are belong to us");
+            Debug.Log("OnplayerJoined we are server. Player spawning as ghost.  All your base are belong to us");
             //runner.Spawn(cSelectPrefab,new Vector3(0,0,0), Quaternion.identity,player);
             runner.Spawn(PlayerPrefab, Utils.GetRandomSpawnPoint(), Quaternion.identity, player);
         }
