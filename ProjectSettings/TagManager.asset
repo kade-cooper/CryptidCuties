@@ -16,6 +16,8 @@ TagManager:
   - player
   - Enemy
   - teammate/self
+  - Team1
+  - Team2
   - 
   - ghosts
   - 

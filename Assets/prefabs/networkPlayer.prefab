@@ -118,6 +118,37 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &782998865093782704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605084363637472513}
+  m_Layer: 0
+  m_Name: AttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &605084363637472513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782998865093782704}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3255338231579511591}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3255338231579511577
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +164,7 @@ GameObject:
   - component: {fileID: 4171030000823513051}
   - component: {fileID: 9176944850442220880}
   - component: {fileID: 7489576615223509650}
+  - component: {fileID: 7139221096485664915}
   m_Layer: 7
   m_Name: networkPlayer
   m_TagString: player
@@ -154,6 +186,8 @@ Transform:
   m_Children:
   - {fileID: 2052516459864746206}
   - {fileID: 2044257762210241265}
+  - {fileID: 2387662492113244172}
+  - {fileID: 605084363637472513}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -253,8 +287,6 @@ MonoBehaviour:
   braking: 10
   maxSpeed: 10
   rotationSpeed: 15
-  isHit: 0
-  onHit: 0
   Health: 100
   RomanceMeter: 0
   RomanceMeterFull: 5
@@ -292,6 +324,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!1 &3842718110622998933
 GameObject:
+  wasAttacking:
+    _value: 0
+--- !u!114 &7139221096485664915
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -492,6 +528,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+  m_GameObject: {fileID: 3255338231579511577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e75c5111f22454da645ae215c0659c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTimeBtwAttack: 0.3
+  attackPos: {fileID: 605084363637472513}
+  attackRange: 1
+  whatIsEnemies:
+    serializedVersion: 2
+    m_Bits: 256
+  damage: 5
 --- !u!1 &8370445376878287726
 GameObject:
   m_ObjectHideFlags: 0
