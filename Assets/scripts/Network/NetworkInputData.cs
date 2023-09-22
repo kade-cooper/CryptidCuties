@@ -10,6 +10,9 @@ public struct NetworkInputData : INetworkInput
 
  
   public Vector2 movementInput;
+
+  public Vector2 aimForwardVector;
+
   public float rotationInput;
   public NetworkBool isJumpPressed;
 

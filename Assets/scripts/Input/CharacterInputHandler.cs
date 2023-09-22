@@ -8,9 +8,10 @@ using Fusion;
 public class CharacterInputHandler : MonoBehaviour
 {
     Vector2 moveInputVector = Vector2.zero;
-    GameObject characterSelected = null;
+    bool isAttack1Pressed = false;
 
-    public NetworkBool wasAttacking;
+    public CharacterMovementHandler characterMovementHandler;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +21,16 @@ public class CharacterInputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!characterMovementHandler.Object.HasInputAuthority)
+            return;
+
         moveInputVector.x = Input.GetAxis("Horizontal");
         moveInputVector.y = Input.GetAxis("Vertical");
 
-        if(Input.GetButtonDown("Fire1"))
-        wasAttacking = true;
+        if (Input.GetButtonDown("Fire1"))
+            isAttack1Pressed = true;
+        else if (Input.GetButtonUp("Fire1"))
+            isAttack1Pressed = false;
     }
 
     public NetworkInputData GetNetworkInput()
@@ -37,7 +43,7 @@ public class CharacterInputHandler : MonoBehaviour
         //jump data
 
         //attack data
-        networkInputData.isAttacking = wasAttacking;
+        networkInputData.isAttacking = isAttack1Pressed;
 
         //Health data
       //  networkInputData.Health = Health;
