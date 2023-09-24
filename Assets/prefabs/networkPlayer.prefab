@@ -1105,6 +1105,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7960176497343953461, guid: ec9ab6bad825d7b4e8ad2ddda6d27e08, type: 3}
+      propertyPath: m_text
+      value: Sus Button
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3641874917129716548, guid: ec9ab6bad825d7b4e8ad2ddda6d27e08, type: 3}
     - {fileID: 2939312423320780349, guid: ec9ab6bad825d7b4e8ad2ddda6d27e08, type: 3}
