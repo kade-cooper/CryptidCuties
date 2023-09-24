@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - player
+  - blueAttack1
+  - redAttack1
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,6 @@ TagManager:
   - Team2
   - 
   - ghosts
-  - 
-  - 
   - 
   - 
   - 

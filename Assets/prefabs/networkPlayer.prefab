@@ -129,9 +129,10 @@ GameObject:
   - component: {fileID: 5546320811073274305}
   - component: {fileID: 7739930781055824154}
   - component: {fileID: 5884786241001434443}
+  - component: {fileID: 2830020089337666587}
   m_Layer: 9
   m_Name: Attack1
-  m_TagString: Untagged
+  m_TagString: blueAttack1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,6 +217,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackObject: {fileID: 537856854709642229}
+--- !u!61 &2830020089337666587
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537856854709642229}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &782998865093782704
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1267776015702819688}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +524,8 @@ GameObject:
   - component: {fileID: 7718038770698905851}
   - component: {fileID: 5179056738523106702}
   - component: {fileID: 1192914144331253606}
-  m_Layer: 0
+  - component: {fileID: 1533986871376512102}
+  m_Layer: 9
   m_Name: RedCryptid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,6 +631,19 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _isAttacking: 0
   attack1: {fileID: 4319557719384133824}
+--- !u!114 &1533986871376512102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842718110622998933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542a0cbd82cc3f54a881d44bb6a2cfed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &4319557719384133824
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,9 +655,10 @@ GameObject:
   - component: {fileID: 5450855852689502171}
   - component: {fileID: 1082193686494223964}
   - component: {fileID: 3411179648651488873}
-  m_Layer: 0
+  - component: {fileID: 7040345791248811939}
+  m_Layer: 9
   m_Name: Attack1
-  m_TagString: Untagged
+  m_TagString: redAttack1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -701,6 +743,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackObject: {fileID: 4319557719384133824}
+--- !u!61 &7040345791248811939
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319557719384133824}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6074026265755732168
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +781,7 @@ GameObject:
   - component: {fileID: 8633027604851933156}
   - component: {fileID: 581550962669628876}
   - component: {fileID: 1099627080700122425}
+  - component: {fileID: 5062528669966626334}
   m_Layer: 9
   m_Name: BlueCryptid
   m_TagString: Untagged
@@ -819,6 +888,19 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _isAttacking: 0
   attack1: {fileID: 537856854709642229}
+--- !u!114 &5062528669966626334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6074026265755732168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542a0cbd82cc3f54a881d44bb6a2cfed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &8370445376878287726
 GameObject:
   m_ObjectHideFlags: 0
