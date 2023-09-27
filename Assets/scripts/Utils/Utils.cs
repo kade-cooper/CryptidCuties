@@ -4,11 +4,32 @@ using UnityEngine;
 
 //kade's branch
 
-public static class Utils
+public class Utils : MonoBehaviour
 {
-    public static Vector3 GetRandomSpawnPoint()
+    public int playerCnt = 0;
+    public Vector3 GetNewPlayerSpawnPoint()
     {
-        return new Vector3(Random.Range(-10, 10), 4, 0);
+        playerCnt += 1;
+        if (playerCnt == 1)
+        {
+            return new Vector3(-10, -10, 0);
+        }
+        else if(playerCnt == 2)
+        {
+            return new Vector3(10, 10, 0);
+        }
+        else if (playerCnt == 3)
+        {
+            return new Vector3(-10, 10, 0);
+        }
+        else if (playerCnt == 4)
+        {
+            return new Vector3(10, -10, 0);
+        }
+        else
+        {
+            return new Vector3(0, 0, 0);
+        }
     }
     public static void SetRenderLayerInChildren(Transform transform, int layerNumber)
     {

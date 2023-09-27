@@ -12,15 +12,19 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     public GameObject canvas;
     public GameObject blueGuy;
     public GameObject redGuy;
+    public Vector3 spawnpoint;
 
     [Networked]
     [HideInInspector]
     public int selectedCharacter { get; set; }
 
     public Transform playerUI;
+    public Transform playerUIFighting;
     public static NetworkPlayer Local { get; set; }
     void Start()
     {
+        Spawner spawner = Spawner.FindObjectOfType<Spawner>();
+        spawnpoint = spawner.spawn;
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -33,6 +37,10 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             if (selectedCharacter == 1)
             {
                 blueGuy.SetActive(true);
+            }
+            else if(selectedCharacter == 2)
+            {
+                redGuy.SetActive(true);
             }
         }
     }
@@ -61,6 +69,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             Local = this;
 
             Utils.SetRenderLayerInChildren(playerUI, LayerMask.NameToLayer("LocalPlayerUI"));
+            Utils.SetRenderLayerInChildren(playerUIFighting, LayerMask.NameToLayer("LocalPlayerUIFighting"));
             Camera.main.gameObject.SetActive(false);
             Debug.Log("Spawned local player");
         }
@@ -68,6 +77,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             Camera localCamera = GetComponentInChildren<Camera>();
             localCamera.enabled = false;
             playerUI.gameObject.SetActive(false);
+            playerUIFighting.gameObject.SetActive(false);
             AudioListener audioListener= GetComponentInChildren<AudioListener>();
             audioListener.enabled = false;
             Debug.Log("Spawned remote player");

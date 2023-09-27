@@ -11,9 +11,11 @@ using UnityEngine.UI;
 public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 {
 
+    public Vector3 spawn;
+
     public NetworkPlayer PlayerPrefab;
     // public NetworkCSelect cSelectPrefab;
-
+    public Utils util;
 
     CharacterInputHandler characterInputHandler;
     // Start is called before the first frame update
@@ -29,7 +31,8 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
         {
             Debug.Log("OnplayerJoined we are server. Player spawning as ghost.  All your base are belong to us");
             //runner.Spawn(cSelectPrefab,new Vector3(0,0,0), Quaternion.identity,player);
-            runner.Spawn(PlayerPrefab, Utils.GetRandomSpawnPoint(), Quaternion.identity, player);
+            spawn = util.GetNewPlayerSpawnPoint();
+            runner.Spawn(PlayerPrefab, spawn, Quaternion.identity, player);
         }
         else Debug.Log("OnPlayerJoined");
     }
@@ -48,7 +51,7 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 
-    public void OnConnectedToServer(NetworkRunner runner) { 
+    public void OnConnectedToServer(NetworkRunner runner) {
         Debug.Log("OnConnectedToServer");
         
     }
