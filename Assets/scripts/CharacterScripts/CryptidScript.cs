@@ -35,7 +35,9 @@ public class CryptidScript : MonoBehaviour
             if (health <= 0)
             {
                 health = maxHealth;
+                wholePlayer.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
                 wholePlayer.position = spawnpoint;
+                healhBar.value = health / maxHealth;
             }
 
             Debug.Log(health);
@@ -47,7 +49,9 @@ public class CryptidScript : MonoBehaviour
             if (health <= 0)
             {
                 health = maxHealth;
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 wholePlayer.position = spawnpoint;
+                healhBar.value = health / maxHealth;
             }
             Debug.Log(health);
         }
@@ -56,6 +60,7 @@ public class CryptidScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.CompareTag("redAttack1"))
         {
 
@@ -80,5 +85,6 @@ public class CryptidScript : MonoBehaviour
             }
             Debug.Log(health);
         }
+        */
     }
 }
