@@ -10,6 +10,8 @@ public class AttackHandler : NetworkBehaviour
 
     public GameObject attack1;
 
+    public GameObject attack2;
+
     float lastTimeAttacked = 0;
 
     // Start is called before the first frame update
