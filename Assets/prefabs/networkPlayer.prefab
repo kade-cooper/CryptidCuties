@@ -702,6 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b207e9d5d4367459ddc8b57d4e8639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInput: 1
   characterMovementHandler: {fileID: 9176944850442220880}
 --- !u!1 &3842718110622998933
 GameObject:
@@ -716,7 +717,6 @@ GameObject:
   - component: {fileID: 5179056738523106702}
   - component: {fileID: 1192914144331253606}
   - component: {fileID: 1533986871376512102}
-  - component: {fileID: 955932783539410569}
   m_Layer: 9
   m_Name: RedCryptid
   m_TagString: Untagged
@@ -836,32 +836,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1800
-  health: 1800
+  health: -1000
+  redAttackPower: 10
+  blueAttackPower: 15
   healhBar: {fileID: 5644648380919094907}
   spawnpoint: {x: 0, y: 0, z: 0}
   wholePlayer: {fileID: 3255338231579511591}
   player: {fileID: 3255338231579511589}
---- !u!50 &955932783539410569
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3842718110622998933}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  cih: {fileID: 7489576615223509650}
+  cmh: {fileID: 9176944850442220880}
 --- !u!1 &4319557719384133824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +1005,6 @@ GameObject:
   - component: {fileID: 581550962669628876}
   - component: {fileID: 1099627080700122425}
   - component: {fileID: 5062528669966626334}
-  - component: {fileID: 1705399621925055753}
   m_Layer: 9
   m_Name: BlueCryptid
   m_TagString: Untagged
@@ -1142,32 +1124,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 2000
-  health: 2000
+  health: -1000
+  redAttackPower: 10
+  blueAttackPower: 15
   healhBar: {fileID: 5644648380919094907}
   spawnpoint: {x: 0, y: 0, z: 0}
   wholePlayer: {fileID: 3255338231579511591}
   player: {fileID: 3255338231579511589}
---- !u!50 &1705399621925055753
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6074026265755732168}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  cih: {fileID: 7489576615223509650}
+  cmh: {fileID: 9176944850442220880}
 --- !u!1 &7325898113075542190
 GameObject:
   m_ObjectHideFlags: 0

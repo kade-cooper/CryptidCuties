@@ -9,6 +9,7 @@ public class CharacterInputHandler : MonoBehaviour
 {
     Vector2 moveInputVector = Vector2.zero;
     bool isAttack1Pressed = false;
+    public bool canInput=true;
 
     public CharacterMovementHandler characterMovementHandler;
 
@@ -21,7 +22,7 @@ public class CharacterInputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!characterMovementHandler.Object.HasInputAuthority)
+        if (!characterMovementHandler.Object.HasInputAuthority || !canInput)
             return;
 
         moveInputVector.x = Input.GetAxis("Horizontal");

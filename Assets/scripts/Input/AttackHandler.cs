@@ -22,7 +22,7 @@ public class AttackHandler : NetworkBehaviour
     {
         if(GetInput(out NetworkInputData networkInputData))
         {
-            Debug.Log(networkInputData.isAttacking);
+            //Debug.Log(networkInputData.isAttacking);
             if (networkInputData.isAttacking)
                 Attack();
         }
@@ -54,7 +54,7 @@ public class AttackHandler : NetworkBehaviour
 
     static void OnAttackChanged(Changed<AttackHandler> changed)
     {
-        Debug.Log($"{Time.time} OnAttackChanged value {changed.Behaviour.isAttacking}");
+        //Debug.Log($"{Time.time} OnAttackChanged value {changed.Behaviour.isAttacking}");
 
         bool isAttackingCurrent = changed.Behaviour.isAttacking;
 
