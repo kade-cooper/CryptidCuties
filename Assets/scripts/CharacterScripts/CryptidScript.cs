@@ -18,9 +18,25 @@ public class CryptidScript : NetworkBehaviour
     public float redAttackPower = 10;
     public float blueAttackPower = 15;
     public Slider healhBar;
-   // public float maxRomance = 1000;
-   // public float romance = 0;
-   // public Slider romanceBar;
+
+
+
+    //romance levels
+    public float maxRomance = 1000;
+    [Networked]
+    public float romanceMEt2 { get; set; }
+    [Networked]
+    public CryptidScript player2 { get; set; }
+    public CryptidScript player2temp;
+    [Networked]
+    public float romanceMEt3 { get; set; }
+    [Networked]
+    public float romanceMEt4 { get; set; }
+
+    public Slider romanceBar;
+
+
+
     public Vector3 spawnpoint;
     public Transform wholePlayer;
     public NetworkPlayer player;
@@ -41,11 +57,15 @@ public class CryptidScript : NetworkBehaviour
         {
             Local = this;
             netHealth = maxHealth;
+
         }
         else
         {
             RPC_SendHealth();
             netHealth = health;
+            RPC_SetPlayerTarget(this);
+            //player2 = player2temp;
+
         }
     }
 
@@ -55,6 +75,14 @@ public class CryptidScript : NetworkBehaviour
         Debug.Log("rpc health:" + netHealth);
         health = netHealth;
     }
+
+    [Rpc(RpcSources.All, RpcTargets.InputAuthority)]
+    public void RPC_SetPlayerTarget(CryptidScript otherPlayer)
+    {
+        player2 = otherPlayer;
+    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -92,6 +120,19 @@ public class CryptidScript : NetworkBehaviour
         }
         Debug.Log(netHealth);
     }
+
+    /*
+    void onHitRomance(float attackPower)
+    {
+        romance -= attackPower;
+        romanceBar.value = netHealth / maxHealth;
+        if(romance == 1000)
+        {
+            //implement thing
+        }
+        Debug.Log(romance);
+    }
+    */
 
     Vector3 getRespawnVector()
     {
