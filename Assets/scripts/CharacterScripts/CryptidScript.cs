@@ -4,10 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using Fusion;
 
-public class CryptidScript : MonoBehaviour
+public class CryptidScript : NetworkBehaviour
 {
     public float maxHealth;
-    public float health = 0;
+
+    [Networked]
+    public float netHealth {get; set;}
+
+    public float health;
+
+    public static CryptidScript Local { get; set; }
 
     public float redAttackPower = 10;
     public float blueAttackPower = 15;
@@ -24,33 +30,27 @@ public class CryptidScript : MonoBehaviour
     {
         spawnpoint = player.spawnpoint;
     }
-    private void OnEnable()
-    {
-        startHealth();
-    }
 
 
-    public void startHealth()
+    public override void Spawned()
     {
-        if(cmh.Object.HasInputAuthority)
-            health = maxHealth;
+        if (Object.HasInputAuthority)
+        {
+            Local = this;
+            netHealth = maxHealth;
+        }
         else
         {
-            if (health == -1000)
-            {
-                health = maxHealth;
-                Debug.Log("I run");
-            }
-            else
-                health = RPC_SendHealth();
+            RPC_SendHealth();
+            netHealth = health;
         }
     }
 
-    [Rpc(RpcSources.InputAuthority, RpcTargets.Proxies)]
-    public float RPC_SendHealth()
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_SendHealth()
     {
-            return health;
-        Debug.Log("rpc health:"+health);
+        Debug.Log("rpc health:" + netHealth);
+        health = netHealth;
     }
 
     // Update is called once per frame
@@ -64,38 +64,30 @@ public class CryptidScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("redAttack1"))
         {
-            
-            health -= redAttackPower;
-            healhBar.value = health / maxHealth;
-            if (health <= 0)
-            {
-                Respawn();
-            }
-
-            Debug.Log(health);
+            onHit(redAttackPower);
         }
         else if (collision.gameObject.CompareTag("blueAttack1"))
         {
-            health -= blueAttackPower;
-            healhBar.value = health / maxHealth;
-            if (health <= 0)
-            {
-                Respawn();
-            }
-            Debug.Log(health);
+            onHit(blueAttackPower);
         }
     }
 
-    void Respawn()
+    void onHit(float attackPower)
     {
-        cih.canInput = false;
-        wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
-        wholePlayer.GetComponent<CharacterController>().Move(getRespawnVector());
-        wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
-        //this.GetComponent<Collider2D>().gameObject.SetActive(true);
-        cih.canInput = true;
-        health = maxHealth;
-        healhBar.value = health / maxHealth;
+        netHealth -= attackPower;
+        healhBar.value = netHealth / maxHealth;
+        if (netHealth <= 0)
+        {
+            cih.canInput = false;
+            wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
+            wholePlayer.GetComponent<CharacterController>().Move(getRespawnVector());
+            wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
+            //this.GetComponent<Collider2D>().gameObject.SetActive(true);
+            cih.canInput = true;
+            netHealth = maxHealth;
+            healhBar.value = netHealth / maxHealth;
+        }
+        Debug.Log(netHealth);
     }
 
     Vector3 getRespawnVector()

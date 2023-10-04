@@ -613,7 +613,9 @@ MonoBehaviour:
   - {fileID: 4171030000823513051}
   - {fileID: 9176944850442220880}
   - {fileID: 1099627080700122425}
+  - {fileID: 5062528669966626334}
   - {fileID: 1192914144331253606}
+  - {fileID: 1533986871376512102}
   SimulationBehaviours: []
 --- !u!143 &-4796179434845559248
 CharacterController:
@@ -835,7 +837,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542a0cbd82cc3f54a881d44bb6a2cfed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   maxHealth: 1800
+  _netHealth: 0
   health: -1000
   redAttackPower: 10
   blueAttackPower: 15
@@ -1123,7 +1127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542a0cbd82cc3f54a881d44bb6a2cfed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   maxHealth: 2000
+  _netHealth: 0
   health: -1000
   redAttackPower: 10
   blueAttackPower: 15
