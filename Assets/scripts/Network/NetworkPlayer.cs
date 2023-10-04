@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
-using PhotonHashtable = ExitGames.Client.Photon.Hashtable;
+//using PhotonHashtable = ExitGames.Client.Photon.Hashtable;
 
 //kade's branch
 
@@ -30,8 +30,8 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_ChangeToSelectedCharacter()
     {
-        Debug.Log(Object.HasInputAuthority);
-        Debug.Log(selectedCharacter);
+        //Debug.Log(Object.HasInputAuthority);
+        //Debug.Log(selectedCharacter);
         if (selectedCharacter != null)
         {
             if (selectedCharacter == 1)
