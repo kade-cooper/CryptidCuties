@@ -8,6 +8,9 @@ public class CryptidScript : MonoBehaviour
     public float maxHealth = 1000;
     public float health = 1000;
     public Slider healhBar;
+   // public float maxRomance = 1000;
+   // public float romance = 0;
+   // public Slider romanceBar;
     public Vector3 spawnpoint;
     public Transform wholePlayer;
     public NetworkPlayer player;
