@@ -7,6 +7,10 @@ TagManager:
   - player
   - blueAttack1
   - redAttack1
+  - player0
+  - player1
+  - player2
+  - player3
   layers:
   - Default
   - TransparentFX

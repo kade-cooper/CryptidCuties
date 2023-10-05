@@ -4,36 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using Fusion;
 
-public class CryptidScript : NetworkBehaviour
+public class playerRomanceHandler : NetworkBehaviour
 {
-    public float maxHealth;
-
-    [Networked]
-    public float netHealth {get; set;}
-
-    public float health;
-
-    public static CryptidScript Local { get; set; }
-
-    public float redAttackPower = 10;
-    public float blueAttackPower = 15;
-    public Slider healhBar;
+    public static playerRomanceHandler Local { get; set; }
 
 
-    /*
+
+
     //romance levels
     [Networked]
     [Capacity(4)]
-    public NetworkArray<NetworkString<_64>> players { get;} =
-        MakeInitializer(new NetworkString<_64>[] {"", "", "", "" });
+    public NetworkArray<NetworkString<_64>> players { get; } =
+        MakeInitializer(new NetworkString<_64>[] { "", "", "", "" });
 
-    public CryptidScript[] crypids = { null, null, null, null };
-    public CryptidScript[] crypidstemp = { null, null, null, null };
+    public playerRomanceHandler[] crypids = { null, null, null, null };
+    public playerRomanceHandler[] crypidstemp = { null, null, null, null };
     public float maxRomance = 1000;
     [Networked]
     public float romanceMEt2 { get; set; }
     [Networked]
-    public CryptidScript player2 { get; set; }
+    public playerRomanceHandler player2 { get; set; }
     [Networked]
     public float romanceMEt3 { get; set; }
     [Networked]
@@ -41,10 +31,8 @@ public class CryptidScript : NetworkBehaviour
 
     public Slider romanceBar;
 
-    */
 
-    public Vector3 spawnpoint;
-    public Transform wholePlayer;
+
     public NetworkPlayer player;
 
     public CharacterInputHandler cih;
@@ -53,93 +41,83 @@ public class CryptidScript : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnpoint = player.spawnpoint;
     }
 
 
-
+    //NEED TO NETWORK PLAYER TAG
     public override void Spawned()
     {
         if (Object.HasInputAuthority)
         {
-            /*
             Debug.Log("before debug.log");
             if (players.Get(0) == "")
             {
                 players.Set(0, "player0");
-                this.tag = "player0";
+                this.gameObject.tag = "player0";
                 crypids[0] = this;
             }
             else if (players.Get(1) == "")
             {
                 players.Set(1, "player1");
-                this.tag = "player1";
+                this.gameObject.tag = "player1";
                 crypids[1] = this;
             }
             else if (players.Get(2) == "")
             {
                 players.Set(2, "player2");
-                this.tag = "player2";
+                this.gameObject.tag = "player2";
                 crypids[2] = this;
             }
             else if (players.Get(3) == "")
             {
                 players.Set(3, "player3");
-                this.tag = "player3";
+                this.gameObject.tag = "player3";
                 crypids[3] = this;
             }
 
             //Debug.Log(players.ToString()+"players.tostring");
             Debug.Log("after debug.log");
             Local = this;
+            RPC_SendCrypids();
             for (int i = 0; i < crypids.Length; i++)
             {
                 crypids[i] = crypidstemp[i];
             }
-            */
-            netHealth = maxHealth; 
 
 
         }
         else
         {
-            /*
-            for(int i = 0; i < players.Length; ++i)
+
+            for (int i = 0; i < players.Length; ++i)
             {
                 Debug.Log(players.Get(i));
-                if(players.Get(i) != this.ToString())
+                if (!this.CompareTag(players.Get(i).ToString()))
                 {
                     player2 = crypids[i];
                     break;
                 }
             }
-            */
-            RPC_SendHealth();
-            //RPC_SendCrypids();
-            netHealth = health;
+
+            RPC_SendCrypids();
             //RPC_SetPlayerTarget(this);
             //player2 = player2temp;
 
         }
     }
 
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_SendHealth()
-    {
-        Debug.Log("rpc health:" + netHealth);
-        health = netHealth;
-    }
-    /*
+
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_SendCrypids()
     {
-           for(int i=0; i<crypids.Length; i++)
+        for (int i = 0; i < crypids.Length; i++)
         {
-            crypidstemp[i] = GameObject.FindGameObjectWithTag("player"+i.ToString()).GetComponent<CryptidScript>();
+            Debug.Log("player" + i.ToString());
+            crypidstemp[i] = GameObject.FindGameObjectWithTag("player" + i.ToString()).GetComponent<playerRomanceHandler>();
         }
     }
 
-    
+    /*
     [Rpc(RpcSources.Proxies, RpcTargets.InputAuthority)]
     public void RPC_SetPlayerTarget(CryptidScript otherPlayer)
     {
@@ -154,35 +132,15 @@ public class CryptidScript : NetworkBehaviour
 
     }
 
-    
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("redAttack1"))
-        {
-            onHit(redAttackPower);
-        }
-        else if (collision.gameObject.CompareTag("blueAttack1"))
-        {
-            onHit(blueAttackPower);
-        }
+
     }
 
-    void onHit(float attackPower)
+    void onHit(float romancePower)
     {
-        netHealth -= attackPower;
-        healhBar.value = netHealth / maxHealth;
-        if (netHealth <= 0)
-        {
-            cih.canInput = false;
-            wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
-            wholePlayer.GetComponent<CharacterController>().Move(getRespawnVector());
-            wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
-            //this.GetComponent<Collider2D>().gameObject.SetActive(true);
-            cih.canInput = true;
-            netHealth = maxHealth;
-            healhBar.value = netHealth / maxHealth;
-        }
-        Debug.Log(netHealth);
+
     }
 
     /*
@@ -198,11 +156,6 @@ public class CryptidScript : NetworkBehaviour
     }
     */
 
-    Vector3 getRespawnVector()
-    {
-        return spawnpoint - wholePlayer.position + new Vector3(0,0,-100);
-    }
-    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
