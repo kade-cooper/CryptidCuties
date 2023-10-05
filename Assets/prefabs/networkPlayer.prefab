@@ -486,7 +486,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -825,6 +825,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _isAttacking: 0
   attack1: {fileID: 4319557719384133824}
+  attack2: {fileID: 0}
 --- !u!114 &1533986871376512102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,6 +845,13 @@ MonoBehaviour:
   redAttackPower: 10
   blueAttackPower: 15
   healhBar: {fileID: 5644648380919094907}
+  maxRomance: 1000
+  _romanceMEt2: 0
+  _player2: {fileID: 0}
+  player2temp: {fileID: 0}
+  _romanceMEt3: 0
+  _romanceMEt4: 0
+  romanceBar: {fileID: 0}
   spawnpoint: {x: 0, y: 0, z: 0}
   wholePlayer: {fileID: 3255338231579511591}
   player: {fileID: 3255338231579511589}
@@ -1115,6 +1123,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _isAttacking: 0
   attack1: {fileID: 537856854709642229}
+  attack2: {fileID: 0}
 --- !u!114 &5062528669966626334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1134,6 +1143,13 @@ MonoBehaviour:
   redAttackPower: 10
   blueAttackPower: 15
   healhBar: {fileID: 5644648380919094907}
+  maxRomance: 1000
+  _romanceMEt2: 0
+  _player2: {fileID: 0}
+  player2temp: {fileID: 0}
+  _romanceMEt3: 0
+  _romanceMEt4: 0
+  romanceBar: {fileID: 0}
   spawnpoint: {x: 0, y: 0, z: 0}
   wholePlayer: {fileID: 3255338231579511591}
   player: {fileID: 3255338231579511589}

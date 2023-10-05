@@ -22,7 +22,13 @@ public class CryptidScript : NetworkBehaviour
 
 
     //romance levels
-    public float maxRomance = 1000;
+    [Networked]
+    [Capacity(4)]
+    public NetworkArray<NetworkString<_64>> players { get;} =
+        MakeInitializer(new NetworkString<_64>[] { });
+
+
+public float maxRomance = 1000;
     [Networked]
     public float romanceMEt2 { get; set; }
     [Networked]
@@ -51,19 +57,56 @@ public class CryptidScript : NetworkBehaviour
     }
 
 
+
     public override void Spawned()
     {
+        CryptidScript[] crypids= { null, null, null, null };
         if (Object.HasInputAuthority)
         {
+            Debug.Log("before debug.log");
+            if (players.Get(0) == null)
+            {
+                players.Set(0, this.ToString());
+                crypids[0] = this;
+            }
+            else if (players.Get(1) == null)
+            {
+                players.Set(1, this.ToString());
+                crypids[1] = this;
+            }
+            else if (players.Get(2) == null)
+            {
+                players.Set(2, this.ToString());
+                crypids[2] = this;
+            }
+            else if (players.Get(3) == null)
+            {
+                players.Set(3, this.ToString());
+                crypids[3] = this;
+            }
+
+            //Debug.Log(players.ToString()+"players.tostring");
+            Debug.Log("after debug.log");
             Local = this;
-            netHealth = maxHealth;
+            netHealth = maxHealth; 
+
 
         }
         else
         {
+            
+            for(int i = 0; i < players.Length; ++i)
+            {
+                Debug.Log(players.Get(i));
+                if(players.Get(i) != this.ToString())
+                {
+                    player2 = crypids[i];
+                }
+            }
+            
             RPC_SendHealth();
             netHealth = health;
-            RPC_SetPlayerTarget(this);
+            //RPC_SetPlayerTarget(this);
             //player2 = player2temp;
 
         }
@@ -76,12 +119,13 @@ public class CryptidScript : NetworkBehaviour
         health = netHealth;
     }
 
-    [Rpc(RpcSources.All, RpcTargets.InputAuthority)]
+    /*
+    [Rpc(RpcSources.Proxies, RpcTargets.InputAuthority)]
     public void RPC_SetPlayerTarget(CryptidScript otherPlayer)
     {
         player2 = otherPlayer;
     }
-
+    */
 
 
     // Update is called once per frame
