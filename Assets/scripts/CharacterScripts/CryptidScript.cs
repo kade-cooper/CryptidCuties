@@ -20,28 +20,6 @@ public class CryptidScript : NetworkBehaviour
     public Slider healhBar;
 
 
-    /*
-    //romance levels
-    [Networked]
-    [Capacity(4)]
-    public NetworkArray<NetworkString<_64>> players { get;} =
-        MakeInitializer(new NetworkString<_64>[] {"", "", "", "" });
-
-    public CryptidScript[] crypids = { null, null, null, null };
-    public CryptidScript[] crypidstemp = { null, null, null, null };
-    public float maxRomance = 1000;
-    [Networked]
-    public float romanceMEt2 { get; set; }
-    [Networked]
-    public CryptidScript player2 { get; set; }
-    [Networked]
-    public float romanceMEt3 { get; set; }
-    [Networked]
-    public float romanceMEt4 { get; set; }
-
-    public Slider romanceBar;
-
-    */
 
     public Vector3 spawnpoint;
     public Transform wholePlayer;
@@ -62,63 +40,15 @@ public class CryptidScript : NetworkBehaviour
     {
         if (Object.HasInputAuthority)
         {
-            /*
-            Debug.Log("before debug.log");
-            if (players.Get(0) == "")
-            {
-                players.Set(0, "player0");
-                this.tag = "player0";
-                crypids[0] = this;
-            }
-            else if (players.Get(1) == "")
-            {
-                players.Set(1, "player1");
-                this.tag = "player1";
-                crypids[1] = this;
-            }
-            else if (players.Get(2) == "")
-            {
-                players.Set(2, "player2");
-                this.tag = "player2";
-                crypids[2] = this;
-            }
-            else if (players.Get(3) == "")
-            {
-                players.Set(3, "player3");
-                this.tag = "player3";
-                crypids[3] = this;
-            }
 
-            //Debug.Log(players.ToString()+"players.tostring");
-            Debug.Log("after debug.log");
-            Local = this;
-            for (int i = 0; i < crypids.Length; i++)
-            {
-                crypids[i] = crypidstemp[i];
-            }
-            */
-            netHealth = maxHealth; 
+            RPC_ChangeHealthToMax();
 
 
         }
         else
         {
-            /*
-            for(int i = 0; i < players.Length; ++i)
-            {
-                Debug.Log(players.Get(i));
-                if(players.Get(i) != this.ToString())
-                {
-                    player2 = crypids[i];
-                    break;
-                }
-            }
-            */
             RPC_SendHealth();
-            //RPC_SendCrypids();
             netHealth = health;
-            //RPC_SetPlayerTarget(this);
-            //player2 = player2temp;
 
         }
     }
@@ -128,6 +58,14 @@ public class CryptidScript : NetworkBehaviour
     {
         Debug.Log("rpc health:" + netHealth);
         health = netHealth;
+    }
+
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RPC_ChangeHealthToMax()
+    {
+        Debug.Log("running change health rpc");
+        netHealth = maxHealth;
     }
     /*
     [Rpc(RpcSources.All, RpcTargets.All)]
