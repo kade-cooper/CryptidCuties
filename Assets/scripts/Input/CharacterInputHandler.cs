@@ -9,6 +9,7 @@ public class CharacterInputHandler : MonoBehaviour
 {
     Vector2 moveInputVector = Vector2.zero;
     bool isAttack1Pressed = false;
+    bool isRomancePressed = false;
     public bool canInput=true;
 
     public CharacterMovementHandler characterMovementHandler;
@@ -32,6 +33,10 @@ public class CharacterInputHandler : MonoBehaviour
             isAttack1Pressed = true;
         else if (Input.GetButtonUp("Fire1"))
             isAttack1Pressed = false;
+        if (Input.GetButtonDown("Fire2"))
+            isRomancePressed = true;
+        else if (Input.GetButtonUp("Fire2"))
+            isRomancePressed = false;
     }
 
     public NetworkInputData GetNetworkInput()
@@ -45,6 +50,7 @@ public class CharacterInputHandler : MonoBehaviour
 
         //attack data
         networkInputData.isAttacking = isAttack1Pressed;
+        networkInputData.isRomanceAttk = isRomancePressed;
 
         //Health data
       //  networkInputData.Health = Health;

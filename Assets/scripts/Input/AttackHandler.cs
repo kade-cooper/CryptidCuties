@@ -7,10 +7,12 @@ public class AttackHandler : NetworkBehaviour
 {
     [Networked(OnChanged = nameof(OnAttackChanged))]
     public bool isAttacking { get; set; }
+    [Networked(OnChanged = nameof(OnRChanged))]
+    public bool isRomanceAttk { get; set; }
 
     public GameObject attack1;
 
-    public GameObject attack2;
+    public GameObject romanceAttk;
 
     float lastTimeAttacked = 0;
 
@@ -26,11 +28,13 @@ public class AttackHandler : NetworkBehaviour
         {
             //Debug.Log(networkInputData.isAttacking);
             if (networkInputData.isAttacking)
-                Attack();
+                Attack(attack1, isAttacking);
+            else if (networkInputData.isRomanceAttk)
+                Attack(romanceAttk, isRomanceAttk);
         }
     }
 
-    void Attack()
+    void Attack(GameObject attackType, bool type)
     {
         if (Time.time - lastTimeAttacked < 0.9f)
         {
@@ -38,20 +42,20 @@ public class AttackHandler : NetworkBehaviour
             return;
         }
 
-        StartCoroutine(AttackEnable());
+        StartCoroutine(AttackEnable(attackType, type));
 
         lastTimeAttacked = Time.time;
     }
 
-    IEnumerator AttackEnable()
+    IEnumerator AttackEnable(GameObject attack1, bool type)
     {
-        isAttacking = true;
+        type = true;
 
         attack1.SetActive(true);
 
         yield return new WaitForSeconds(.01f);
 
-        isAttacking = false;
+        type = false;
     }
 
     static void OnAttackChanged(Changed<AttackHandler> changed)
@@ -70,11 +74,34 @@ public class AttackHandler : NetworkBehaviour
         }
     }
 
+    static void OnRChanged(Changed<AttackHandler> changed)
+    {
+        //Debug.Log($"{Time.time} OnAttackChanged value {changed.Behaviour.isAttacking}");
+
+        bool isAttackingCurrent = changed.Behaviour.romanceAttk;
+
+        changed.LoadOld();
+
+        bool isAttackingOld = changed.Behaviour.romanceAttk;
+
+        if (isAttackingCurrent && !isAttackingOld)
+        {
+            changed.Behaviour.OnRRemote();
+        }
+    }
+
     void OnAttackRemote()
     {
         if (!Object.HasInputAuthority)
         {
             attack1.SetActive(true);
+        }
+    }
+    void OnRRemote()
+    {
+        if (!Object.HasInputAuthority)
+        {
+            romanceAttk.SetActive(true);
         }
     }
 }

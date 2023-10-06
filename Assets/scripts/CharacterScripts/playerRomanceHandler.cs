@@ -24,19 +24,20 @@ public class playerRomanceHandler : NetworkBehaviour
 
     public string temptag;
 
+
     public playerRomanceHandler[] crypids = { null, null, null, null };
     public playerRomanceHandler[] crypidstemp = { null, null, null, null };
     public float maxRomance = 1000;
-    [Networked]
-    public float romance0_1 { get; set; }
+
     [Networked]
     public playerRomanceHandler player2 { get; set; }
 
     [Networked]
+    public float romance0_1 { get; set; }
+    [Networked]
     public float romance0_2 { get; set; }
     [Networked]
     public float romance0_3 { get; set; }
-
     [Networked]
     public float romance1_2 { get; set; }
     [Networked]
@@ -191,7 +192,16 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherPlayer.players.Set(i, players.Get(i));
                 }
             }
-            
+
+
+        romance0_1 = 0;
+        romance0_2 = 0;
+        romance0_3 = 0;
+        romance1_2 = 0;
+        romance1_3 = 0;
+        romance2_3 = 0;
+
+
     }
 
 
@@ -225,73 +235,64 @@ public class playerRomanceHandler : NetworkBehaviour
         temptag = tagthing.ToString();
     }
 
-    /*
-    [Rpc(RpcSources.Proxies, RpcTargets.InputAuthority)]
-    public void RPC_SetPlayerTarget(CryptidScript otherPlayer)
+    private void OnTriggerEnter(Collider collision)
     {
-        player2 = otherPlayer;
-    }
-    */
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if(collision.CompareTag("romanceAttk"))
+            onHit(100, collision);
     }
 
-
-    private void OnTriggerStay2D(Collider2D collision)
+        void onHit(float romancePower, Collider collision)
     {
-
-    }
-
-    void onHit(float romancePower)
-    {
-
-    }
-
-    /*
-    void onHitRomance(float attackPower)
-    {
-        romance -= attackPower;
-        romanceBar.value = netHealth / maxHealth;
-        if(romance == 1000)
+        int thisArrPos = 0;
+        int otherArrPos = 0;
+        for(int i = 0; i<crypids.Length;i++)
         {
-            //implement thing
-        }
-        Debug.Log(romance);
-    }
-    */
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        /*
-        if (collision.gameObject.CompareTag("redAttack1"))
-        {
-
-            health -= 10;
-            healhBar.value = health / maxHealth;
-            if (health <= 0)
+            if (crypids[i] == this)
             {
-                health = maxHealth;
-                wholePlayer.position = spawnpoint;
+                thisArrPos = i;
+                Debug.Log(crypids[i]);
             }
-
-            Debug.Log(health);
-        }
-        else if (collision.gameObject.CompareTag("blueAttack1"))
-        {
-            health -= 15;
-            healhBar.value = health / maxHealth;
-            if (health <= 0)
+            if(crypids[i] == collision.GetComponentInParent<playerRomanceHandler>())
             {
-                health = maxHealth;
-                wholePlayer.position = spawnpoint;
+                otherArrPos = i;
             }
-            Debug.Log(health);
         }
-        */
+
+
+        //i tried to make this less messy but i couldn't
+        if (thisArrPos == 0)
+        {
+            if (otherArrPos == 1)
+            {
+                romance0_1 += romancePower;
+            }
+            else if (otherArrPos == 2)
+            {
+                romance0_2 += romancePower;
+            }
+            else if (otherArrPos == 3)
+            {
+                romance0_3 += romancePower;
+            }
+        }
+        else if (thisArrPos == 1)
+        {
+            if (otherArrPos == 2)
+            {
+                romance1_2 += romancePower;
+            }
+            else if (otherArrPos == 3)
+            {
+                romance1_3 += romancePower;
+            }
+        }
+        else if (thisArrPos == 2)
+        {
+            if (otherArrPos == 3)
+            {
+                romance2_3 += romancePower;
+            }
+        }
+
     }
 }
