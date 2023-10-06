@@ -8,7 +8,11 @@ using Fusion;
 public class CharacterInputHandler : MonoBehaviour
 {
     Vector2 moveInputVector = Vector2.zero;
+
+
     bool isAttack1Pressed = false;
+    bool isRomanceAttkPressed = false;
+
     public bool canInput=true;
 
     public CharacterMovementHandler characterMovementHandler;
@@ -32,6 +36,12 @@ public class CharacterInputHandler : MonoBehaviour
             isAttack1Pressed = true;
         else if (Input.GetButtonUp("Fire1"))
             isAttack1Pressed = false;
+
+
+        if (Input.GetButtonDown("Fire2"))
+            isRomanceAttkPressed = true;
+        else if (Input.GetButtonUp("Fire2"))
+            isRomanceAttkPressed = false;
     }
 
     public NetworkInputData GetNetworkInput()
@@ -45,6 +55,7 @@ public class CharacterInputHandler : MonoBehaviour
 
         //attack data
         networkInputData.isAttacking = isAttack1Pressed;
+        networkInputData.isRomanceAttk = isRomanceAttkPressed;
 
         //Health data
       //  networkInputData.Health = Health;

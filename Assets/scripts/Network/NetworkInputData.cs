@@ -26,6 +26,7 @@ public struct NetworkInputData : INetworkInput
 
   
   public NetworkBool isAttacking;
+  public NetworkBool isRomanceAttk;
   public NetworkBool attackLands;
 
   
