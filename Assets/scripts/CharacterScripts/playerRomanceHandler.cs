@@ -245,6 +245,7 @@ public class playerRomanceHandler : NetworkBehaviour
     {
         int thisArrPos = 0;
         int otherArrPos = 0;
+        playerRomanceHandler otherRef = null;
         for(int i = 0; i<crypids.Length;i++)
         {
             if (crypids[i] == this)
@@ -255,6 +256,7 @@ public class playerRomanceHandler : NetworkBehaviour
             if(crypids[i] == collision.GetComponentInParent<playerRomanceHandler>())
             {
                 otherArrPos = i;
+                otherRef = crypids[i];
             }
         }
 
@@ -265,14 +267,17 @@ public class playerRomanceHandler : NetworkBehaviour
             if (otherArrPos == 1)
             {
                 romance0_1 += romancePower;
+                otherRef.romance0_1 += romancePower; 
             }
             else if (otherArrPos == 2)
             {
                 romance0_2 += romancePower;
+                otherRef.romance0_2 += romancePower;
             }
             else if (otherArrPos == 3)
             {
                 romance0_3 += romancePower;
+                otherRef.romance0_3 += romancePower;
             }
         }
         else if (thisArrPos == 1)
@@ -280,10 +285,12 @@ public class playerRomanceHandler : NetworkBehaviour
             if (otherArrPos == 2)
             {
                 romance1_2 += romancePower;
+                otherRef.romance1_2 += romancePower;
             }
             else if (otherArrPos == 3)
             {
                 romance1_3 += romancePower;
+                otherRef.romance1_3 += romancePower;
             }
         }
         else if (thisArrPos == 2)
@@ -291,6 +298,7 @@ public class playerRomanceHandler : NetworkBehaviour
             if (otherArrPos == 3)
             {
                 romance2_3 += romancePower;
+                otherRef.romance2_3 += romancePower;
             }
         }
 

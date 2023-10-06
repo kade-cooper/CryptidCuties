@@ -7,6 +7,7 @@ public class AttackHandler : NetworkBehaviour
 {
     [Networked(OnChanged = nameof(OnAttackChanged))]
     public bool isAttacking { get; set; }
+
     [Networked(OnChanged = nameof(OnRChanged))]
     public bool isRomanceAttk { get; set; }
 
@@ -29,7 +30,7 @@ public class AttackHandler : NetworkBehaviour
             //Debug.Log(networkInputData.isAttacking);
             if (networkInputData.isAttacking)
                 Attack(attack1, isAttacking);
-            else if (networkInputData.isRomanceAttk)
+            if (networkInputData.isRomanceAttk)
                 Attack(romanceAttk, isRomanceAttk);
         }
     }
