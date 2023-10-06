@@ -19,6 +19,7 @@ public class CryptidScript : NetworkBehaviour
     public float blueAttackPower = 15;
     public Slider healhBar;
 
+    // public Transform arrow;
 
 
     //romance levels
@@ -87,7 +88,9 @@ public class CryptidScript : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+      //  Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+      //  arrow.up = (mousePos - (Vector3)transform.position).normalized;
     }
 
     

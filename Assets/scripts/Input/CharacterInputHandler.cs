@@ -13,6 +13,8 @@ public class CharacterInputHandler : MonoBehaviour
 
     public CharacterMovementHandler characterMovementHandler;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class CharacterInputHandler : MonoBehaviour
             isAttack1Pressed = true;
         else if (Input.GetButtonUp("Fire1"))
             isAttack1Pressed = false;
+
     }
 
     public NetworkInputData GetNetworkInput()
