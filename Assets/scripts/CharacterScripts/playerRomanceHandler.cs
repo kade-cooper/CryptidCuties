@@ -237,6 +237,7 @@ public class playerRomanceHandler : NetworkBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log("onRomanceTriggerEnter");
         if (collision.CompareTag("romanceAttk"))
             onHit(100, collision);
     }
@@ -251,15 +252,15 @@ public class playerRomanceHandler : NetworkBehaviour
             if (crypids[i] == this)
             {
                 thisArrPos = i;
-                Debug.Log(crypids[i]);
+                Debug.Log(crypids[i]+"   "+i);
             }
             if (crypids[i] == collision.GetComponentInParent<playerRomanceHandler>())
             {
                 otherArrPos = i;
+                Debug.Log(crypids[i] + "   " + i);
                 otherRef = crypids[i];
             }
         }
-
 
         //i tried to make this less messy but i couldn't
         if (thisArrPos == 0)
@@ -282,7 +283,12 @@ public class playerRomanceHandler : NetworkBehaviour
         }
         else if (thisArrPos == 1)
         {
-            if (otherArrPos == 2)
+            if(otherArrPos == 0)
+            {
+                romance0_1 += romancePower;
+                otherRef.romance0_1 += romancePower;
+            }
+            else if (otherArrPos == 2)
             {
                 romance1_2 += romancePower;
                 otherRef.romance1_2 += romancePower;
@@ -299,6 +305,16 @@ public class playerRomanceHandler : NetworkBehaviour
             {
                 romance2_3 += romancePower;
                 otherRef.romance2_3 += romancePower;
+            }
+            else if (otherArrPos == 0)
+            {
+                romance0_2 += romancePower;
+                otherRef.romance0_1 += romancePower;
+            }
+            else if(otherArrPos == 1)
+            {
+                romance1_2 += romancePower;
+                otherRef.romance1_2 += romancePower;
             }
         }
 
