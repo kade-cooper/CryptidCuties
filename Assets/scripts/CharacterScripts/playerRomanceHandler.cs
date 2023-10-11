@@ -244,8 +244,40 @@ public class playerRomanceHandler : NetworkBehaviour
 
     public void onFull(GameObject playerThis, GameObject playerOther)
     {
-        playerThis.layer = LayerMask.NameToLayer("Team1");
-        playerOther.layer = LayerMask.NameToLayer("Team1");
+        foreach (Transform child in playerThis.transform)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("Team1");
+            foreach (Transform child1 in child.transform)
+            {
+                child1.gameObject.layer = LayerMask.NameToLayer("Team1");
+                foreach (Transform child2 in child1.transform)
+                {
+                    child2.gameObject.layer = LayerMask.NameToLayer("Team1");
+                    foreach (Transform child3 in child2.transform)
+                    {
+                        if (child3.gameObject.tag != "romanceAttk")
+                            child3.gameObject.layer = LayerMask.NameToLayer("Team1");
+                    }
+                }
+            }
+        }
+        foreach (Transform child in playerOther.transform)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("Team1");
+            foreach (Transform child1 in child.transform)
+            {
+                child1.gameObject.layer = LayerMask.NameToLayer("Team1");
+                foreach (Transform child2 in child1.transform)
+                {
+                    child2.gameObject.layer = LayerMask.NameToLayer("Team1");
+                    foreach (Transform child3 in child2.transform)
+                    {
+                        if (child3.gameObject.tag != "romanceAttk")
+                            child3.gameObject.layer = LayerMask.NameToLayer("Team1");
+                    }
+                }
+            }
+        }
     }
 
 
