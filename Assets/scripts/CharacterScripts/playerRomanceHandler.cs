@@ -242,6 +242,13 @@ public class playerRomanceHandler : NetworkBehaviour
             onHit(100, collision);
     }
 
+    public void onFull(GameObject playerThis, GameObject playerOther)
+    {
+        playerThis.layer = LayerMask.NameToLayer("Team1");
+        playerOther.layer = LayerMask.NameToLayer("Team1");
+    }
+
+
     void onHit(float romancePower, Collider collision)
     {
         int thisArrPos = 0;
@@ -269,16 +276,28 @@ public class playerRomanceHandler : NetworkBehaviour
             {
                 romance0_1 += romancePower;
                 otherRef.romance0_1 += romancePower;
+                if (romance0_1 >= 1000)
+                {
+                    onFull(this.gameObject, otherRef.gameObject);
+                }
             }
             else if (otherArrPos == 2)
             {
                 romance0_2 += romancePower;
                 otherRef.romance0_2 += romancePower;
+                if (romance0_2 >= 1000)
+                {
+                    onFull(this.gameObject, otherRef.gameObject);
+                }
             }
             else if (otherArrPos == 3)
             {
                 romance0_3 += romancePower;
                 otherRef.romance0_3 += romancePower;
+                if (romance0_3 >= 1000)
+                {
+                    onFull(this.gameObject, otherRef.gameObject);
+                }
             }
         }
         else if (thisArrPos == 1)
@@ -287,16 +306,28 @@ public class playerRomanceHandler : NetworkBehaviour
             {
                 romance0_1 += romancePower;
                 otherRef.romance0_1 += romancePower;
+                if (romance0_1 >= 1000)
+                {
+                    onFull(this.gameObject, otherRef.gameObject);
+                }
             }
             else if (otherArrPos == 2)
             {
                 romance1_2 += romancePower;
                 otherRef.romance1_2 += romancePower;
+                if (romance0_2 >= 1000)
+                {
+                    onFull(this.gameObject, otherRef.gameObject);
+                }
             }
             else if (otherArrPos == 3)
             {
                 romance1_3 += romancePower;
                 otherRef.romance1_3 += romancePower;
+                if (romance1_3 >= 1000)
+                {
+                    onFull(this.gameObject, otherRef.gameObject);
+                }
             }
         }
         else if (thisArrPos == 2)
@@ -305,16 +336,28 @@ public class playerRomanceHandler : NetworkBehaviour
             {
                 romance2_3 += romancePower;
                 otherRef.romance2_3 += romancePower;
+                if (romance2_3 >= 1000)
+                {
+                    onFull(this.gameObject, otherRef.gameObject);
+                }
             }
             else if (otherArrPos == 0)
             {
                 romance0_2 += romancePower;
                 otherRef.romance0_1 += romancePower;
+                if (romance0_2 >= 1000)
+                {
+                    onFull(this.gameObject, otherRef.gameObject);
+                }
             }
             else if(otherArrPos == 1)
             {
                 romance1_2 += romancePower;
                 otherRef.romance1_2 += romancePower;
+                if (romance1_2 >= 1000)
+                {
+                    onFull(this.gameObject, otherRef.gameObject);
+                }
             }
         }
 
