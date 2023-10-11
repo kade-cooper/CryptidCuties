@@ -8,7 +8,8 @@ public class Ability : ScriptableObject
     public float cooldownTime;
     public float activeTime;
 
-    public virtual void Activate()
+    //this is where abilities will be activated
+    public virtual void Activate(GameObject parent)
     {
 
     }

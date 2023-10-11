@@ -1146,6 +1146,7 @@ GameObject:
   - component: {fileID: 581550962669628876}
   - component: {fileID: 1099627080700122425}
   - component: {fileID: 5062528669966626334}
+  - component: {fileID: 6684680360863119457}
   m_Layer: 9
   m_Name: BlueCryptid
   m_TagString: Untagged
@@ -1285,6 +1286,20 @@ MonoBehaviour:
   player: {fileID: 3255338231579511589}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
+--- !u!114 &6684680360863119457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6074026265755732168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612cad557ba91d745831c1b6dbb0490c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: {fileID: 11400000, guid: 25037d04381fdb84b8feaeb1812b95bb, type: 2}
+  key: 9
 --- !u!1 &7325898113075542190
 GameObject:
   m_ObjectHideFlags: 0

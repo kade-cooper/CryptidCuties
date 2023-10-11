@@ -17,16 +17,18 @@ public class AbilityHolder : MonoBehaviour
 
     AbilityState state = AbilityState.ready;
 
+    //this is where key selection is selected in inspector for each ability
     public KeyCode key;
 
     // Update is called once per frame
     void Update() {
+        //this is where ability will be activated or set to cooldown depending on stage of key being pressed.
         switch (state)
         {
             case AbilityState.ready:
                 if (Input.GetKeyDown(key))
                 {
-                    ability.Activate();
+                    ability.Activate(gameObject);
                     state = AbilityState.active;
                     activeTime = ability.activeTime;
                     //Activate
