@@ -16,8 +16,8 @@ public class DashAbility : Ability
     public override void Activate(GameObject parent)
     {
         CharacterMovementHandler movement = parent.GetComponent<CharacterMovementHandler>();
-        CapsuleCollider2D characterCollider = parent.GetComponent<CapsuleCollider2D>();
+        NetworkCharacterControllerPrototypeCustom characterCollider = parent.GetComponentInParent<Transform>().GetComponentInParent<NetworkCharacterControllerPrototypeCustom>();
 
-       // CapsuleCollider2D.velocity = movement.moveDirection.normalized * dashVelocity;
+        characterCollider.Velocity += characterCollider.Velocity * dashVelocity;// movement.moveDirection.normalized * dashVelocity;
     }
 }

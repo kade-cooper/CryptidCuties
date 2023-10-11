@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ability: {fileID: 11400000, guid: 25037d04381fdb84b8feaeb1812b95bb, type: 2}
-  key: 9
+  key: 32
 --- !u!1 &7325898113075542190
 GameObject:
   m_ObjectHideFlags: 0
