@@ -29,6 +29,6 @@ public class DashAbility : Ability
     {
         NetworkCharacterControllerPrototypeCustom characterCollider = thisThing.GetComponentInParent<Transform>().GetComponentInParent<NetworkCharacterControllerPrototypeCustom>();
         characterCollider.maxSpeed -= dashVelocity;
-        characterCollider.acceleration -= alot;
+        characterCollider.acceleration = 20;
     }
 }
