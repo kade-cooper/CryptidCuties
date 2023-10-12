@@ -11,7 +11,12 @@ public class Ability : ScriptableObject
     //this is where abilities will be activated
     public virtual void Activate(GameObject parent)
     {
+        Debug.Log("not being overridden");
+    }
 
+    public virtual void OnEnd(GameObject thisThing)
+    {
+        Debug.Log("not being overriden");
     }
     // Start is called before the first frame update
     void Start()
