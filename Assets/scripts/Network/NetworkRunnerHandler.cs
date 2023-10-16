@@ -12,6 +12,7 @@ using System.Linq;
 
 public class NetworkRunnerHandler : MonoBehaviour
 {
+    /*
     public NetworkRunner networkRunnerPrefab;
 
     NetworkRunner networkRunner;
@@ -45,4 +46,5 @@ public class NetworkRunnerHandler : MonoBehaviour
             SceneManager = sceneManager
         });
     }
+    */
 }
