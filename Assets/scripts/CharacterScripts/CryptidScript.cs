@@ -19,6 +19,8 @@ public class CryptidScript : NetworkBehaviour
     public float blueAttackPower = 15;
     public Slider healhBar;
 
+    public sliderBar healthAbove;
+
     // public Transform arrow;
 
 
@@ -110,6 +112,7 @@ public class CryptidScript : NetworkBehaviour
     {
         netHealth -= attackPower;
         healhBar.value = netHealth / maxHealth;
+        healthAbove.onchange(attackPower, maxHealth);
         if (netHealth <= 0)
         {
             cih.canInput = false;
@@ -120,6 +123,8 @@ public class CryptidScript : NetworkBehaviour
             cih.canInput = true;
             netHealth = maxHealth;
             healhBar.value = netHealth / maxHealth;
+            healthAbove.onfull();
+
         }
         Debug.Log(netHealth);
     }
