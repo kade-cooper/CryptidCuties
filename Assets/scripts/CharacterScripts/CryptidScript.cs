@@ -114,7 +114,7 @@ public class CryptidScript : NetworkBehaviour
     {
         netHealth -= attackPower;
         healhBar.value = netHealth / maxHealth;
-        healthAbove.onchange(attackPower, maxHealth);
+        healthAbove.onchange(attackPower, maxHealth, 1);
         if (netHealth <= 0)
         {
             cih.canInput = false;

@@ -46,14 +46,14 @@ public class playerRomanceHandler : NetworkBehaviour
     public float romance2_3 { get; set; }
 
 
-
+    /*
     public Slider romanceBar0;
     public Slider romanceBar1;
     public Slider romanceBar2;
-
+    */
     public sliderBar rBar;
 
-
+    public bool cannotRomance=false;
 
     public NetworkPlayer player;
 
@@ -247,32 +247,26 @@ public class playerRomanceHandler : NetworkBehaviour
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_SetBar(playerRomanceHandler prh, int whichBar, float rValue)
+    public void RPC_SetBar(playerRomanceHandler prh, string whichPlayer, float rValue)
     {
-        prh.rBar.onchange(-rValue, maxRomance);
-        /*
-        if (whichBar == 0) {
-            romanceBar0.value = rValue / maxRomance; 
-            Debug.Log(prh.romanceBar0.value); }
-        else if (whichBar == 1)
-            romanceBar1.value = rValue / maxRomance;
-        else if (whichBar == 2)
-            romanceBar2.value = rValue / maxRomance;
-        */
+        if(whichPlayer == tagthing && HasInputAuthority)
+        {
+            prh.rBar.onchange(rValue, maxRomance, -1);
+            Debug.Log(tagthing + " changed" + prh.tagthing);
+        }
+        else if(!HasInputAuthority)
+        {
+            this.rBar.onchange(rValue, maxRomance, -1);
+        }
+            
     }
-
+    /*
     public void SetBar(playerRomanceHandler prh, int whichBar, float rValue)
     {
-        if (whichBar == 0)
-        {
-            romanceBar0.value = rValue / maxRomance;
-            Debug.Log(prh.romanceBar0.value);
-        }
-        else if (whichBar == 1)
-            romanceBar1.value = rValue / maxRomance;
-        else if (whichBar == 2)
-            romanceBar2.value = rValue / maxRomance;
+        prh.rBar.onchange(rValue, maxRomance, -1);
+        
     }
+    */
 
     public void onFull(GameObject playerThis, GameObject playerOther)
     {
@@ -310,6 +304,17 @@ public class playerRomanceHandler : NetworkBehaviour
                 }
             }
         }
+        RPC_onRomanceFull();
+    }
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_onRomanceFull()
+    {
+        cannotRomance = true;
+    }
+
+    void heal(playerRomanceHandler other)
+    {
+        other.GetComponentInChildren<CryptidScript>().netHealth += 100;
     }
 
 
@@ -332,115 +337,172 @@ public class playerRomanceHandler : NetworkBehaviour
                 otherRef = crypids[i];
             }
         }
+        if (cannotRomance == false)
+        {
+            //i tried to make this less messy but i couldn't
+            if (thisArrPos == 0)
+            {
+                if (otherArrPos == 1)
+                {
+                    romance0_1 += romancePower;
+                    otherRef.romance0_1 += romancePower;
 
-        //i tried to make this less messy but i couldn't
-        if (thisArrPos == 0)
-        {
-            if (otherArrPos == 1)
-            {
-                romance0_1 += romancePower;
-                otherRef.romance0_1 += romancePower;
-                SetBar(this, 0, romance0_1);
-                RPC_SetBar(otherRef, 0, romance0_1);
-                if (romance0_1 >= 1000)
+                    RPC_SetBar(otherRef, "player0", romancePower);
+
+                    RPC_SetBar(this, "player1", romancePower);
+                    //RPC_SetBar(otherRef, 0, romance0_1);
+                    if (romance0_1 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
+                }
+                else if (otherArrPos == 2)
                 {
-                    onFull(this.gameObject, otherRef.gameObject);
+                    romance0_2 += romancePower;
+                    otherRef.romance0_2 += romancePower;
+                    RPC_SetBar(otherRef, "player0", romancePower);
+                    RPC_SetBar(this, "player2", romancePower);
+                    //RPC_SetBar(otherRef, 0, romance0_2);
+                    if (romance0_2 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
+                }
+                else if (otherArrPos == 3)
+                {
+                    romance0_3 += romancePower;
+                    otherRef.romance0_3 += romancePower;
+                    RPC_SetBar(otherRef, "player0", romancePower);
+                    RPC_SetBar(this, "player3", romancePower);
+                    //RPC_SetBar(otherRef, 0, romance0_3);
+                    if (romance0_3 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
                 }
             }
-            else if (otherArrPos == 2)
+            else if (thisArrPos == 1)
             {
-                romance0_2 += romancePower;
-                otherRef.romance0_2 += romancePower;
-                SetBar(this, 1, romance0_2);
-                RPC_SetBar(otherRef, 0, romance0_2);
-                if (romance0_2 >= 1000)
+                if (otherArrPos == 0)
                 {
-                    onFull(this.gameObject, otherRef.gameObject);
+                    romance0_1 += romancePower;
+                    otherRef.romance0_1 += romancePower;
+
+                    RPC_SetBar(otherRef, "player1", romancePower);
+                    RPC_SetBar(this, "player0", romancePower);
+                    //RPC_SetBar(otherRef, 0, romance0_1);
+                    if (romance0_1 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
+                }
+                else if (otherArrPos == 2)
+                {
+                    romance1_2 += romancePower;
+                    otherRef.romance1_2 += romancePower;
+                    RPC_SetBar(otherRef, "player1", romancePower);
+                    RPC_SetBar(this, "player2", romancePower);
+                    //RPC_SetBar(otherRef, 1, romance1_2);
+                    if (romance0_2 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
+                }
+                else if (otherArrPos == 3)
+                {
+                    romance1_3 += romancePower;
+                    otherRef.romance1_3 += romancePower;
+                    RPC_SetBar(otherRef, "player1", romancePower);
+                    RPC_SetBar(this, "player3", romancePower);
+                    //RPC_SetBar(otherRef, 1, romance1_3);
+                    if (romance1_3 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
                 }
             }
-            else if (otherArrPos == 3)
+            else if (thisArrPos == 2)
             {
-                romance0_3 += romancePower;
-                otherRef.romance0_3 += romancePower;
-                SetBar(this, 2, romance0_3);
-                RPC_SetBar(otherRef, 0, romance0_3);
-                if (romance0_3 >= 1000)
+                if (otherArrPos == 3)
                 {
-                    onFull(this.gameObject, otherRef.gameObject);
+                    romance2_3 += romancePower;
+                    otherRef.romance2_3 += romancePower;
+                    RPC_SetBar(otherRef, "player2", romancePower);
+                    RPC_SetBar(this, "player3", romancePower);
+                    //RPC_SetBar(otherRef, 2, romance2_3);
+                    if (romance2_3 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
+                }
+                else if (otherArrPos == 0)
+                {
+                    romance0_2 += romancePower;
+                    otherRef.romance0_2 += romancePower;
+                    RPC_SetBar(this, "player0", romancePower);
+                    RPC_SetBar(otherRef, "player2", romancePower);
+                    //RPC_SetBar(otherRef, 0, romance0_2);
+                    if (romance0_2 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
+                }
+                else if (otherArrPos == 1)
+                {
+                    romance1_2 += romancePower;
+                    otherRef.romance1_2 += romancePower;
+                    RPC_SetBar(this, "player1", romancePower);
+                    RPC_SetBar(otherRef, "player2", romancePower);
+                    //RPC_SetBar(otherRef, 1, romance1_2);
+                    if (romance1_2 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
+                }
+            }
+            else if (thisArrPos == 3)
+            {
+                if (otherArrPos == 0)
+                {
+                    romance0_3 += romancePower;
+                    otherRef.romance0_3 += romancePower;
+                    RPC_SetBar(otherRef, "player3", romancePower);
+                    RPC_SetBar(this, "player0", romancePower);
+                    //RPC_SetBar(otherRef, 2, romance2_3);
+                    if (romance2_3 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
+                }
+                else if (otherArrPos == 1)
+                {
+                    romance1_3 += romancePower;
+                    otherRef.romance1_3 += romancePower;
+                    RPC_SetBar(this, "player1", romancePower);
+                    RPC_SetBar(otherRef, "player3", romancePower);
+                    //RPC_SetBar(otherRef, 0, romance0_2);
+                    if (romance0_2 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
+                }
+                else if (otherArrPos == 2)
+                {
+                    romance2_3 += romancePower;
+                    otherRef.romance2_3 += romancePower;
+                    RPC_SetBar(this, "player2", romancePower);
+                    RPC_SetBar(otherRef, "player3", romancePower);
+                    //RPC_SetBar(otherRef, 1, romance1_2);
+                    if (romance1_2 >= 1000)
+                    {
+                        onFull(this.gameObject, otherRef.gameObject);
+                    }
                 }
             }
         }
-        else if (thisArrPos == 1)
+        else if(this.gameObject.layer == otherRef.gameObject.layer)
         {
-            if(otherArrPos == 0)
-            {
-                romance0_1 += romancePower;
-                otherRef.romance0_1 += romancePower;
-                SetBar(this, 0, romance0_1);
-                RPC_SetBar(otherRef, 0, romance0_1);
-                if (romance0_1 >= 1000)
-                {
-                    onFull(this.gameObject, otherRef.gameObject);
-                }
-            }
-            else if (otherArrPos == 2)
-            {
-                romance1_2 += romancePower;
-                otherRef.romance1_2 += romancePower;
-                SetBar(this, 1, romance1_2);
-                RPC_SetBar(otherRef, 1, romance1_2);
-                if (romance0_2 >= 1000)
-                {
-                    onFull(this.gameObject, otherRef.gameObject);
-                }
-            }
-            else if (otherArrPos == 3)
-            {
-                romance1_3 += romancePower;
-                otherRef.romance1_3 += romancePower;
-                SetBar(this, 2, romance1_3);
-                RPC_SetBar(otherRef, 1, romance1_3);
-                if (romance1_3 >= 1000)
-                {
-                    onFull(this.gameObject, otherRef.gameObject);
-                }
-            }
-        }
-        else if (thisArrPos == 2)
-        {
-            if (otherArrPos == 3)
-            {
-                romance2_3 += romancePower;
-                otherRef.romance2_3 += romancePower;
-                SetBar(this, 2, romance2_3);
-                RPC_SetBar(otherRef, 2, romance2_3);
-                if (romance2_3 >= 1000)
-                {
-                    onFull(this.gameObject, otherRef.gameObject);
-                }
-            }
-            else if (otherArrPos == 0)
-            {
-                romance0_2 += romancePower;
-                otherRef.romance0_2 += romancePower;
-                SetBar(this, 1, romance0_2);
-                RPC_SetBar(otherRef, 0, romance0_2);
-                if (romance0_2 >= 1000)
-                {
-                    onFull(this.gameObject, otherRef.gameObject);
-                }
-            }
-            else if(otherArrPos == 1)
-            {
-                romance1_2 += romancePower;
-                otherRef.romance1_2 += romancePower;
-                SetBar(this, 1, romance1_2);
-                RPC_SetBar(otherRef, 1, romance1_2);
-                if (romance1_2 >= 1000)
-                {
-                    onFull(this.gameObject, otherRef.gameObject);
-                }
-            }
+            heal(otherRef);
         }
 
     }

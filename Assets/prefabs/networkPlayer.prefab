@@ -1311,6 +1311,7 @@ MonoBehaviour:
   romanceBar0: {fileID: 6623883131720620058}
   romanceBar1: {fileID: 8065649859820083403}
   romanceBar2: {fileID: 6847347392141161463}
+  rBar: {fileID: 6181102368670131626}
   player: {fileID: 3255338231579511589}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
@@ -2179,7 +2180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4172131241958454177
 Transform:
   m_ObjectHideFlags: 0
