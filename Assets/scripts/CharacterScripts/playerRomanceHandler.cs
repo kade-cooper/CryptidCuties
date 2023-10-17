@@ -373,7 +373,7 @@ public class playerRomanceHandler : NetworkBehaviour
 
     void heal(playerRomanceHandler other)
     {
-        other.GetComponentInChildren<GameObject>().GetComponentInChildren<CryptidScript>().netHealth += 100;
+        other.gameObject.GetComponentInChildren<GameObject>().GetComponentInChildren<CryptidScript>().netHealth += 100;
     }
 
 
@@ -408,6 +408,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance0_1 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
                 else if (otherArrPos == 2)
@@ -417,6 +418,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance0_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
                 else if (otherArrPos == 3)
@@ -426,6 +428,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance0_3 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
             }
@@ -438,6 +441,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance0_1 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
                 else if (otherArrPos == 2)
@@ -447,6 +451,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance0_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
                 else if (otherArrPos == 3)
@@ -456,6 +461,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance1_3 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
             }
@@ -468,6 +474,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance2_3 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
                 else if (otherArrPos == 0)
@@ -477,6 +484,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance0_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
                 else if (otherArrPos == 1)
@@ -486,6 +494,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance1_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
             }
@@ -498,6 +507,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance2_3 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
                 else if (otherArrPos == 1)
@@ -507,6 +517,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance0_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
                 else if (otherArrPos == 2)
@@ -516,6 +527,7 @@ public class playerRomanceHandler : NetworkBehaviour
                     if (romance1_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
+                        otherRef.onFull(this.gameObject, otherRef.gameObject);
                     }
                 }
             }
