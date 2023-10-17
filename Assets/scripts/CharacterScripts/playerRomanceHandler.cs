@@ -51,6 +51,8 @@ public class playerRomanceHandler : NetworkBehaviour
     public Slider romanceBar1;
     public Slider romanceBar2;
 
+    public sliderBar rBar;
+
 
 
     public NetworkPlayer player;
@@ -247,6 +249,8 @@ public class playerRomanceHandler : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_SetBar(playerRomanceHandler prh, int whichBar, float rValue)
     {
+        prh.rBar.onchange(-rValue, maxRomance);
+        /*
         if (whichBar == 0) {
             romanceBar0.value = rValue / maxRomance; 
             Debug.Log(prh.romanceBar0.value); }
@@ -254,6 +258,7 @@ public class playerRomanceHandler : NetworkBehaviour
             romanceBar1.value = rValue / maxRomance;
         else if (whichBar == 2)
             romanceBar2.value = rValue / maxRomance;
+        */
     }
 
     public void SetBar(playerRomanceHandler prh, int whichBar, float rValue)

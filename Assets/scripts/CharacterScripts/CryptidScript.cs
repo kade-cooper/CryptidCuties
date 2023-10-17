@@ -66,6 +66,7 @@ public class CryptidScript : NetworkBehaviour
         {
             RPC_SendHealth();
             netHealth = health;
+            healthAbove.changeTo(health / maxHealth);
             RPC_SetPlayerTarget(this);
             //player2 = player2temp;
 
@@ -77,6 +78,7 @@ public class CryptidScript : NetworkBehaviour
     {
         Debug.Log("rpc health:" + netHealth);
         health = netHealth;
+        
     }
 
     [Rpc(RpcSources.All, RpcTargets.InputAuthority)]

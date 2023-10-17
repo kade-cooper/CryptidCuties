@@ -23,6 +23,11 @@ public class sliderBar : MonoBehaviour
         this.transform.localScale = new Vector3(percentFull*maxSize,1,1);
     }
 
+    public void changeTo(float percentTo)
+    {
+        this.transform.localScale = new Vector3(percentTo * maxSize, 1, 1);
+    }
+
     public void onfull()
     {
         percentFull = 1;
