@@ -10,6 +10,8 @@ public class playerRomanceHandler : NetworkBehaviour
 
 
     public playerRomanceHandler otherPlayer;
+    public playerRomanceHandler otherPlayer2;
+    public playerRomanceHandler otherPlayer3;
 
     //romance levels
     [Networked]
@@ -112,9 +114,9 @@ public class playerRomanceHandler : NetworkBehaviour
             for (int i = 0; i < crypids.Length; ++i)
             {
                 players.Set(i, playerstemp[i]);
-
-
             }
+
+
 
         }
         else
@@ -144,10 +146,17 @@ public class playerRomanceHandler : NetworkBehaviour
         playerRomanceHandler[] otherPlayers = GameObject.FindObjectsOfType<playerRomanceHandler>();
         foreach (playerRomanceHandler other in otherPlayers)
         {
-            if (other != this)
+            if (other != this  && otherPlayer == null)
             {
                 otherPlayer = other.GetComponent<playerRomanceHandler>();
-                break;
+            }
+           else if(other!=this && otherPlayer2 == null)
+            {
+                otherPlayer2 = other.GetComponent<playerRomanceHandler>();
+            }
+            else if (other != this && otherPlayer3 == null)
+            {
+                otherPlayer3 = other.GetComponent<playerRomanceHandler>();
             }
         }
 
@@ -158,11 +167,39 @@ public class playerRomanceHandler : NetworkBehaviour
             //otherPlayer.otherPlayer = this;
             for (int i = 0; i < players.Length; i++)
             {
-                crypids[i] = otherPlayer.crypids[i];
-                players.Set(i, otherPlayer.players.Get(i));
+                if(otherPlayer.crypids[i] !=null)
+                    crypids[i] = otherPlayer.crypids[i];
+                if(otherPlayer.players.Get(i) != "")
+                    players.Set(i, otherPlayer.players.Get(i));
                 Debug.Log("other players array" + otherPlayer.players.Get(i));
             }
         }
+        if (otherPlayer2 != null)
+        {
+            //otherPlayer.otherPlayer = this;
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (otherPlayer2.crypids[i] != null)
+                    crypids[i] = otherPlayer2.crypids[i];
+                if (otherPlayer2.players.Get(i) != "")
+                    players.Set(i, otherPlayer2.players.Get(i));
+                Debug.Log("other players 2 array" + otherPlayer2.players.Get(i));
+            }
+        }
+        if (otherPlayer3 != null)
+        {
+            //otherPlayer.otherPlayer = this;
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (otherPlayer3.crypids[i] != null)
+                    crypids[i] = otherPlayer3.crypids[i];
+                if (otherPlayer3.players.Get(i) != "")
+                    players.Set(i, otherPlayer3.players.Get(i));
+                Debug.Log("other players 3 array" + otherPlayer3.players.Get(i));
+            }
+        }
+
+
         if (players.Get(0) == "")
         {
             players.Set(0, "player0");
@@ -199,6 +236,22 @@ public class playerRomanceHandler : NetworkBehaviour
             {
                 otherPlayer.crypids[i] = crypids[i];
                 otherPlayer.players.Set(i, players.Get(i));
+            }
+        }
+        if (otherPlayer2 != null)
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                otherPlayer2.crypids[i] = crypids[i];
+                otherPlayer2.players.Set(i, players.Get(i));
+            }
+        }
+        if (otherPlayer3 != null)
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                otherPlayer3.crypids[i] = crypids[i];
+                otherPlayer3.players.Set(i, players.Get(i));
             }
         }
 
