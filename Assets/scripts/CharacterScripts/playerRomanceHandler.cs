@@ -32,17 +32,22 @@ public class playerRomanceHandler : NetworkBehaviour
     [Networked]
     public playerRomanceHandler player2 { get; set; }
 
-    [Networked]
+    [Networked(OnChanged = nameof(On0_1Changed))]
     public float romance0_1 { get; set; }
-    [Networked]
+
+    [Networked(OnChanged = nameof(On0_2Changed))]
     public float romance0_2 { get; set; }
-    [Networked]
+
+    [Networked(OnChanged = nameof(On0_3Changed))]
     public float romance0_3 { get; set; }
-    [Networked]
+
+    [Networked(OnChanged = nameof(On1_2Changed))]
     public float romance1_2 { get; set; }
-    [Networked]
+
+    [Networked(OnChanged = nameof(On1_3Changed))]
     public float romance1_3 { get; set; }
-    [Networked]
+
+    [Networked(OnChanged = nameof(On2_3Changed))]
     public float romance2_3 { get; set; }
 
 
@@ -251,14 +256,15 @@ public class playerRomanceHandler : NetworkBehaviour
     {
         if(whichPlayer == tagthing && HasInputAuthority)
         {
-            prh.rBar.onchange(rValue, maxRomance, -1);
+            prh.rBar.changeTo(rValue);
             Debug.Log(tagthing + " changed" + prh.tagthing);
         }
-        else if(!HasInputAuthority)
+        /*
+        else if(prh.tagthing == tagthing && !HasInputAuthority)
         {
-            this.rBar.onchange(rValue, maxRomance, -1);
+            this.rBar.changeTo(rValue);
         }
-            
+         */   
     }
     /*
     public void SetBar(playerRomanceHandler prh, int whichBar, float rValue)
@@ -314,7 +320,7 @@ public class playerRomanceHandler : NetworkBehaviour
 
     void heal(playerRomanceHandler other)
     {
-        other.GetComponentInChildren<CryptidScript>().netHealth += 100;
+        other.GetComponentInChildren<GameObject>().GetComponentInChildren<CryptidScript>().netHealth += 100;
     }
 
 
@@ -346,11 +352,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance0_1 += romancePower;
                     otherRef.romance0_1 += romancePower;
-
-                    RPC_SetBar(otherRef, "player0", romancePower);
-
-                    RPC_SetBar(this, "player1", romancePower);
-                    //RPC_SetBar(otherRef, 0, romance0_1);
                     if (romance0_1 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -360,9 +361,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance0_2 += romancePower;
                     otherRef.romance0_2 += romancePower;
-                    RPC_SetBar(otherRef, "player0", romancePower);
-                    RPC_SetBar(this, "player2", romancePower);
-                    //RPC_SetBar(otherRef, 0, romance0_2);
                     if (romance0_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -372,9 +370,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance0_3 += romancePower;
                     otherRef.romance0_3 += romancePower;
-                    RPC_SetBar(otherRef, "player0", romancePower);
-                    RPC_SetBar(this, "player3", romancePower);
-                    //RPC_SetBar(otherRef, 0, romance0_3);
                     if (romance0_3 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -387,10 +382,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance0_1 += romancePower;
                     otherRef.romance0_1 += romancePower;
-
-                    RPC_SetBar(otherRef, "player1", romancePower);
-                    RPC_SetBar(this, "player0", romancePower);
-                    //RPC_SetBar(otherRef, 0, romance0_1);
                     if (romance0_1 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -400,9 +391,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance1_2 += romancePower;
                     otherRef.romance1_2 += romancePower;
-                    RPC_SetBar(otherRef, "player1", romancePower);
-                    RPC_SetBar(this, "player2", romancePower);
-                    //RPC_SetBar(otherRef, 1, romance1_2);
                     if (romance0_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -412,9 +400,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance1_3 += romancePower;
                     otherRef.romance1_3 += romancePower;
-                    RPC_SetBar(otherRef, "player1", romancePower);
-                    RPC_SetBar(this, "player3", romancePower);
-                    //RPC_SetBar(otherRef, 1, romance1_3);
                     if (romance1_3 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -427,9 +412,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance2_3 += romancePower;
                     otherRef.romance2_3 += romancePower;
-                    RPC_SetBar(otherRef, "player2", romancePower);
-                    RPC_SetBar(this, "player3", romancePower);
-                    //RPC_SetBar(otherRef, 2, romance2_3);
                     if (romance2_3 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -439,9 +421,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance0_2 += romancePower;
                     otherRef.romance0_2 += romancePower;
-                    RPC_SetBar(this, "player0", romancePower);
-                    RPC_SetBar(otherRef, "player2", romancePower);
-                    //RPC_SetBar(otherRef, 0, romance0_2);
                     if (romance0_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -451,9 +430,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance1_2 += romancePower;
                     otherRef.romance1_2 += romancePower;
-                    RPC_SetBar(this, "player1", romancePower);
-                    RPC_SetBar(otherRef, "player2", romancePower);
-                    //RPC_SetBar(otherRef, 1, romance1_2);
                     if (romance1_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -466,9 +442,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance0_3 += romancePower;
                     otherRef.romance0_3 += romancePower;
-                    RPC_SetBar(otherRef, "player3", romancePower);
-                    RPC_SetBar(this, "player0", romancePower);
-                    //RPC_SetBar(otherRef, 2, romance2_3);
                     if (romance2_3 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -478,9 +451,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance1_3 += romancePower;
                     otherRef.romance1_3 += romancePower;
-                    RPC_SetBar(this, "player1", romancePower);
-                    RPC_SetBar(otherRef, "player3", romancePower);
-                    //RPC_SetBar(otherRef, 0, romance0_2);
                     if (romance0_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -490,9 +460,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 {
                     romance2_3 += romancePower;
                     otherRef.romance2_3 += romancePower;
-                    RPC_SetBar(this, "player2", romancePower);
-                    RPC_SetBar(otherRef, "player3", romancePower);
-                    //RPC_SetBar(otherRef, 1, romance1_2);
                     if (romance1_2 >= 1000)
                     {
                         onFull(this.gameObject, otherRef.gameObject);
@@ -505,5 +472,91 @@ public class playerRomanceHandler : NetworkBehaviour
             heal(otherRef);
         }
 
+    }
+
+
+    //checks if any of the romance variables are changed and then checks who the player is and changes the other players bar if it is a related player
+
+    public static void On0_1Changed(Changed<playerRomanceHandler> changed)
+    {
+        changed.Behaviour.On0_1Changed();
+    }
+    public static void On0_2Changed(Changed<playerRomanceHandler> changed)
+    {
+        changed.Behaviour.On0_2Changed();
+    }
+    public static void On0_3Changed(Changed<playerRomanceHandler> changed)
+    {
+        changed.Behaviour.On0_3Changed();
+    }
+    public static void On1_2Changed(Changed<playerRomanceHandler> changed)
+    {
+        changed.Behaviour.On1_2Changed();
+    }
+    public static void On1_3Changed(Changed<playerRomanceHandler> changed)
+    {
+        changed.Behaviour.On1_3Changed();
+    }
+    public static void On2_3Changed(Changed<playerRomanceHandler> changed)
+    {
+        changed.Behaviour.On2_3Changed();
+    }
+
+
+
+    private void On0_1Changed()
+    {
+        if (tagthing == "player0" || tagthing == "player1")
+        {
+            RPC_SetBar(crypids[1], "player0", romance0_1 / maxRomance);
+
+            RPC_SetBar(crypids[0], "player1", romance0_1/maxRomance);
+        }
+    }
+
+    private void On0_2Changed()
+    {
+        if (tagthing == "player0" || tagthing == "player2")
+        {
+            RPC_SetBar(crypids[2], "player0", romance0_2 / maxRomance);
+
+            RPC_SetBar(crypids[0], "player2", romance0_2 / maxRomance);
+        }
+    }
+    private void On0_3Changed()
+    {
+        if (tagthing == "player0" || tagthing == "player3")
+        {
+            RPC_SetBar(crypids[3], "player0", romance0_3 / maxRomance);
+
+            RPC_SetBar(crypids[0], "player3", romance0_3 / maxRomance);
+        }
+    }
+    private void On1_2Changed()
+    {
+        if (tagthing == "player1" || tagthing == "player2")
+        {
+            RPC_SetBar(crypids[2], "player1", romance1_2 / maxRomance);
+
+            RPC_SetBar(crypids[1], "player2", romance1_2 / maxRomance);
+        }
+    }
+    private void On1_3Changed()
+    {
+        if (tagthing == "player1" || tagthing == "player3")
+        {
+            RPC_SetBar(crypids[3], "player1", romance1_3 / maxRomance);
+
+            RPC_SetBar(crypids[1], "player3", romance1_3 / maxRomance);
+        }
+    }
+    private void On2_3Changed()
+    {
+        if (tagthing == "player2" || tagthing == "player3")
+        {
+            RPC_SetBar(crypids[3], "player2", romance2_3 / maxRomance);
+
+            RPC_SetBar(crypids[2], "player3", romance2_3 / maxRomance);
+        }
     }
 }
