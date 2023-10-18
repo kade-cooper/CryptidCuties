@@ -133,6 +133,14 @@ public class playerRomanceHandler : NetworkBehaviour
                 crypids[i] = crypidstemp[i];
             }
             */
+            if(this.tagthing == "player0")
+                onFull(this.gameObject, null, "Team1");
+            else if (this.tagthing == "player1")
+                onFull(this.gameObject, null, "Team2");
+            else if (this.tagthing == "player2")
+                onFull(this.gameObject, null, "Team3");
+            else if (this.tagthing == "player3")
+                onFull(this.gameObject, null, "Team4");
 
 
         }
@@ -327,38 +335,41 @@ public class playerRomanceHandler : NetworkBehaviour
     }
     */
 
-    public void onFull(GameObject playerThis, GameObject playerOther)
+    public void onFull(GameObject playerThis, GameObject playerOther, string team)
     {
         foreach (Transform child in playerThis.transform)
         {
-            child.gameObject.layer = LayerMask.NameToLayer("Team1");
+            child.gameObject.layer = LayerMask.NameToLayer(team);
             foreach (Transform child1 in child.transform)
             {
-                child1.gameObject.layer = LayerMask.NameToLayer("Team1");
+                child1.gameObject.layer = LayerMask.NameToLayer(team);
                 foreach (Transform child2 in child1.transform)
                 {
-                    child2.gameObject.layer = LayerMask.NameToLayer("Team1");
+                    child2.gameObject.layer = LayerMask.NameToLayer(team);
                     foreach (Transform child3 in child2.transform)
                     {
                         if (child3.gameObject.tag != "romanceAttk")
-                            child3.gameObject.layer = LayerMask.NameToLayer("Team1");
+                            child3.gameObject.layer = LayerMask.NameToLayer(team);
                     }
                 }
             }
         }
-        foreach (Transform child in playerOther.transform)
+        if (playerOther != null)
         {
-            child.gameObject.layer = LayerMask.NameToLayer("Team1");
-            foreach (Transform child1 in child.transform)
+            foreach (Transform child in playerOther.transform)
             {
-                child1.gameObject.layer = LayerMask.NameToLayer("Team1");
-                foreach (Transform child2 in child1.transform)
+                child.gameObject.layer = LayerMask.NameToLayer(team);
+                foreach (Transform child1 in child.transform)
                 {
-                    child2.gameObject.layer = LayerMask.NameToLayer("Team1");
-                    foreach (Transform child3 in child2.transform)
+                    child1.gameObject.layer = LayerMask.NameToLayer(team);
+                    foreach (Transform child2 in child1.transform)
                     {
-                        if (child3.gameObject.tag != "romanceAttk")
-                            child3.gameObject.layer = LayerMask.NameToLayer("Team1");
+                        child2.gameObject.layer = LayerMask.NameToLayer(team);
+                        foreach (Transform child3 in child2.transform)
+                        {
+                            if (child3.gameObject.tag != "romanceAttk")
+                                child3.gameObject.layer = LayerMask.NameToLayer(team);
+                        }
                     }
                 }
             }
@@ -407,8 +418,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_1 += romancePower;
                     if (romance0_1 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
                 else if (otherArrPos == 2)
@@ -417,8 +428,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_2 += romancePower;
                     if (romance0_2 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
                 else if (otherArrPos == 3)
@@ -427,8 +438,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_3 += romancePower;
                     if (romance0_3 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
             }
@@ -440,8 +451,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_1 += romancePower;
                     if (romance0_1 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
                 else if (otherArrPos == 2)
@@ -450,8 +461,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance1_2 += romancePower;
                     if (romance0_2 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
                 else if (otherArrPos == 3)
@@ -460,8 +471,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance1_3 += romancePower;
                     if (romance1_3 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
             }
@@ -473,8 +484,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance2_3 += romancePower;
                     if (romance2_3 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
                 else if (otherArrPos == 0)
@@ -483,8 +494,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_2 += romancePower;
                     if (romance0_2 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
                 else if (otherArrPos == 1)
@@ -493,8 +504,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance1_2 += romancePower;
                     if (romance1_2 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
             }
@@ -506,8 +517,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_3 += romancePower;
                     if (romance2_3 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
                 else if (otherArrPos == 1)
@@ -516,8 +527,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance1_3 += romancePower;
                     if (romance0_2 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
                 else if (otherArrPos == 2)
@@ -526,8 +537,8 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance2_3 += romancePower;
                     if (romance1_2 >= 1000)
                     {
-                        onFull(this.gameObject, otherRef.gameObject);
-                        otherRef.onFull(this.gameObject, otherRef.gameObject);
+                        onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
                     }
                 }
             }
