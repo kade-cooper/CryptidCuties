@@ -16,6 +16,8 @@ public struct NetworkInputData : INetworkInput
   public float rotationInput;
   public NetworkBool isJumpPressed;
 
+  public NetworkBool isAbility1;
+
 
  
   public NetworkBool isHit;
@@ -28,6 +30,5 @@ public struct NetworkInputData : INetworkInput
   public NetworkBool isAttacking;
   public NetworkBool isRomanceAttk;
   public NetworkBool attackLands;
-
   
 }

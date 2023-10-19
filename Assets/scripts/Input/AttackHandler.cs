@@ -17,6 +17,9 @@ public class AttackHandler : NetworkBehaviour
 
     float lastTimeAttacked = 0;
 
+
+    NetworkCharacterControllerPrototypeCustom networkCharacterControllerPrototypeCustom;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +28,12 @@ public class AttackHandler : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        if(GetInput(out NetworkInputData networkInputData))
+        bool thing = GetInput(out NetworkInputData networkInputData);
+        Debug.Log("input is :"+thing);
+        if (thing)
         {
-            //Debug.Log(networkInputData.isAttacking);
+
+            Debug.Log(networkInputData.isAttacking);
             if (networkInputData.isAttacking)
                 Attack();
             else if (networkInputData.isRomanceAttk)

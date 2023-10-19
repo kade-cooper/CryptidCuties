@@ -53,6 +53,16 @@ public class CryptidScript : NetworkBehaviour
         spawnpoint = player.spawnpoint;
     }
 
+    private void OnEnable()
+    {
+        //this.gameObject.GetComponentInParent<GameObject>().GetComponentInParent<GameObject>().layer = LayerMask.NameToLayer("player");
+    }
+
+    private void OnDisable()
+    {
+        //this.gameObject.GetComponentInParent<GameObject>().GetComponentInParent<GameObject>().layer = LayerMask.NameToLayer("ghosts");
+    }
+
 
     public override void Spawned()
     {

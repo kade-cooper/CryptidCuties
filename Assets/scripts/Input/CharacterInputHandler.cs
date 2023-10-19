@@ -9,15 +9,11 @@ public class CharacterInputHandler : MonoBehaviour
 {
     Vector2 moveInputVector = Vector2.zero;
 
-
-    bool isAttack1Pressed = false;
-    bool isRomanceAttkPressed = false;
-
     public bool canInput=true;
 
     public CharacterMovementHandler characterMovementHandler;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,16 +30,6 @@ public class CharacterInputHandler : MonoBehaviour
         moveInputVector.x = Input.GetAxis("Horizontal");
         moveInputVector.y = Input.GetAxis("Vertical");
 
-        if (Input.GetButtonDown("Fire1"))
-            isAttack1Pressed = true;
-        else if (Input.GetButtonUp("Fire1"))
-            isAttack1Pressed = false;
-
-
-        if (Input.GetButtonDown("Fire2"))
-            isRomanceAttkPressed = true;
-        else if (Input.GetButtonUp("Fire2"))
-            isRomanceAttkPressed = false;
     }
 
     public NetworkInputData GetNetworkInput()
@@ -56,8 +42,6 @@ public class CharacterInputHandler : MonoBehaviour
         //jump data
 
         //attack data
-        networkInputData.isAttacking = isAttack1Pressed;
-        networkInputData.isRomanceAttk = isRomanceAttkPressed;
 
         //Health data
       //  networkInputData.Health = Health;

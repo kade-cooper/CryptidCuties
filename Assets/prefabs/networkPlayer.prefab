@@ -1087,7 +1087,7 @@ GameObject:
   - component: {fileID: 9176944850442220880}
   - component: {fileID: 7489576615223509650}
   - component: {fileID: 271361590024056742}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: networkPlayer
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -1161,8 +1161,10 @@ MonoBehaviour:
   - {fileID: 271361590024056742}
   - {fileID: 1099627080700122425}
   - {fileID: 5062528669966626334}
+  - {fileID: 6684680360863119457}
   - {fileID: 1192914144331253606}
   - {fileID: 1533986871376512102}
+  - {fileID: 776915936666000195}
   SimulationBehaviours: []
 --- !u!143 &-4796179434845559248
 CharacterController:
@@ -1267,6 +1269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   otherPlayer: {fileID: 0}
+  otherPlayer2: {fileID: 0}
+  otherPlayer3: {fileID: 0}
   _players:
   - _length: 0
     _data:
@@ -1308,10 +1312,8 @@ MonoBehaviour:
   _romance1_2: 0
   _romance1_3: 0
   _romance2_3: 0
-  romanceBar0: {fileID: 6623883131720620058}
-  romanceBar1: {fileID: 8065649859820083403}
-  romanceBar2: {fileID: 6847347392141161463}
   rBar: {fileID: 6181102368670131626}
+  cannotRomance: 0
   player: {fileID: 3255338231579511589}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
@@ -1433,6 +1435,7 @@ GameObject:
   - component: {fileID: 1192914144331253606}
   - component: {fileID: 1533986871376512102}
   - component: {fileID: 776915936666000195}
+  - component: {fileID: 372959284243214107}
   m_Layer: 9
   m_Name: RedCryptid
   m_TagString: Untagged
@@ -1586,9 +1589,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612cad557ba91d745831c1b6dbb0490c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   ability: {fileID: 11400000, guid: f83775113d7b6b547b451b4b5534eac6, type: 2}
   thisThing: {fileID: 3842718110622998933}
-  key: 101
+--- !u!114 &372959284243214107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842718110622998933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f446faecf387744a21df4657643beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInput: 1
+  characterMovementHandler: {fileID: 0}
+  keyAttk1: 323
+  keyRomanceAttk: 324
+  keyAbility1: 101
 --- !u!1 &4112915316372192077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2194,7 @@ GameObject:
   - component: {fileID: 1099627080700122425}
   - component: {fileID: 5062528669966626334}
   - component: {fileID: 6684680360863119457}
+  - component: {fileID: 5863604176690411445}
   m_Layer: 9
   m_Name: BlueCryptid
   m_TagString: Untagged
@@ -2328,9 +2349,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612cad557ba91d745831c1b6dbb0490c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   ability: {fileID: 11400000, guid: 25037d04381fdb84b8feaeb1812b95bb, type: 2}
   thisThing: {fileID: 6074026265755732168}
-  key: 32
+--- !u!114 &5863604176690411445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6074026265755732168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f446faecf387744a21df4657643beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInput: 1
+  characterMovementHandler: {fileID: 9176944850442220880}
+  keyAttk1: 323
+  keyRomanceAttk: 324
+  keyAbility1: 32
 --- !u!1 &7325898113075542190
 GameObject:
   m_ObjectHideFlags: 0

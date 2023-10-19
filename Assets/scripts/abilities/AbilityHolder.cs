@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class AbilityHolder : MonoBehaviour
+public class AbilityHolder : NetworkBehaviour
 {
     public Ability ability;
     float cooldownTime;
@@ -20,22 +21,29 @@ public class AbilityHolder : MonoBehaviour
     AbilityState state = AbilityState.ready;
 
     //this is where key selection is selected in inspector for each ability
-    public KeyCode key;
+   // public KeyCode key;
 
     // Update is called once per frame
-    void Update() {
+    public void Update()
+    {
+
+    }
+    public override void FixedUpdateNetwork()
+    {
         //this is where ability will be activated or set to cooldown depending on stage of key being pressed.
         switch (state)
         {
             case AbilityState.ready:
-                if (Input.GetKeyDown(key))
+                if (GetInput(out NetworkInputData networkInputData))
                 {
-                    Debug.Log(key+" down");
-                    ability.Activate(thisThing);
-                    Debug.Log("did activate");
-                    activeTime = ability.activeTime;
-                    state = AbilityState.active;
-                    
+                    if (networkInputData.isAbility1)
+                    {
+                        //Debug.Log(key + " down");
+                        ability.Activate(thisThing);
+                        Debug.Log("did activate");
+                        activeTime = ability.activeTime;
+                        state = AbilityState.active;
+                    }
                     //Activate
                 }
                 break;
