@@ -70,6 +70,7 @@ public class CryptidScript : NetworkBehaviour
         {
             Local = this;
             netHealth = maxHealth;
+            RPC_SendHealth();
 
         }
         else

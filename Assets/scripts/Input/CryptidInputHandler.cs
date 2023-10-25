@@ -31,8 +31,8 @@ public class CryptidInputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // if (!characterMovementHandler.Object.HasInputAuthority || !canInput)
-            //return;
+        if (!characterMovementHandler.Object.HasInputAuthority || !canInput)
+            return;
 
         if (Input.GetKeyDown(keyAttk1))
             isAttack1Pressed = true;

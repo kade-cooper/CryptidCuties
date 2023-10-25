@@ -384,7 +384,7 @@ public class playerRomanceHandler : NetworkBehaviour
 
     void heal(playerRomanceHandler other)
     {
-        other.gameObject.GetComponentInChildren<GameObject>().GetComponentInChildren<CryptidScript>().netHealth += 100;
+        //other.gameObject.GetComponentInChildren<GameObject>().GetComponentInChildren<CryptidScript>().netHealth += 100;
     }
 
 

@@ -14,9 +14,16 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     public GameObject redGuy;
     public Vector3 spawnpoint;
 
-    [Networked]
-    [HideInInspector]
+    [Networked(OnChanged = nameof(sendSelection))]
     public int selectedCharacter { get; set; }
+
+    public KeyCode character1_attk;
+    public KeyCode character1_RomanceAttk;
+    public KeyCode character1_Ability1;
+
+    public KeyCode character2_attk;
+    public KeyCode character2_RomanceAttk;
+    public KeyCode character2_Ability1;
 
     public Transform playerUI;
     public Transform playerUIFighting;
@@ -25,6 +32,23 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     {
         Spawner spawner = Spawner.FindObjectOfType<Spawner>();
         spawnpoint = spawner.spawn;
+    }
+
+    public static void sendSelection(Changed<NetworkPlayer> changed)
+    {
+        changed.Behaviour.sendSelectionOnChange();
+    }
+
+    private void sendSelectionOnChange()
+    {
+        if (selectedCharacter == 1)
+        {
+            this.GetComponent<CharacterInputHandler>().cryptidSelected(character1_attk, character1_RomanceAttk, character1_Ability1);
+        }
+        else if(selectedCharacter == 2)
+        {
+            this.GetComponent<CharacterInputHandler>().cryptidSelected(character2_attk, character2_RomanceAttk, character2_Ability1);
+        }
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
