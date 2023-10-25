@@ -26,6 +26,11 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     public KeyCode character2_RomanceAttk;
     public KeyCode character2_Ability1;
 
+
+    public KeyCode Wendigo3_attk;
+    public KeyCode Wendigo3_RomanceAttk;
+    public KeyCode Wendigo3_Ability1;
+
     public Transform playerUI;
     public Transform playerUIFighting;
     public static NetworkPlayer Local { get; set; }
@@ -49,6 +54,10 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         else if(selectedCharacter == 2)
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(character2_attk, character2_RomanceAttk, character2_Ability1);
+        }
+        else if (selectedCharacter == 3)
+        {
+            this.GetComponent<CharacterInputHandler>().cryptidSelected(Wendigo3_attk, Wendigo3_RomanceAttk, Wendigo3_Ability1);
         }
     }
 
