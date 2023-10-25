@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 
-
 [CreateAssetMenu]
-public class DashAbility : Ability
+public class LungeAbility : Ability
 {
-    public float dashVelocity;
+    public float lungeVelocity;
     public float alot;
     public override void Activate(GameObject thisThing)
     {
@@ -16,7 +15,7 @@ public class DashAbility : Ability
         NetworkCharacterControllerPrototypeCustom characterCollider = thisThing.GetComponentInParent<Transform>().GetComponentInParent<NetworkCharacterControllerPrototypeCustom>();
         Debug.Log(characterCollider);
 
-        characterCollider.maxSpeed += dashVelocity;
+        characterCollider.maxSpeed += lungeVelocity;
         characterCollider.acceleration += alot;
 
         // movement.moveDirection.normalized * dashVelocity;
@@ -26,7 +25,7 @@ public class DashAbility : Ability
     public override void OnEnd(GameObject thisThing)
     {
         NetworkCharacterControllerPrototypeCustom characterCollider = thisThing.GetComponentInParent<Transform>().GetComponentInParent<NetworkCharacterControllerPrototypeCustom>();
-        characterCollider.maxSpeed -= dashVelocity;
+        characterCollider.maxSpeed -= lungeVelocity;
         characterCollider.acceleration -= alot;
     }
 }

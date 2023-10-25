@@ -1040,6 +1040,7 @@ GameObject:
   - component: {fileID: 5179056738523106702}
   - component: {fileID: 1192914144331253606}
   - component: {fileID: 1533986871376512102}
+  - component: {fileID: 6552235979884454860}
   m_Layer: 9
   m_Name: RedCryptid
   m_TagString: Untagged
@@ -1179,6 +1180,21 @@ MonoBehaviour:
   player: {fileID: 3255338231579511589}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
+--- !u!114 &6552235979884454860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842718110622998933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612cad557ba91d745831c1b6dbb0490c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: {fileID: 11400000, guid: f24f6bd216d6748419bb4991163f91dd, type: 2}
+  thisThing: {fileID: 3842718110622998933}
+  key: 9
 --- !u!1 &4112915316372192077
 GameObject:
   m_ObjectHideFlags: 0
