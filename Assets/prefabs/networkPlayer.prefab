@@ -1443,6 +1443,7 @@ GameObject:
   - component: {fileID: 1192914144331253606}
   - component: {fileID: 1533986871376512102}
   - component: {fileID: 776915936666000195}
+  - component: {fileID: 6552235979884454860}
   m_Layer: 9
   m_Name: RedCryptid
   m_TagString: Untagged
@@ -1585,6 +1586,7 @@ MonoBehaviour:
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
 --- !u!114 &776915936666000195
+--- !u!114 &6552235979884454860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
