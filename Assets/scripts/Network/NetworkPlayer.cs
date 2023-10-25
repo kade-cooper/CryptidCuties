@@ -12,6 +12,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     public GameObject canvas;
     public GameObject blueGuy;
     public GameObject redGuy;
+    public GameObject wendigo;
     public Vector3 spawnpoint;
 
     [Networked(OnChanged = nameof(sendSelection))]
@@ -66,6 +67,10 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             {
                 redGuy.SetActive(true);
             }
+            else if (selectedCharacter == 2)
+            {
+                wendigo.SetActive(true);
+            }
         }
     }
 
@@ -83,6 +88,14 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     {
         redGuy.SetActive(true);
        selectedCharacter = 2;
+        canvas.SetActive(false);
+    }
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    public void RPC_CharacterWendigoSelected()
+    {
+        redGuy.SetActive(true);
+        selectedCharacter = 3;
         canvas.SetActive(false);
     }
 
