@@ -76,7 +76,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             {
                 redGuy.SetActive(true);
             }
-            else if (selectedCharacter == 2)
+            else if (selectedCharacter == 3)
             {
                 wendigo.SetActive(true);
             }
@@ -103,7 +103,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     public void RPC_CharacterWendigoSelected()
     {
-        redGuy.SetActive(true);
+        wendigo.SetActive(true);
         selectedCharacter = 3;
         canvas.SetActive(false);
     }

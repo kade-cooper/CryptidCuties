@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Lunge
   cooldownTime: 2
-  activeTime: 0.5
+  activeTime: 0.2
   lungeVelocity: 10
   alot: 500
+  maxSpeed: 10

@@ -763,6 +763,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1267776015702819688}
+  - component: {fileID: 5494855516399324707}
   m_Layer: 9
   m_Name: AttackContainer
   m_TagString: Untagged
@@ -787,6 +788,19 @@ Transform:
   m_Father: {fileID: 793311178561453873}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5494855516399324707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950575754313388592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba973fe222678b49979753d72ae4bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
 --- !u!1 &1630063041995793831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1063,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.07445192, a: 1}
+  m_Color: {r: 0.09913385, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1092,6 +1106,7 @@ MonoBehaviour:
   maxHealth: 1800
   _netHealth: 0
   health: -1000
+  canBeDamaged: 0
   redAttackPower: 10
   blueAttackPower: 15
   healhBar: {fileID: 5644648380919094907}
@@ -1132,6 +1147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3231985738812638515}
+  - component: {fileID: 5798280554433840978}
   m_Layer: 9
   m_Name: AttackContainer
   m_TagString: Untagged
@@ -1156,6 +1172,19 @@ Transform:
   m_Father: {fileID: 4172131241958454177}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5798280554433840978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080587703277847393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba973fe222678b49979753d72ae4bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
 --- !u!1 &2258581416241745184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,7 +1461,7 @@ MonoBehaviour:
   canvas: {fileID: 2044257762210241277}
   blueGuy: {fileID: 6074026265755732168}
   redGuy: {fileID: 3842718110622998933}
-  wendigo: {fileID: 0}
+  wendigo: {fileID: 1880415662254242984}
   spawnpoint: {x: 0, y: 0, z: 0}
   _selectedCharacter: 0
   character1_attk: 323
@@ -1441,6 +1470,9 @@ MonoBehaviour:
   character2_attk: 323
   character2_RomanceAttk: 324
   character2_Ability1: 101
+  Wendigo3_attk: 323
+  Wendigo3_RomanceAttk: 324
+  Wendigo3_Ability1: 32
   playerUI: {fileID: 2044257762210241265}
   playerUIFighting: {fileID: 6564080748966775871}
 --- !u!114 &3255338231579511588
@@ -1472,12 +1504,15 @@ MonoBehaviour:
   - {fileID: 1099627080700122425}
   - {fileID: 5062528669966626334}
   - {fileID: 6684680360863119457}
+  - {fileID: 5798280554433840978}
   - {fileID: 1192914144331253606}
   - {fileID: 1533986871376512102}
   - {fileID: 6552235979884454860}
+  - {fileID: 5494855516399324707}
   - {fileID: 3432274110491676018}
   - {fileID: 6408706396824158627}
   - {fileID: 8999282913451047186}
+  - {fileID: 5044750774812454556}
   SimulationBehaviours: []
 --- !u!143 &-4796179434845559248
 CharacterController:
@@ -2023,6 +2058,7 @@ MonoBehaviour:
   maxHealth: 1800
   _netHealth: 0
   health: -1000
+  canBeDamaged: 0
   redAttackPower: 10
   blueAttackPower: 15
   healhBar: {fileID: 5644648380919094907}
@@ -2900,6 +2936,7 @@ MonoBehaviour:
   maxHealth: 2000
   _netHealth: 0
   health: -1000
+  canBeDamaged: 0
   redAttackPower: 10
   blueAttackPower: 15
   healhBar: {fileID: 5644648380919094907}
@@ -3669,6 +3706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2218877164273059492}
+  - component: {fileID: 5044750774812454556}
   m_Layer: 9
   m_Name: AttackContainer
   m_TagString: Untagged
@@ -3693,6 +3731,19 @@ Transform:
   m_Father: {fileID: 124994678551061218}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5044750774812454556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8337074315162426470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba973fe222678b49979753d72ae4bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
 --- !u!1 &8370445376878287726
 GameObject:
   m_ObjectHideFlags: 0

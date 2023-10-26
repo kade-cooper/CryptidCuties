@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dash
   cooldownTime: 2
-  activeTime: 0.1
+  activeTime: 0.4
   dashVelocity: 10
-  alot: 1e+15
+  alot: 9999
+  maxSpeed: 10

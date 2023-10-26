@@ -48,7 +48,7 @@ public class AbilityHolder : NetworkBehaviour
                 }
                 break;
             case AbilityState.active:
-                if(activeTime > 0)
+                if(activeTime >= 0)
                 {
                     activeTime -= Time.deltaTime;
                 }
@@ -60,7 +60,7 @@ public class AbilityHolder : NetworkBehaviour
                 }
                 break;
             case AbilityState.cooldown:
-                if(cooldownTime > 0)
+                if(cooldownTime >= 0)
                 {
                     cooldownTime -= Time.deltaTime;
                 }

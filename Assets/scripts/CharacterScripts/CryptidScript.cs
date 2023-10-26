@@ -13,6 +13,7 @@ public class CryptidScript : NetworkBehaviour
 
     public float health;
 
+    public bool canBeDamaged = true;
     public static CryptidScript Local { get; set; }
 
     public float redAttackPower = 10;
@@ -51,6 +52,7 @@ public class CryptidScript : NetworkBehaviour
     void Start()
     {
         spawnpoint = player.spawnpoint;
+        canBeDamaged = true;
     }
 
     private void OnEnable()
@@ -111,6 +113,10 @@ public class CryptidScript : NetworkBehaviour
     
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (!canBeDamaged)
+        {
+            return;
+        }
         if (collision.gameObject.CompareTag("redAttack1"))
         {
             onHit(redAttackPower);
