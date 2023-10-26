@@ -31,6 +31,10 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     public KeyCode Wendigo3_RomanceAttk;
     public KeyCode Wendigo3_Ability1;
 
+    public KeyCode character4_attk;
+    public KeyCode character4_RomanceAttk;
+    public KeyCode character4_Ability1;
+
     public Transform playerUI;
     public Transform playerUIFighting;
     public static NetworkPlayer Local { get; set; }
@@ -59,6 +63,10 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(Wendigo3_attk, Wendigo3_RomanceAttk, Wendigo3_Ability1);
         }
+        else if (selectedCharacter == 4)
+        {
+            this.GetComponent<CharacterInputHandler>().cryptidSelected(character4_attk, character4_RomanceAttk, character4_Ability1);
+        }
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -76,7 +84,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             {
                 redGuy.SetActive(true);
             }
-            else if (selectedCharacter == 2)
+            else if (selectedCharacter == 3)
             {
                 wendigo.SetActive(true);
             }
