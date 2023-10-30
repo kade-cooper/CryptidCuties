@@ -17,6 +17,7 @@ public class ShootingAbility : Ability
 
     public void FixedUpdate()
     {
+        
          lookDirection = Camera.main.WorldToScreenPoint(Input.mousePosition);
          lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
          BulletTransform.rotation = Quaternion.Euler(0, 0, 1);
