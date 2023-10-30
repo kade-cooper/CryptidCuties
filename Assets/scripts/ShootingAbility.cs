@@ -10,16 +10,17 @@ public class ShootingAbility : Ability
    // public float bulletVelocity;
     public Transform BulletTransform; 
    // public LayerMask ground;
-    public Vector2 lookDirection;
+    public Vector2 lookDirection { get; set; }
     public float lookAngle;
     public GameObject Bullet;
     public float bulletSpeed;
 
     public void FixedUpdate()
     {
-        lookDirection = Camera.main.WorldToScreenPoint(Input.mousePosition);
-        lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        BulletTransform.rotation = Quaternion.Euler(0, 0, 1);
+         lookDirection = Camera.main.WorldToScreenPoint(Input.mousePosition);
+         lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+         BulletTransform.rotation = Quaternion.Euler(0, 0, 1);
+
     }
 
     public override void Activate(GameObject thisThing)
