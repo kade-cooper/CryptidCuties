@@ -8,13 +8,18 @@ public class ShootingAbility : Ability
 {
    // public GameObject BulletTransform;
    // public float bulletVelocity;
-    public Transform BulletTransform; 
+    Transform BulletTransform; 
    // public LayerMask ground;
     public Vector2 lookDirection { get; set; }
-    public float lookAngle;
+    float lookAngle;
     public GameObject Bullet;
     public float bulletSpeed;
 
+
+    public void Awake()
+    {
+     
+    }
     public void FixedUpdate()
     {
         
