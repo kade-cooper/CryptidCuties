@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Fusion;
+using TMPro;
 
 public class CryptidScript : NetworkBehaviour
 {
@@ -48,10 +49,25 @@ public class CryptidScript : NetworkBehaviour
     public CharacterInputHandler cih;
     public CharacterMovementHandler cmh;
 
+
+    TextMeshProUGUI ScoreUI1;
+    TextMeshProUGUI ScoreUI2;
+    TextMeshProUGUI ScoreUI3;
+    TextMeshProUGUI ScoreUI4;
+
+    public int player0Score=0;
+    public int player1Score=0;
+    public int player2Score=0;
+    public int player3Score=0;
+
     // Start is called before the first frame update
     void Start()
     {
         spawnpoint = player.spawnpoint;
+        ScoreUI1 = GameObject.FindGameObjectWithTag("ScoreUI1").GetComponent<TextMeshProUGUI>();
+        ScoreUI2 = GameObject.FindGameObjectWithTag("ScoreUI2").GetComponent<TextMeshProUGUI>();
+        ScoreUI3 = GameObject.FindGameObjectWithTag("ScoreUI3").GetComponent<TextMeshProUGUI>();
+        ScoreUI4 = GameObject.FindGameObjectWithTag("ScoreUI4").GetComponent<TextMeshProUGUI>();
         canBeDamaged = true;
     }
 
@@ -73,10 +89,13 @@ public class CryptidScript : NetworkBehaviour
             Local = this;
             netHealth = maxHealth;
             RPC_SendHealth();
+            netHealth = health;
+            
 
         }
         else
         {
+            netHealth = maxHealth;
             RPC_SendHealth();
             netHealth = health;
             healthAbove.changeTo(health / maxHealth);
@@ -119,15 +138,15 @@ public class CryptidScript : NetworkBehaviour
         }
         if (collision.gameObject.CompareTag("redAttack1"))
         {
-            onHit(redAttackPower);
+            onHit(redAttackPower, collision.GetComponent<attackScript>().tagthing.ToString());
         }
         else if (collision.gameObject.CompareTag("blueAttack1"))
         {
-            onHit(blueAttackPower);
+            onHit(blueAttackPower, collision.GetComponent<attackScript>().tagthing.ToString());
         }
     }
 
-    void onHit(float attackPower)
+    void onHit(float attackPower, string attacker)
     {
         netHealth -= attackPower;
         healhBar.value = netHealth / maxHealth;
@@ -138,11 +157,32 @@ public class CryptidScript : NetworkBehaviour
             wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
             wholePlayer.GetComponent<CharacterController>().Move(getRespawnVector());
             wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
+            if(attacker == "player0")
+            {
+                player0Score += 1;
+                ScoreUI1.text = player0Score.ToString();
+            }
+            else if (attacker == "player1")
+            {
+                player1Score += 1;
+                ScoreUI2.text = player1Score.ToString();
+            }
+            else if (attacker == "player2")
+            {
+                player2Score += 1;
+                ScoreUI3.text = player2Score.ToString();
+            }
+            else if (attacker == "player3")
+            {
+                player3Score += 1;
+                ScoreUI4.text = player3Score.ToString();
+            }
             //this.GetComponent<Collider2D>().gameObject.SetActive(true);
             cih.canInput = true;
             netHealth = maxHealth;
             healhBar.value = netHealth / maxHealth;
             healthAbove.onfull();
+
 
         }
         Debug.Log(netHealth);

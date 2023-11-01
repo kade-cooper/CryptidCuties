@@ -70,17 +70,7 @@ public class playerRomanceHandler : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        playerRomanceHandler[] otherPlayers = GameObject.FindObjectsOfType<playerRomanceHandler>();
-        foreach (playerRomanceHandler other in otherPlayers)
-        {
-            if (other != this)
-            {
-                otherPlayer = other.GetComponent<playerRomanceHandler>();
-                return;
-            }
-        }
-        */
+        
     }
 
 

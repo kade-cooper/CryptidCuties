@@ -8,6 +8,10 @@ TagManager:
   - blueAttack1
   - redAttack1
   - romanceAttk
+  - ScoreUI1
+  - ScoreUI2
+  - ScoreUI3
+  - ScoreUI4
   layers:
   - Default
   - TransparentFX

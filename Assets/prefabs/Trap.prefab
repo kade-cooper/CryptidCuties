@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5084414324723198382}
   - component: {fileID: 5084414324723198383}
   - component: {fileID: 5084414324723198352}
+  - component: {fileID: 2569787910843503679}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -157,5 +158,19 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 11274c26b50768a49b017ae60276f237
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 2569787910843503679}
   SimulationBehaviours: []
+--- !u!114 &2569787910843503679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5084414324723198353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f431576c1a33102498291bf85f4855a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0

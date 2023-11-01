@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 5884786241001434443}
   - component: {fileID: 2830020089337666587}
   - component: {fileID: 1345995616738629675}
+  - component: {fileID: 5701087813033196854}
   m_Layer: 9
   m_Name: Attack1
   m_TagString: blueAttack1
@@ -678,6 +679,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5701087813033196854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537856854709642229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623bded4ff1aece46a3f2d3d705a1367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prh: {fileID: 271361590024056742}
 --- !u!1 &770197001378436355
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  playerRef: {fileID: 0}
 --- !u!1 &1630063041995793831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,6 +1138,10 @@ MonoBehaviour:
   player: {fileID: 3255338231579511589}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
+  player0Score: 0
+  player1Score: 0
+  player2Score: 0
+  player3Score: 0
 --- !u!114 &8999282913451047186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1185,6 +1204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  playerRef: {fileID: 0}
 --- !u!1 &2258581416241745184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,6 +1805,7 @@ GameObject:
   - component: {fileID: 2962979404127685703}
   - component: {fileID: 8877322880668737392}
   - component: {fileID: 7459896267512561378}
+  - component: {fileID: 6650126787809933030}
   m_Layer: 9
   m_Name: Attack1
   m_TagString: redAttack1
@@ -1919,6 +1940,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6650126787809933030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3604838160258983487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623bded4ff1aece46a3f2d3d705a1367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prh: {fileID: 271361590024056742}
 --- !u!1 &3842718110622998933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,6 +2109,10 @@ MonoBehaviour:
   player: {fileID: 3255338231579511589}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
+  player0Score: 0
+  player1Score: 0
+  player2Score: 0
+  player3Score: 0
 --- !u!114 &6552235979884454860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2232,6 +2270,7 @@ GameObject:
   - component: {fileID: 3411179648651488873}
   - component: {fileID: 7040345791248811939}
   - component: {fileID: 7438109418946367766}
+  - component: {fileID: 4440595783083055384}
   m_Layer: 9
   m_Name: Attack1
   m_TagString: redAttack1
@@ -2366,6 +2405,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4440595783083055384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319557719384133824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623bded4ff1aece46a3f2d3d705a1367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prh: {fileID: 271361590024056742}
 --- !u!1 &4510810376392312096
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,6 +3005,10 @@ MonoBehaviour:
   player: {fileID: 3255338231579511589}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
+  player0Score: 0
+  player1Score: 0
+  player2Score: 0
+  player3Score: 0
 --- !u!114 &6684680360863119457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3744,6 +3800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  playerRef: {fileID: 0}
 --- !u!1 &8370445376878287726
 GameObject:
   m_ObjectHideFlags: 0
