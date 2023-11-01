@@ -32,6 +32,10 @@ public class AttackFollowMouse : NetworkBehaviour
         this.transform.eulerAngles =new Vector3(0,0,angle*sign);
         //this.transform.rotation = (Quaternion.Euler(new Vector3(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"),0))); ;
         */
+        if (!HasInputAuthority)
+        {
+            return;
+        }
         if (Input.mousePosition.x - (this.transform.position.x+offset) < 0)
         {
             this.transform.eulerAngles = new Vector3(0, 0, 180);
