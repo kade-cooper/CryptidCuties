@@ -11,11 +11,11 @@ public class TrapAbility : Ability
 
     public GameObject trapPrefab;
 
-    public override void Activate(GameObject thisThing)
+    public override void Activate(GameObject trapPrefab)
     {
         NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
-        NetworkObject thing = runner.Spawn(trapPrefab, thisThing.transform.position);
-        thing.gameObject.layer = thisThing.gameObject.layer;
+        NetworkObject thing = runner.Spawn(trapPrefab, trapPrefab.transform.position);
+        thing.gameObject.layer = trapPrefab.gameObject.layer;
         
     }
 
