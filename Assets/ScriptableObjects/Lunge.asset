@@ -16,5 +16,5 @@ MonoBehaviour:
   cooldownTime: 2
   activeTime: 0.2
   lungeVelocity: 10
-  alot: 500
+  alot: 9999
   maxSpeed: 10
