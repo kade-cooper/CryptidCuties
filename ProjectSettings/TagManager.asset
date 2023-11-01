@@ -12,6 +12,7 @@ TagManager:
   - ScoreUI2
   - ScoreUI3
   - ScoreUI4
+  - heart
   layers:
   - Default
   - TransparentFX

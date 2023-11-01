@@ -136,11 +136,11 @@ public class CryptidScript : NetworkBehaviour
         {
             return;
         }
-        if (collision.gameObject.CompareTag("redAttack1"))
+        if (collision.gameObject.CompareTag("redAttack1") && collision.GetComponent<attackScript>())
         {
             onHit(redAttackPower, collision.GetComponent<attackScript>().tagthing.ToString());
         }
-        else if (collision.gameObject.CompareTag("blueAttack1"))
+        else if (collision.gameObject.CompareTag("blueAttack1") && collision.GetComponent<attackScript>())
         {
             onHit(blueAttackPower, collision.GetComponent<attackScript>().tagthing.ToString());
         }

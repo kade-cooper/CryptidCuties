@@ -70,7 +70,7 @@ public class playerRomanceHandler : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        cannotRomance = false;
     }
 
 
@@ -111,6 +111,7 @@ public class playerRomanceHandler : NetworkBehaviour
         }
         else
         {
+            cannotRomance = false;
             Debug.Log("before debug.log");
             RPC_SendInfo();
 
@@ -346,6 +347,7 @@ public class playerRomanceHandler : NetworkBehaviour
         }
         if (playerOther != null)
         {
+            //playerOther.GetComponentInChildren<heart>().gameObject.SetActive(true);
             foreach (Transform child in playerOther.transform)
             {
                 child.gameObject.layer = LayerMask.NameToLayer(team);
