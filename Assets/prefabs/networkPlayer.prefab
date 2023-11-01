@@ -993,7 +993,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  playerRef: {fileID: 0}
+  playerRef: {fileID: 8370445376878287726}
+  upward: {x: 0, y: 0, z: 0}
+  offset: 950
 --- !u!1 &1630063041995793831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,7 +1384,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  playerRef: {fileID: 0}
+  playerRef: {fileID: 8370445376878287726}
+  upward: {x: 0, y: 0, z: 0}
+  offset: 950
 --- !u!1 &2258581416241745184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,7 +2963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wendigussy
+  m_text: Wendio
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4077,7 +4081,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  playerRef: {fileID: 0}
+  playerRef: {fileID: 8370445376878287726}
+  upward: {x: 0, y: 0, z: 0}
+  offset: 950
 --- !u!1 &8370445376878287726
 GameObject:
   m_ObjectHideFlags: 0
@@ -4443,9 +4449,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7960176496511112080, guid: ec9ab6bad825d7b4e8ad2ddda6d27e08, type: 3}
+      propertyPath: m_text
+      value: Spring Heel Jack
+      objectReference: {fileID: 0}
     - target: {fileID: 7960176497343953461, guid: ec9ab6bad825d7b4e8ad2ddda6d27e08, type: 3}
       propertyPath: m_text
-      value: Sus Button
+      value: El Sibone
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3641874917129716548, guid: ec9ab6bad825d7b4e8ad2ddda6d27e08, type: 3}
