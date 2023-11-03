@@ -11,6 +11,10 @@ public struct NetworkInputData : INetworkInput
  
   public Vector2 movementInput;
 
+  public float mousex;
+  public float mousey;
+
+
   public Vector2 aimForwardVector;
 
   public float rotationInput;

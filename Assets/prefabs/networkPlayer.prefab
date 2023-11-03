@@ -987,7 +987,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950575754313388592}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aba973fe222678b49979753d72ae4bd9, type: 3}
   m_Name: 
@@ -996,6 +996,7 @@ MonoBehaviour:
   playerRef: {fileID: 8370445376878287726}
   upward: {x: 0, y: 0, z: 0}
   offset: 950
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &1630063041995793831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,7 +1379,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080587703277847393}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aba973fe222678b49979753d72ae4bd9, type: 3}
   m_Name: 
@@ -1387,6 +1388,7 @@ MonoBehaviour:
   playerRef: {fileID: 8370445376878287726}
   upward: {x: 0, y: 0, z: 0}
   offset: 950
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &2258581416241745184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,14 +1772,6 @@ MonoBehaviour:
   braking: 10
   maxSpeed: 10
   rotationSpeed: 15
-  isHit: 0
-  onHit: 0
-  Health: 100
-  RomanceMeter: 0
-  RomanceMeterFull: 5
-  RomanceReady: 0
-  isAttacking: 0
-  attackLands: 0
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &9176944850442220880
@@ -4075,7 +4069,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8337074315162426470}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aba973fe222678b49979753d72ae4bd9, type: 3}
   m_Name: 
@@ -4084,6 +4078,7 @@ MonoBehaviour:
   playerRef: {fileID: 8370445376878287726}
   upward: {x: 0, y: 0, z: 0}
   offset: 950
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &8370445376878287726
 GameObject:
   m_ObjectHideFlags: 0

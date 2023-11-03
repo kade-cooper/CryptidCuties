@@ -8,6 +8,7 @@ public class AttackFollowMouse : NetworkBehaviour
     public GameObject playerRef;
     public Vector3 upward;
     public float offset;
+    public Vector3 direction;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,15 +35,26 @@ public class AttackFollowMouse : NetworkBehaviour
         */
         if (!HasInputAuthority)
         {
-            return;
+            //return;
         }
-        if (Input.mousePosition.x - (this.transform.position.x+offset) < 0)
+        if (GetInput(out NetworkInputData networkInputData))
         {
-            this.transform.eulerAngles = new Vector3(0, 0, 180);
+            Debug.Log("mousex" + networkInputData.mousex);
+            if (networkInputData.mousex - (playerRef.transform.position.x + offset) < 0)
+            {
+                this.transform.eulerAngles = new Vector3(0, 0, 180);
+            }
+            else
+            {
+                this.transform.eulerAngles = new Vector3(0, 0, 0);
+            }
         }
-        else
-        {
-            this.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
+
+    }
+
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RPC_SendDirection()
+    {
+        direction = this.transform.eulerAngles;
     }
 }

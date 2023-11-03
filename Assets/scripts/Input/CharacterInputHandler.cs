@@ -18,6 +18,8 @@ public class CharacterInputHandler : MonoBehaviour
     bool isRomanceAttkPressed = false;
     bool isAbility1Pressed = false;
 
+    float mousex;
+    float mousey;
 
 
     public KeyCode keyAttk1;
@@ -42,8 +44,13 @@ public class CharacterInputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (!characterMovementHandler.Object.HasInputAuthority || !canInput)
             return;
+
+        mousex = Input.mousePosition.x;
+        mousey = Input.mousePosition.y;
 
         moveInputVector.x = Input.GetAxis("Horizontal");
         moveInputVector.y = Input.GetAxis("Vertical");
@@ -77,6 +84,9 @@ public class CharacterInputHandler : MonoBehaviour
         networkInputData.isAttacking = isAttack1Pressed;
         networkInputData.isRomanceAttk = isRomanceAttkPressed;
         networkInputData.isAbility1 = isAbility1Pressed;
+
+        networkInputData.mousex = mousex;
+        networkInputData.mousey = mousey;
         //jump data
 
         //attack data
