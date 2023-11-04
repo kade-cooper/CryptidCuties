@@ -19,6 +19,8 @@ public class CryptidScript : NetworkBehaviour
 
     public float redAttackPower = 10;
     public float blueAttackPower = 15;
+    public float trapAttkPower = 150;
+    public float trapTime = 2;
     public Slider healhBar;
 
     public sliderBar healthAbove;
@@ -153,39 +155,70 @@ public class CryptidScript : NetworkBehaviour
         healthAbove.onchange(attackPower, maxHealth, 1);
         if (netHealth <= 0)
         {
-            cih.canInput = false;
-            wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
-            wholePlayer.GetComponent<CharacterController>().Move(getRespawnVector());
-            wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
-            if(attacker == "player0")
-            {
-                player0Score += 1;
-                ScoreUI1.text = player0Score.ToString();
-            }
-            else if (attacker == "player1")
-            {
-                player1Score += 1;
-                ScoreUI2.text = player1Score.ToString();
-            }
-            else if (attacker == "player2")
-            {
-                player2Score += 1;
-                ScoreUI3.text = player2Score.ToString();
-            }
-            else if (attacker == "player3")
-            {
-                player3Score += 1;
-                ScoreUI4.text = player3Score.ToString();
-            }
-            //this.GetComponent<Collider2D>().gameObject.SetActive(true);
-            cih.canInput = true;
-            netHealth = maxHealth;
-            healhBar.value = netHealth / maxHealth;
-            healthAbove.onfull();
-
+            onDie(attacker);
 
         }
         Debug.Log(netHealth);
+    }
+
+
+    void onTrapHit(float attackPower, string attacker, Collider2D trapHit)
+    {
+        netHealth -= attackPower;
+        healhBar.value = netHealth / maxHealth;
+        healthAbove.onchange(attackPower, maxHealth, 1);
+        if (netHealth <= 0)
+        {
+            onDie(attacker);
+        }
+        cih.canInputNoVelocity = false;
+        StartCoroutine(MoveCor(trapHit.gameObject));
+        Debug.Log(netHealth);
+    }
+
+    IEnumerator MoveCor(GameObject trap)
+    {
+        yield return new WaitForSeconds(trapTime);
+        cih.canInputNoVelocity = true;
+        Destroy(trap);
+
+
+    }
+
+
+    public void onDie(string attacker)
+    {
+        cih.canInput = false;
+        wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
+        wholePlayer.GetComponent<CharacterController>().Move(getRespawnVector());
+        wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
+        if (attacker == "player0")
+        {
+            player0Score += 1;
+            ScoreUI1.text = player0Score.ToString();
+        }
+        else if (attacker == "player1")
+        {
+            player1Score += 1;
+            ScoreUI2.text = player1Score.ToString();
+        }
+        else if (attacker == "player2")
+        {
+            player2Score += 1;
+            ScoreUI3.text = player2Score.ToString();
+        }
+        else if (attacker == "player3")
+        {
+            player3Score += 1;
+            ScoreUI4.text = player3Score.ToString();
+        }
+        //this.GetComponent<Collider2D>().gameObject.SetActive(true);
+        cih.canInput = true;
+        netHealth = maxHealth;
+        healhBar.value = netHealth / maxHealth;
+        healthAbove.onfull();
+
+
     }
 
     /*
@@ -209,31 +242,13 @@ public class CryptidScript : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
-        if (collision.gameObject.CompareTag("redAttack1"))
+        if (!canBeDamaged)
         {
-
-            health -= 10;
-            healhBar.value = health / maxHealth;
-            if (health <= 0)
-            {
-                health = maxHealth;
-                wholePlayer.position = spawnpoint;
-            }
-
-            Debug.Log(health);
+            return;
         }
-        else if (collision.gameObject.CompareTag("blueAttack1"))
+        if (collision.gameObject.CompareTag("trap1Attk") && collision.GetComponent<attackScript>())
         {
-            health -= 15;
-            healhBar.value = health / maxHealth;
-            if (health <= 0)
-            {
-                health = maxHealth;
-                wholePlayer.position = spawnpoint;
-            }
-            Debug.Log(health);
+            onTrapHit(trapAttkPower, collision.GetComponent<attackScript>().tagthing.ToString(), collision);
         }
-        */
     }
 }

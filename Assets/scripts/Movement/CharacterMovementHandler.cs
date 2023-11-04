@@ -7,7 +7,7 @@ using Fusion;
 public class CharacterMovementHandler : NetworkBehaviour
 {
     //Other components
-    NetworkCharacterControllerPrototypeCustom networkCharacterControllerPrototypeCustom;
+    public NetworkCharacterControllerPrototypeCustom networkCharacterControllerPrototypeCustom;
 
     private void Awake()
     {

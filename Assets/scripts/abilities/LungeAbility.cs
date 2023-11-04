@@ -10,7 +10,7 @@ public class LungeAbility : Ability
     public float alot;
 
     public int maxSpeed;
-    public override void Activate(GameObject thisThing)
+    public override void Activate(GameObject thisThing, playerRomanceHandler prh)
     {
         NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
         var deltaTime = runner.DeltaTime;
@@ -26,7 +26,7 @@ public class LungeAbility : Ability
         //characterCollider.Velocity += new Vector3(0, 0, 0);// movement.moveDirection.normalized * dashVelocity;
     }
 
-    public override void OnEnd(GameObject thisThing)
+    public override void OnEnd(GameObject thisThing, playerRomanceHandler prh)
     {
         NetworkCharacterControllerPrototypeCustom characterCollider = thisThing.GetComponentInParent<Transform>().GetComponentInParent<NetworkCharacterControllerPrototypeCustom>();
         characterCollider.maxSpeed = maxSpeed;

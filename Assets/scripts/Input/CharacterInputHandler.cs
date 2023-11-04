@@ -10,6 +10,7 @@ public class CharacterInputHandler : MonoBehaviour
     Vector2 moveInputVector = Vector2.zero;
 
     public bool canInput=true;
+    public bool canInputNoVelocity = true;
 
     public CharacterMovementHandler characterMovementHandler;
 
@@ -45,9 +46,16 @@ public class CharacterInputHandler : MonoBehaviour
     void Update()
     {
 
-
-        if (!characterMovementHandler.Object.HasInputAuthority || !canInput)
+        if (!characterMovementHandler.Object.HasInputAuthority || !canInputNoVelocity)
+        {
+            moveInputVector.x = 0;
+            moveInputVector.y = 0;
             return;
+        }
+        if (!characterMovementHandler.Object.HasInputAuthority || !canInput)
+        {
+            return;
+        }
 
         mousex = Input.mousePosition.x;
         mousey = Input.mousePosition.y;

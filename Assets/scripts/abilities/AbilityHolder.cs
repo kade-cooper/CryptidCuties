@@ -10,6 +10,7 @@ public class AbilityHolder : NetworkBehaviour
     float activeTime;
 
     public GameObject thisThing;
+    public playerRomanceHandler thisPRH;
 
     enum AbilityState
     {
@@ -39,7 +40,7 @@ public class AbilityHolder : NetworkBehaviour
                     if (networkInputData.isAbility1)
                     {
                         //Debug.Log(key + " down");
-                        ability.Activate(thisThing);
+                        ability.Activate(thisThing, thisPRH);
                         Debug.Log("did activate");
                         activeTime = ability.activeTime;
                         state = AbilityState.active;
@@ -54,7 +55,7 @@ public class AbilityHolder : NetworkBehaviour
                 }
                 else
                 {
-                    ability.OnEnd(thisThing);
+                    ability.OnEnd(thisThing, thisPRH);
                     state = AbilityState.cooldown;
                     cooldownTime = ability.cooldownTime;
                 }

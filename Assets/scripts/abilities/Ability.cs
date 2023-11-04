@@ -9,12 +9,12 @@ public class Ability : ScriptableObject
     public float activeTime;
 
     //this is where abilities will be activated
-    public virtual void Activate(GameObject parent)
+    public virtual void Activate(GameObject parent, playerRomanceHandler prh)
     {
         Debug.Log("not being overridden");
     }
 
-    public virtual void OnEnd(GameObject thisThing)
+    public virtual void OnEnd(GameObject thisThing, playerRomanceHandler prh)
     {
         Debug.Log("not being overriden");
     }

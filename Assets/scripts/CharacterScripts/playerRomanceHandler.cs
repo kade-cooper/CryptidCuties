@@ -29,6 +29,10 @@ public class playerRomanceHandler : NetworkBehaviour
 
     public playerRomanceHandler[] crypids = { null, null, null, null };
     public playerRomanceHandler[] crypidstemp = { null, null, null, null };
+
+
+
+    public GameObject[] children;
     public float maxRomance = 1000;
 
     [Networked]
@@ -80,19 +84,6 @@ public class playerRomanceHandler : NetworkBehaviour
         if (!Object.HasInputAuthority)
         {
 
-            //RPC_SendTag();
-            //tagthing = temptag;
-            /*
-            for (int i = 0; i < players.Length; ++i)
-            {
-                Debug.Log(players.Get(i));
-                if (!(tagthing==players.Get(i)))
-                {
-                    player2 = crypids[i];
-                    //break;
-                }
-            }
-            */
 
             RPC_SendCrypids();
             for (int i = 0; i < crypids.Length; ++i)
@@ -106,8 +97,6 @@ public class playerRomanceHandler : NetworkBehaviour
                 players.Set(i, playerstemp[i]);
             }
 
-
-
         }
         else
         {
@@ -115,26 +104,28 @@ public class playerRomanceHandler : NetworkBehaviour
             Debug.Log("before debug.log");
             RPC_SendInfo();
 
-            //Debug.Log(players.ToString()+"players.tostring");
             Debug.Log("after debug.log");
-            //Local = this;
-            /*
-            for (int i = 0; i < crypids.Length; i++)
-            {
-                crypids[i] = crypidstemp[i];
-            }
-            */
-            if(this.tagthing == "player0")
-                onFull(this.gameObject, null, "Team1");
+
+            if (this.tagthing == "player0")
+                changeLayer(this.gameObject, "Team1");
             else if (this.tagthing == "player1")
-                onFull(this.gameObject, null, "Team2");
+                changeLayer(this.gameObject, "Team2");
             else if (this.tagthing == "player2")
-                onFull(this.gameObject, null, "Team3");
+                changeLayer(this.gameObject, "Team3");
             else if (this.tagthing == "player3")
-                onFull(this.gameObject, null, "Team4");
+                changeLayer(this.gameObject, "Team4");
 
 
         }
+        Debug.Log("beginning layer change for " + tagthing);
+        if (this.tagthing == "player0")
+            changeLayer(this.gameObject, "Team1");
+        else if (this.tagthing == "player1")
+            changeLayer(this.gameObject, "Team2");
+        else if (this.tagthing == "player2")
+            changeLayer(this.gameObject, "Team3");
+        else if (this.tagthing == "player3")
+            changeLayer(this.gameObject, "Team4");
     }
 
 
@@ -206,6 +197,7 @@ public class playerRomanceHandler : NetworkBehaviour
             temptag = "player0";
             crypids[0] = this;
             Debug.Log("local player ran 0");
+            changeLayer(this.gameObject, "Team1");
         }
         else if (players.Get(1) == "")
         {
@@ -214,18 +206,21 @@ public class playerRomanceHandler : NetworkBehaviour
             temptag = "player1";
             crypids[1] = this;
             Debug.Log("local player ran 1");
+            changeLayer(this.gameObject, "Team2");
         }
         else if (players.Get(2) == "")
         {
             players.Set(2, "player2");
             tagthing = "player2";
             crypids[2] = this;
+            changeLayer(this.gameObject, "Team3");
         }
         else if (players.Get(3) == "")
         {
             players.Set(3, "player3");
             tagthing = "player3";
             crypids[3] = this;
+            changeLayer(this.gameObject, "Team4");
         }
 
 
@@ -325,6 +320,15 @@ public class playerRomanceHandler : NetworkBehaviour
         
     }
     */
+
+    public void changeLayer(GameObject playerThis,string team)
+    {
+        Debug.Log("changing layer in children for" + tagthing + "to " + team);
+        foreach (GameObject child in children)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer(team);
+        }
+    }
 
     public void onFull(GameObject playerThis, GameObject playerOther, string team)
     {

@@ -11,7 +11,7 @@ public class ShootingAbility : Ability
     public Transform spawnBullet; //may need to change this to rotate point or whatever the actual name is of object being used in inspector.
     public LayerMask ground;
 
-    public override void Activate(GameObject thisThing)
+    public override void Activate(GameObject thisThing, playerRomanceHandler prh)
     {
 
     }

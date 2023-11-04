@@ -6,12 +6,12 @@ using Fusion;
 public class trapScript : NetworkBehaviour
 {
 
-    public Vector3 tempLocation;
+    public string tempLayer;
     // Start is called before the first frame update
     void Start()
     {
-        RPC_SendLocation();
-        this.transform.position = tempLocation;
+        //RPC_SendLayer();
+        //this.gameObject.layer = LayerMask.NameToLayer(tempLayer);
     }
 
     // Update is called once per frame
@@ -21,8 +21,8 @@ public class trapScript : NetworkBehaviour
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_SendLocation()
+    public void RPC_SendLayer()
     {
-        tempLocation =  this.transform.position;
+        tempLayer = this.gameObject.layer.ToString();
     }
 }

@@ -13,6 +13,7 @@ TagManager:
   - ScoreUI3
   - ScoreUI4
   - heart
+  - trap1Attk
   layers:
   - Default
   - TransparentFX
