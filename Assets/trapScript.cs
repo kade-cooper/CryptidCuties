@@ -6,12 +6,28 @@ using Fusion;
 public class trapScript : NetworkBehaviour
 {
 
-    public string tempLayer;
+    [Networked] public int thisLayer {get; set;}
+
+
     // Start is called before the first frame update
     void Start()
     {
-        //RPC_SendLayer();
-        //this.gameObject.layer = LayerMask.NameToLayer(tempLayer);
+        if (HasStateAuthority) {
+            RPC_SendLayer(this.gameObject.layer);
+        }
+        this.gameObject.layer = thisLayer;
+        StartCoroutine(Retry());
+        //this.gameObject.layer = tempLayer;
+
+    }
+
+    IEnumerator Retry()
+    {
+        yield return new WaitForSeconds(.1f);
+        this.gameObject.layer = thisLayer;
+        this.gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+
+
     }
 
     // Update is called once per frame
@@ -20,9 +36,9 @@ public class trapScript : NetworkBehaviour
         
     }
 
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_SendLayer()
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_SendLayer(int layer)
     {
-        tempLayer = this.gameObject.layer.ToString();
+        thisLayer = layer;
     }
 }

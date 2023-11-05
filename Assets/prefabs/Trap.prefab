@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1408213920901665639}
   - component: {fileID: -753908942252245009}
   - component: {fileID: 6685528821607488101}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Trap
   m_TagString: trap1Attk
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  tempLayer: 
+  _thisLayer: 0
 --- !u!60 &9166102056502899518
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5084414324723198353}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

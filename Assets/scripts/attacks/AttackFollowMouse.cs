@@ -39,7 +39,7 @@ public class AttackFollowMouse : NetworkBehaviour
         }
         if (GetInput(out NetworkInputData networkInputData))
         {
-            Debug.Log("mousex" + networkInputData.mousex);
+            //Debug.Log("mousex" + networkInputData.mousex);
             if (networkInputData.mousex - (playerRef.transform.position.x + offset) < 0)
             {
                 this.transform.eulerAngles = new Vector3(0, 0, 180);

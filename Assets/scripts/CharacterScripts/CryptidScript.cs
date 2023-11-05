@@ -148,6 +148,20 @@ public class CryptidScript : NetworkBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!canBeDamaged)
+        {
+            return;
+        }
+        if (collision.gameObject.CompareTag("trap1Attk") && collision.GetComponent<attackScript>())
+        {
+            Debug.Log("entered trap1");
+            onTrapHit(trapAttkPower, collision.GetComponent<attackScript>().tagthing.ToString(), collision);
+        }
+        Debug.Log("entered trigger");
+    }
+
     void onHit(float attackPower, string attacker)
     {
         netHealth -= attackPower;
@@ -164,6 +178,7 @@ public class CryptidScript : NetworkBehaviour
 
     void onTrapHit(float attackPower, string attacker, Collider2D trapHit)
     {
+        Debug.Log("trapHit");
         netHealth -= attackPower;
         healhBar.value = netHealth / maxHealth;
         healthAbove.onchange(attackPower, maxHealth, 1);
@@ -239,16 +254,4 @@ public class CryptidScript : NetworkBehaviour
         return spawnpoint - wholePlayer.position + new Vector3(0,0,-100);
     }
     
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!canBeDamaged)
-        {
-            return;
-        }
-        if (collision.gameObject.CompareTag("trap1Attk") && collision.GetComponent<attackScript>())
-        {
-            onTrapHit(trapAttkPower, collision.GetComponent<attackScript>().tagthing.ToString(), collision);
-        }
-    }
 }
