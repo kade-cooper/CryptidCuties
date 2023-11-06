@@ -46,7 +46,10 @@ public class CryptidScript : NetworkBehaviour
 
     public Vector3 spawnpoint;
     public Transform wholePlayer;
+    public GameObject wholePlayerForLayer;
     public NetworkPlayer player;
+
+    public GameObject canvas;
 
     public CharacterInputHandler cih;
     public CharacterMovementHandler cmh;
@@ -75,12 +78,14 @@ public class CryptidScript : NetworkBehaviour
 
     private void OnEnable()
     {
-        //this.gameObject.GetComponentInParent<GameObject>().GetComponentInParent<GameObject>().layer = LayerMask.NameToLayer("player");
+        wholePlayerForLayer.layer = LayerMask.NameToLayer("player");
     }
 
     private void OnDisable()
     {
-        //this.gameObject.GetComponentInParent<GameObject>().GetComponentInParent<GameObject>().layer = LayerMask.NameToLayer("ghosts");
+        wholePlayerForLayer.layer = LayerMask.NameToLayer("ghosts");
+        player.selectedCharacter = 0;
+        canvas.SetActive(true);
     }
 
 
@@ -232,7 +237,7 @@ public class CryptidScript : NetworkBehaviour
         netHealth = maxHealth;
         healhBar.value = netHealth / maxHealth;
         healthAbove.onfull();
-
+        this.gameObject.SetActive(false);
 
     }
 

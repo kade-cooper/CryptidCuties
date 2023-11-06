@@ -80,6 +80,12 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             {
                 wendigo.SetActive(true);
             }
+            else if (selectedCharacter == 0)
+            {
+                blueGuy.SetActive(false);
+                redGuy.SetActive(false);
+                wendigo.SetActive(false);
+            }
         }
     }
 

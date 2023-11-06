@@ -1239,7 +1239,6 @@ GameObject:
   - component: {fileID: 6408706396824158627}
   - component: {fileID: 8999282913451047186}
   - component: {fileID: 397723255038454796}
-  - component: {fileID: 4937313732838000042}
   m_Layer: 9
   m_Name: Wendigo
   m_TagString: Untagged
@@ -1381,7 +1380,9 @@ MonoBehaviour:
   romanceBar: {fileID: 0}
   spawnpoint: {x: 0, y: 0, z: 0}
   wholePlayer: {fileID: 3255338231579511591}
+  wholePlayerForLayer: {fileID: 3255338231579511577}
   player: {fileID: 3255338231579511589}
+  canvas: {fileID: 2044257762210241277}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
   player0Score: 0
@@ -1419,34 +1420,6 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _thisLayer: 0
   other: {fileID: 8370445376878287726}
---- !u!114 &4937313732838000042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880415662254242984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 0}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
-  UseLegacySharedModeInterpolation: 0
-  TargetInterpolationDelay: 0.03
 --- !u!1 &2080587703277847393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,7 +1838,6 @@ MonoBehaviour:
   - {fileID: 5062528669966626334}
   - {fileID: 6684680360863119457}
   - {fileID: 3082046824416001754}
-  - {fileID: 1715269854046191979}
   - {fileID: 5798280554433840978}
   - {fileID: 7965925987202671580}
   - {fileID: 6020890753020914407}
@@ -1874,7 +1846,6 @@ MonoBehaviour:
   - {fileID: 1533986871376512102}
   - {fileID: 6552235979884454860}
   - {fileID: 6799453750825526231}
-  - {fileID: 5715741362238328810}
   - {fileID: 5494855516399324707}
   - {fileID: 3579193252850615712}
   - {fileID: 1910116867670167378}
@@ -1883,7 +1854,6 @@ MonoBehaviour:
   - {fileID: 6408706396824158627}
   - {fileID: 8999282913451047186}
   - {fileID: 397723255038454796}
-  - {fileID: 4937313732838000042}
   - {fileID: 5044750774812454556}
   - {fileID: 9017638479310266567}
   - {fileID: 4866790189664193370}
@@ -2344,7 +2314,6 @@ GameObject:
   - component: {fileID: 1533986871376512102}
   - component: {fileID: 6552235979884454860}
   - component: {fileID: 6799453750825526231}
-  - component: {fileID: 5715741362238328810}
   m_Layer: 9
   m_Name: RedCryptid
   m_TagString: Untagged
@@ -2486,7 +2455,9 @@ MonoBehaviour:
   romanceBar: {fileID: 0}
   spawnpoint: {x: 0, y: 0, z: 0}
   wholePlayer: {fileID: 3255338231579511591}
+  wholePlayerForLayer: {fileID: 3255338231579511577}
   player: {fileID: 3255338231579511589}
+  canvas: {fileID: 2044257762210241277}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
   player0Score: 0
@@ -2524,34 +2495,6 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _thisLayer: 0
   other: {fileID: 8370445376878287726}
---- !u!114 &5715741362238328810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3842718110622998933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 0}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
-  UseLegacySharedModeInterpolation: 0
-  TargetInterpolationDelay: 0.03
 --- !u!1 &4112915316372192077
 GameObject:
   m_ObjectHideFlags: 0
@@ -3303,7 +3246,6 @@ GameObject:
   - component: {fileID: 5062528669966626334}
   - component: {fileID: 6684680360863119457}
   - component: {fileID: 3082046824416001754}
-  - component: {fileID: 1715269854046191979}
   m_Layer: 9
   m_Name: BlueCryptid
   m_TagString: Untagged
@@ -3446,7 +3388,9 @@ MonoBehaviour:
   romanceBar: {fileID: 0}
   spawnpoint: {x: 0, y: 0, z: 0}
   wholePlayer: {fileID: 3255338231579511591}
+  wholePlayerForLayer: {fileID: 3255338231579511577}
   player: {fileID: 3255338231579511589}
+  canvas: {fileID: 2044257762210241277}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
   player0Score: 0
@@ -3484,34 +3428,6 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _thisLayer: 0
   other: {fileID: 8370445376878287726}
---- !u!114 &1715269854046191979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6074026265755732168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 2052516459864746206}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
-  UseLegacySharedModeInterpolation: 0
-  TargetInterpolationDelay: 0.03
 --- !u!1 &7040598048974174022
 GameObject:
   m_ObjectHideFlags: 0
