@@ -95,6 +95,9 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         blueGuy.SetActive(true);
         selectedCharacter = 1;
         canvas.SetActive(false);
+        this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
+        this.gameObject.GetComponent<CharacterController>().Move(getRespawnVector());
+        this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
 
     }
 
@@ -104,6 +107,9 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         redGuy.SetActive(true);
        selectedCharacter = 2;
         canvas.SetActive(false);
+        this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
+        this.gameObject.GetComponent<CharacterController>().Move(getRespawnVector());
+        this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
@@ -112,6 +118,14 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         wendigo.SetActive(true);
         selectedCharacter = 3;
         canvas.SetActive(false);
+        this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
+        this.gameObject.GetComponent<CharacterController>().Move(getRespawnVector());
+        this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
+    }
+
+    Vector3 getRespawnVector()
+    {
+        return spawnpoint - this.gameObject.transform.position + new Vector3(0, 0, -100);
     }
 
     public override void Spawned()
