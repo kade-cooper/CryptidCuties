@@ -12,6 +12,8 @@ public class AbilityHolder : NetworkBehaviour
     public GameObject thisThing;
     public playerRomanceHandler thisPRH;
 
+    NetworkRunner runner;
+
     enum AbilityState
     {
         ready, 
@@ -28,6 +30,11 @@ public class AbilityHolder : NetworkBehaviour
     public void Update()
     {
 
+    }
+
+    public void Start()
+    {
+        runner = GameObject.FindObjectOfType<NetworkRunner>();
     }
     public override void FixedUpdateNetwork()
     {
@@ -51,7 +58,7 @@ public class AbilityHolder : NetworkBehaviour
             case AbilityState.active:
                 if(activeTime >= 0)
                 {
-                    activeTime -= Time.deltaTime;
+                    activeTime -= runner.DeltaTime;
                 }
                 else
                 {
@@ -63,7 +70,7 @@ public class AbilityHolder : NetworkBehaviour
             case AbilityState.cooldown:
                 if(cooldownTime >= 0)
                 {
-                    cooldownTime -= Time.deltaTime;
+                    cooldownTime -= runner.DeltaTime;
                 }
                 else
                 {
