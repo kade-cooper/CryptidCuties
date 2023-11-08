@@ -7,7 +7,7 @@ using Fusion;
 
 public class CharacterInputHandler : MonoBehaviour
 {
-    Vector2 moveInputVector = Vector2.zero;
+    public Vector2 moveInputVector = Vector2.zero;
 
     public bool canInput=true;
     public bool canInputNoVelocity = true;
