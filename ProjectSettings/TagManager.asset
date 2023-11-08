@@ -14,6 +14,7 @@ TagManager:
   - ScoreUI4
   - heart
   - trap1Attk
+  - lungeAttk
   layers:
   - Default
   - TransparentFX

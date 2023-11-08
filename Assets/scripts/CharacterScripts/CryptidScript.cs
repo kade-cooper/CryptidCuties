@@ -20,6 +20,7 @@ public class CryptidScript : NetworkBehaviour
     public float redAttackPower = 10;
     public float blueAttackPower = 15;
     public float trapAttkPower = 150;
+    public float lungeAttkPower = 300;
     public float trapTime = 2;
     public Slider healhBar;
 
@@ -53,6 +54,8 @@ public class CryptidScript : NetworkBehaviour
 
     public CharacterInputHandler cih;
     public CharacterMovementHandler cmh;
+
+    public NetworkObject blood;
 
 
     TextMeshProUGUI ScoreUI1;
@@ -164,6 +167,10 @@ public class CryptidScript : NetworkBehaviour
             Debug.Log("entered trap1");
             onTrapHit(trapAttkPower, collision.GetComponent<attackScript>().tagthing.ToString(), collision);
         }
+        if(collision.gameObject.CompareTag("lungeAttk") && collision.GetComponent<attackScript>())
+        {
+            onHit(lungeAttkPower, collision.GetComponent<attackScript>().tagthing.ToString());
+        }
         Debug.Log("entered trigger");
     }
 
@@ -212,6 +219,8 @@ public class CryptidScript : NetworkBehaviour
         wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
         wholePlayer.GetComponent<CharacterController>().Move(getRespawnVector());
         wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
+        NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
+        runner.Spawn(blood,this.transform.position);
         if (attacker == "player0")
         {
             player0Score += 1;
