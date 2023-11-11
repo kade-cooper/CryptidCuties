@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Trap
   m_EditorClassIdentifier: 
   name: Trap Ability
-  cooldownTime: 1
+  cooldownTime: 20
   activeTime: 0
   trapPrefab: {fileID: 3572188034166545348, guid: 53a2a6cfbb2645d47bdd90b7e1ace574, type: 3}

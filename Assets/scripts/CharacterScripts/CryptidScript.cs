@@ -108,7 +108,7 @@ public class CryptidScript : NetworkBehaviour
             netHealth = maxHealth;
             RPC_SendHealth();
             netHealth = health;
-            healthAbove.changeTo(health / maxHealth);
+            healthAbove.changeTo(netHealth / maxHealth);
             RPC_SetPlayerTarget(this);
             //player2 = player2temp;
 
@@ -178,7 +178,7 @@ public class CryptidScript : NetworkBehaviour
     {
         netHealth -= attackPower;
         healhBar.value = netHealth / maxHealth;
-        healthAbove.onchange(attackPower, maxHealth, 1);
+        healthAbove.changeTo(netHealth/maxHealth);
         if (netHealth <= 0)
         {
             onDie(attacker);
@@ -193,7 +193,7 @@ public class CryptidScript : NetworkBehaviour
         Debug.Log("trapHit");
         netHealth -= attackPower;
         healhBar.value = netHealth / maxHealth;
-        healthAbove.onchange(attackPower, maxHealth, 1);
+        healthAbove.changeTo(netHealth/maxHealth);
         if (netHealth <= 0)
         {
             onDie(attacker);

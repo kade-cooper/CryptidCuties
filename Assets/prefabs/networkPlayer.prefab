@@ -3776,7 +3776,7 @@ GameObject:
   - component: {fileID: 347371209250159606}
   - component: {fileID: 8765327203537540264}
   - component: {fileID: 358056586733176962}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: LungeCircle
   m_TagString: lungeAttk
   m_Icon: {fileID: 0}
