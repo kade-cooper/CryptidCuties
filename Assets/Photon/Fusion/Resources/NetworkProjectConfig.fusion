@@ -2,7 +2,7 @@
     "Version": 1,
     "TypeId": "NetworkProjectConfig",
     "PeerMode": 0,
-    "PhysicsEngine": 1,
+    "PhysicsEngine": 0,
     "ServerPhysicsMode": 0,
     "UseLagCompensation": true,
     "LagCompensation": {
@@ -51,7 +51,7 @@
     },
     "Interpolation": {
         "DeltaAdjustment": 1,
-        "AllowedJitter": 25,
+        "AllowedJitter": 50,
         "SnapLimit": 200,
         "MultiplierMin": 1.25,
         "MultiplierMax": 3.0
