@@ -10,10 +10,8 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
 {
 
     public GameObject canvas;
-    public GameObject blueGuy;
     public GameObject Draguar;
     // ^ this is replacement for blueGuy
-    public GameObject redGuy;
     public GameObject Jack;
     // ^ this is replacement for redGuy
     public GameObject wendigo;
@@ -23,31 +21,25 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Networked(OnChanged = nameof(sendSelection))]
     public int selectedCharacter { get; set; }
 
-    public KeyCode character1_attk;
-    public KeyCode character1_RomanceAttk;
-    public KeyCode character1_Ability1;
 
-    public KeyCode Draguar1_attk;
-    public KeyCode Draguar1_RomanceAttk;
-    public KeyCode Draguar1_Ability1;
+    public KeyCode Draguar4_attk;
+    public KeyCode Draguar4_RomanceAttk;
+    public KeyCode Draguar4_Ability1;
     //^ this is replacement for blueGuy
 
-    public KeyCode character2_attk;
-    public KeyCode character2_RomanceAttk;
-    public KeyCode character2_Ability1;
 
-    public KeyCode Jack2_attk;
-    public KeyCode Jack2_RomanceAttk;
-    public KeyCode Jack2_Ability1;
+    public KeyCode Jack1_attk;
+    public KeyCode Jack1_RomanceAttk;
+    public KeyCode Jack1_Ability1;
     //^this is replacement for redGuy
 
     public KeyCode Wendigo3_attk;
     public KeyCode Wendigo3_RomanceAttk;
     public KeyCode Wendigo3_Ability1;
 
-    public KeyCode elSilbon4_attk;
-    public KeyCode elSilbon4_RomanceAttk;
-    public KeyCode elSilbon4_Ability1;
+    public KeyCode elSilbon2_attk;
+    public KeyCode elSilbon2_RomanceAttk;
+    public KeyCode elSilbon2_Ability1;
 
     public Transform playerUI;
     public Transform playerUIFighting;
@@ -67,11 +59,11 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     {
         if (selectedCharacter == 1)
         {
-            this.GetComponent<CharacterInputHandler>().cryptidSelected(Draguar1_attk, Draguar1_RomanceAttk, Draguar1_Ability1);
+            this.GetComponent<CharacterInputHandler>().cryptidSelected(Jack1_attk, Jack1_RomanceAttk, Jack1_Ability1);
         }
         else if(selectedCharacter == 2)
         {
-            this.GetComponent<CharacterInputHandler>().cryptidSelected(Jack2_attk, Jack2_RomanceAttk, Jack2_Ability1);
+            this.GetComponent<CharacterInputHandler>().cryptidSelected(elSilbon2_attk, elSilbon2_RomanceAttk, elSilbon2_Ability1);
         }
         else if (selectedCharacter == 3)
         {
@@ -79,7 +71,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         }
         else if (selectedCharacter == 4)
         {
-            this.GetComponent<CharacterInputHandler>().cryptidSelected(elSilbon4_attk, elSilbon4_RomanceAttk, elSilbon4_Ability1);
+            this.GetComponent<CharacterInputHandler>().cryptidSelected(Draguar4_attk, Draguar4_RomanceAttk, Draguar4_Ability1);
         }
     }
 
@@ -93,12 +85,12 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             if (selectedCharacter == 1)
             {
                 // blueGuy.SetActive(true);
-                Draguar.SetActive(true);
+                Jack.SetActive(true);
             }
             else if(selectedCharacter == 2)
             {
                 // redGuy.SetActive(true);
-                Jack.SetActive(true);
+                elSilbon.SetActive(true);
             }
             else if (selectedCharacter == 3)
             {
@@ -106,12 +98,12 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             }
             else if (selectedCharacter == 4)
             {
-                elSilbon.SetActive(true);
+                Draguar.SetActive(true);
             }
             else if (selectedCharacter == 0)
             {
-                blueGuy.SetActive(false);
-                redGuy.SetActive(false);
+                Jack.SetActive(false);
+                Draguar.SetActive(false);
                 wendigo.SetActive(false);
                 elSilbon.SetActive(false);
             }
@@ -122,7 +114,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     public void RPC_CharacterBlueSelected()
     {
         //blueGuy.SetActive(true);
-        Draguar.SetActive(true);
+        Jack.SetActive(true);
         selectedCharacter = 1;
         canvas.SetActive(false);
         this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
@@ -135,7 +127,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     public void RPC_CharacterRedSelected()
     {
         //redGuy.SetActive(true);
-        Jack.SetActive(true);
+        elSilbon.SetActive(true);
        selectedCharacter = 2;
         canvas.SetActive(false);
         this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
@@ -154,10 +146,11 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
     }
 
+
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
-    public void RPC_CharacterelSilbonSelected()
+    public void RPC_CharacterDragurSelected()
     {
-        elSilbon.SetActive(true);
+        Draguar.SetActive(true);
         selectedCharacter = 4;
         canvas.SetActive(false);
         this.gameObject.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
