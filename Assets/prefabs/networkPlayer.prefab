@@ -1896,19 +1896,31 @@ MonoBehaviour:
   _interpolationDataSource: 0
   canvas: {fileID: 2044257762210241277}
   blueGuy: {fileID: 6074026265755732168}
+  Draguar: {fileID: 324004507106359658, guid: 1049ef0b8d217864aade09872106389d, type: 3}
   redGuy: {fileID: 3842718110622998933}
+  Jack: {fileID: 8970324174469213633, guid: 501043d1817f25d4f90a30b86b09b965, type: 3}
   wendigo: {fileID: 1880415662254242984}
+  elSilbon: {fileID: 2842719863169030656, guid: 91bef2d19be1ac747b9071c587628573, type: 3}
   spawnpoint: {x: 0, y: 0, z: 0}
   _selectedCharacter: 0
   character1_attk: 323
   character1_RomanceAttk: 324
   character1_Ability1: 32
+  Draguar1_attk: 323
+  Draguar1_RomanceAttk: 324
+  Draguar1_Ability1: 32
   character2_attk: 323
   character2_RomanceAttk: 324
   character2_Ability1: 101
+  Jack2_attk: 323
+  Jack2_RomanceAttk: 324
+  Jack2_Ability1: 101
   Wendigo3_attk: 323
   Wendigo3_RomanceAttk: 324
   Wendigo3_Ability1: 32
+  elSilbon4_attk: 323
+  elSilbon4_RomanceAttk: 324
+  elSilbon4_Ability1: 101
   playerUI: {fileID: 2044257762210241265}
   playerUIFighting: {fileID: 6564080748966775871}
 --- !u!114 &3255338231579511588
