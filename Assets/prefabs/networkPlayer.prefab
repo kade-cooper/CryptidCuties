@@ -1931,7 +1931,8 @@ MonoBehaviour:
   Flags: 2305
   NetworkGuid:
     RawGuidValue: 3779fe4d557d649418ab3d2452fd0c17
-  NestedObjects: []
+  NestedObjects:
+  - {fileID: 9022416621325960990}
   NetworkedBehaviours:
   - {fileID: 3255338231579511589}
   - {fileID: 4171030000823513051}
@@ -1964,7 +1965,6 @@ MonoBehaviour:
   - {fileID: 9017638479310266567}
   - {fileID: 4866790189664193370}
   - {fileID: 4689739755702555543}
-  - {fileID: 358056586733176962}
   SimulationBehaviours: []
 --- !u!143 &-4796179434845559248
 CharacterController:
@@ -2014,9 +2014,9 @@ MonoBehaviour:
   TargetInterpolationDelay: 0.03
   gravity: 0
   jumpImpulse: 8
-  acceleration: 20
+  _acceleration: 0
   braking: 10
-  maxSpeed: 10
+  _maxSpeed: 0
   rotationSpeed: 15
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
@@ -2047,8 +2047,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveInputVector: {x: 0, y: 0}
-  canInput: 1
-  canInputNoVelocity: 1
   characterMovementHandler: {fileID: 9176944850442220880}
   keyAttk1: 0
   keyRomanceAttk: 0
@@ -3776,6 +3774,7 @@ GameObject:
   - component: {fileID: 347371209250159606}
   - component: {fileID: 8765327203537540264}
   - component: {fileID: 358056586733176962}
+  - component: {fileID: 9022416621325960990}
   m_Layer: 17
   m_Name: LungeCircle
   m_TagString: lungeAttk
@@ -3915,6 +3914,30 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _thisLayer: 0
   other: {fileID: 8370445376878287726}
+--- !u!114 &9022416621325960990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024696338634759144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 134145
+  NetworkGuid:
+    RawGuidValue: 00000000000000000000000000000000
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 358056586733176962}
+  SimulationBehaviours: []
 --- !u!1 &7040598048974174022
 GameObject:
   m_ObjectHideFlags: 0
