@@ -1991,10 +1991,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   canvas: {fileID: 2044257762210241277}
-  Draguar: {fileID: 324004507106359658, guid: 1049ef0b8d217864aade09872106389d, type: 3}
-  Jack: {fileID: 8970324174469213633, guid: 501043d1817f25d4f90a30b86b09b965, type: 3}
-  wendigo: {fileID: 4860790004394822872, guid: dbf9745faf3a0894f8e557978757bfcd, type: 3}
-  elSilbon: {fileID: 2842719863169030656, guid: 91bef2d19be1ac747b9071c587628573, type: 3}
+  Draguar: {fileID: 4304419860019945095}
+  Jack: {fileID: 6074026265755732168}
+  wendigo: {fileID: 1880415662254242984}
+  elSilbon: {fileID: 3842718110622998933}
   spawnpoint: {x: 0, y: 0, z: 0}
   _selectedCharacter: 0
   Draguar4_attk: 323
@@ -3513,7 +3513,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3255338231579511589}
         m_TargetAssemblyTypeName: NetworkPlayer, Assembly-CSharp
-        m_MethodName: RPC_CharacterRedSelected
+        m_MethodName: RPC_CharacterDragurSelected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
