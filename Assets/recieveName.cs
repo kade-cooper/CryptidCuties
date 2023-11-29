@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using UnityEngine.SceneManagement;
 
 public class recieveName : NetworkBehaviour
 {
@@ -10,6 +11,7 @@ public class recieveName : NetworkBehaviour
     public bool isClient;
     public bool isServer;
     public NetworkDebugStart thing;
+    public bool isWaiting=false;
     // Start is called before the first frame update
 
     private void Start()
@@ -20,12 +22,25 @@ public class recieveName : NetworkBehaviour
     {
         if(isHost == false && isClient == false && isServer == false)
         {
-            return;
+            if (!isWaiting)
+                StartCoroutine(wait());
         }
         else
         {
             doThing();
         }
+        if (GameObject.FindObjectOfType<NetworkPlayer>())
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator wait()
+    {
+        isWaiting = true;
+
+        yield return new WaitForSeconds(15);
+        SceneManager.LoadScene("mainMenu");
     }
 
     void doThing()
@@ -34,17 +49,20 @@ public class recieveName : NetworkBehaviour
         if (isHost)
         {
             thing.StartHost();
-            isHost = false;
+            //this.gameObject.SetActive(false);
+            //isHost = false;
         }
         else if (isClient)
         {
             thing.StartClient();
-            isClient = false;
+            //this.gameObject.SetActive(false);
+            //isClient = false;
         }
         else if (isServer)
         {
             thing.StartServer();
-            isServer = false;
+            //this.gameObject.SetActive(false);
+            //isServer = false;
         }
     }
 

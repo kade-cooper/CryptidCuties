@@ -9,8 +9,10 @@ public class CharacterInputHandler : MonoBehaviour
 {
     public Vector2 moveInputVector = Vector2.zero;
 
-    public bool canInput=true;
-    public bool canInputNoVelocity = true;
+    [Networked]
+    public bool canInput { get; set; }
+    [Networked]
+    public bool canInputNoVelocity { get; set; }
 
     public CharacterMovementHandler characterMovementHandler;
 
@@ -32,7 +34,8 @@ public class CharacterInputHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        canInput = true;
+        canInputNoVelocity = true;
     }
     //sets the key codes to the selected crypids key codes
     public void cryptidSelected(KeyCode attk1, KeyCode keyRA, KeyCode keyA1)
