@@ -30,7 +30,8 @@ public struct NetworkInputData : INetworkInput
   public float RomanceMeterFull;
   public NetworkBool RomanceReady;
 
-  
+
+  public NetworkBool isMoving;
   public NetworkBool isAttacking;
   public NetworkBool isRomanceAttk;
   public NetworkBool attackLands;

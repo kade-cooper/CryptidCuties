@@ -2690,6 +2690,7 @@ MonoBehaviour:
   isClient: 0
   isServer: 0
   thing: {fileID: 0}
+  isWaiting: 0
 --- !u!4 &284287109
 Transform:
   m_ObjectHideFlags: 0
@@ -3066,7 +3067,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513490730}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.307, y: -0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5681,6 +5682,7 @@ MonoBehaviour:
   isClient: 0
   isServer: 0
   thing: {fileID: 0}
+  isWaiting: 0
 --- !u!1 &855470028
 GameObject:
   m_ObjectHideFlags: 0

@@ -2049,7 +2049,9 @@ MonoBehaviour:
   - {fileID: 6020890753020914407}
   - {fileID: 7131028523224169282}
   - {fileID: 7008097146449027049}
+  - {fileID: 8085932105718248417}
   - {fileID: 3374640196367810132}
+  - {fileID: 8922820648568318707}
   - {fileID: 1192914144331253606}
   - {fileID: 1533986871376512102}
   - {fileID: 6552235979884454860}
@@ -2059,6 +2061,7 @@ MonoBehaviour:
   - {fileID: 1910116867670167378}
   - {fileID: 8829827888187827379}
   - {fileID: 9031366258032923536}
+  - {fileID: 527348983140605936}
   - {fileID: 6284359547365580890}
   - {fileID: 3432274110491676018}
   - {fileID: 6408706396824158627}
@@ -2068,7 +2071,7 @@ MonoBehaviour:
   - {fileID: 9017638479310266567}
   - {fileID: 4866790189664193370}
   - {fileID: 4689739755702555543}
-  - {fileID: 358056586733176962}
+  - {fileID: 5704485032849130214}
   - {fileID: 7130178497169884641}
   - {fileID: 8326734751210985414}
   - {fileID: 5819643542306365697}
@@ -2079,7 +2082,9 @@ MonoBehaviour:
   - {fileID: 7440465335172417991}
   - {fileID: 4431002804313631664}
   - {fileID: 606597975603456343}
+  - {fileID: 1107279218197905976}
   - {fileID: 4643683699316244770}
+  - {fileID: 6508406426792478735}
   SimulationBehaviours: []
 --- !u!143 &-4796179434845559248
 CharacterController:
@@ -3972,8 +3977,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2ab0fc64ec7c147a224a0b3323c3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   animator: {fileID: 7697011664436591830}
   cih: {fileID: 7489576615223509650}
+  _isMoving:
+    _value: 0
 --- !u!1 &5621901390924003636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4288,8 +4296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2ab0fc64ec7c147a224a0b3323c3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   animator: {fileID: 6564575482370268404}
   cih: {fileID: 7489576615223509650}
+  _isMoving:
+    _value: 0
 --- !u!1 &6054391973209856328
 GameObject:
   m_ObjectHideFlags: 0
@@ -6406,8 +6417,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2ab0fc64ec7c147a224a0b3323c3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   animator: {fileID: 554598277979029627}
   cih: {fileID: 7489576615223509650}
+  _isMoving:
+    _value: 0
 --- !u!114 &7130178497169884641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6527,8 +6541,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2ab0fc64ec7c147a224a0b3323c3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   animator: {fileID: 3962493960358006988}
   cih: {fileID: 7489576615223509650}
+  _isMoving:
+    _value: 0
 --- !u!114 &6284359547365580890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6656,8 +6673,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2ab0fc64ec7c147a224a0b3323c3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   animator: {fileID: 5883564534139095993}
   cih: {fileID: 7489576615223509650}
+  _isMoving:
+    _value: 0
 --- !u!1001 &6506739775542006146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6767,8 +6787,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2ab0fc64ec7c147a224a0b3323c3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   animator: {fileID: 2751817111675354188}
   cih: {fileID: 7489576615223509650}
+  _isMoving:
+    _value: 0
 --- !u!95 &2751817111675354188 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8970324174469213646, guid: 501043d1817f25d4f90a30b86b09b965, type: 3}
