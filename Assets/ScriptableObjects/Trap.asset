@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Trap Ability
   cooldownTime: 20
   activeTime: 0
-  trapPrefab: {fileID: 3572188034166545348, guid: 53a2a6cfbb2645d47bdd90b7e1ace574, type: 3}
+  trapPrefab: {fileID: 5084414324723198353, guid: 11274c26b50768a49b017ae60276f237, type: 3}
