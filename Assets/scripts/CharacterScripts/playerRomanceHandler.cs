@@ -64,17 +64,49 @@ public class playerRomanceHandler : NetworkBehaviour
     */
     public sliderBar rBar;
 
-    public bool cannotRomance=false;
+    public bool cannotRomance = false;
 
     public NetworkPlayer player;
 
     public CharacterInputHandler cih;
     public CharacterMovementHandler cmh;
 
+    [Networked]
+    public bool isInLove { get; set; }
+
+    [Networked]
+    public bool allTeamsSet { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
         cannotRomance = false;
+        isInLove = false;
+        allTeamsSet = false;
+    }
+
+    void Update()
+    {
+        playerRomanceHandler other1 = null;
+        playerRomanceHandler other2 = null;
+        if (crypids[0] != null && crypids[1] != null && crypids[2] != null && crypids[3] != null)
+        {
+            foreach (playerRomanceHandler item in crypids)
+            {
+                if (!allTeamsSet && item.isInLove == true && other1 == null)
+                {
+                    other1 = item;
+                }
+                if (!allTeamsSet && item.isInLove == true && other2 == null)
+                {
+                    other2 = item;
+                }
+            }
+            if (other1 != null && other2 != null)
+            {
+                setOtherPlayersAsFriends(other1, other2);
+            }
+        }
     }
 
 
@@ -136,11 +168,11 @@ public class playerRomanceHandler : NetworkBehaviour
         playerRomanceHandler[] otherPlayers = GameObject.FindObjectsOfType<playerRomanceHandler>();
         foreach (playerRomanceHandler other in otherPlayers)
         {
-            if (other != this  && otherPlayer == null)
+            if (other != this && otherPlayer == null)
             {
                 otherPlayer = other.GetComponent<playerRomanceHandler>();
             }
-           else if(other!=this && otherPlayer2 == null)
+            else if (other != this && otherPlayer2 == null)
             {
                 otherPlayer2 = other.GetComponent<playerRomanceHandler>();
             }
@@ -157,9 +189,9 @@ public class playerRomanceHandler : NetworkBehaviour
             //otherPlayer.otherPlayer = this;
             for (int i = 0; i < players.Length; i++)
             {
-                if(otherPlayer.crypids[i] !=null)
+                if (otherPlayer.crypids[i] != null)
                     crypids[i] = otherPlayer.crypids[i];
-                if(otherPlayer.players.Get(i) != "")
+                if (otherPlayer.players.Get(i) != "")
                     players.Set(i, otherPlayer.players.Get(i));
                 Debug.Log("other players array" + otherPlayer.players.Get(i));
             }
@@ -301,7 +333,7 @@ public class playerRomanceHandler : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_SetBar(playerRomanceHandler prh, string whichPlayer, float rValue)
     {
-        if(whichPlayer == tagthing && HasInputAuthority)
+        if (whichPlayer == tagthing && HasInputAuthority)
         {
             prh.rBar.changeTo(rValue);
             Debug.Log(tagthing + " changed" + prh.tagthing);
@@ -311,7 +343,7 @@ public class playerRomanceHandler : NetworkBehaviour
         {
             this.rBar.changeTo(rValue);
         }
-         */   
+         */
     }
     /*
     public void SetBar(playerRomanceHandler prh, int whichBar, float rValue)
@@ -321,7 +353,7 @@ public class playerRomanceHandler : NetworkBehaviour
     }
     */
 
-    public void changeLayer(GameObject playerThis,string team)
+    public void changeLayer(GameObject playerThis, string team)
     {
         Debug.Log("changing layer in children for" + tagthing + "to " + team);
         foreach (GameObject child in children)
@@ -389,18 +421,28 @@ public class playerRomanceHandler : NetworkBehaviour
         int thisArrPos = 0;
         int otherArrPos = 0;
         playerRomanceHandler otherRef = null;
+        playerRomanceHandler thirdPlayerRef = null;
+        playerRomanceHandler fourthPlayerRef = null;
         for (int i = 0; i < crypids.Length; i++)
         {
             if (crypids[i] == this)
             {
                 thisArrPos = i;
-                Debug.Log(crypids[i]+"   "+i);
+                Debug.Log(crypids[i] + "   " + i);
             }
             if (crypids[i] == collision.GetComponentInParent<playerRomanceHandler>())
             {
                 otherArrPos = i;
                 Debug.Log(crypids[i] + "   " + i);
                 otherRef = crypids[i];
+            }
+            else if (thirdPlayerRef == null)
+            {
+                thirdPlayerRef = crypids[i];
+            }
+            else if (fourthPlayerRef == null)
+            {
+                fourthPlayerRef = crypids[i];
             }
         }
         if (cannotRomance == false)
@@ -414,8 +456,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_1 += romancePower;
                     if (romance0_1 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
                 else if (otherArrPos == 2)
@@ -424,8 +469,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_2 += romancePower;
                     if (romance0_2 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
                 else if (otherArrPos == 3)
@@ -434,8 +482,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_3 += romancePower;
                     if (romance0_3 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
             }
@@ -447,8 +498,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_1 += romancePower;
                     if (romance0_1 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
                 else if (otherArrPos == 2)
@@ -457,8 +511,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance1_2 += romancePower;
                     if (romance0_2 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
                 else if (otherArrPos == 3)
@@ -467,8 +524,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance1_3 += romancePower;
                     if (romance1_3 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
             }
@@ -480,8 +540,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance2_3 += romancePower;
                     if (romance2_3 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
                 else if (otherArrPos == 0)
@@ -490,8 +553,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_2 += romancePower;
                     if (romance0_2 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
                 else if (otherArrPos == 1)
@@ -500,8 +566,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance1_2 += romancePower;
                     if (romance1_2 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
             }
@@ -513,8 +582,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance0_3 += romancePower;
                     if (romance2_3 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
                 else if (otherArrPos == 1)
@@ -523,8 +595,11 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance1_3 += romancePower;
                     if (romance0_2 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
                 else if (otherArrPos == 2)
@@ -533,18 +608,46 @@ public class playerRomanceHandler : NetworkBehaviour
                     otherRef.romance2_3 += romancePower;
                     if (romance1_2 >= 1000)
                     {
+                        isInLove = true;
+                        otherRef.isInLove = true;
                         onFull(this.gameObject, otherRef.gameObject, "Team1");
                         otherRef.onFull(this.gameObject, otherRef.gameObject, "Team1");
+                        setOtherPlayersAsFriends(thirdPlayerRef, fourthPlayerRef);
                     }
                 }
             }
         }
-        else if(this.gameObject.layer == otherRef.gameObject.layer)
+        else if (this.gameObject.layer == otherRef.gameObject.layer)
         {
             heal(otherRef);
         }
 
     }
+
+    public void setOtherPlayersAsFriends(playerRomanceHandler romancedPlayer1, playerRomanceHandler romancedPlayer2)
+    {
+        playerRomanceHandler thing1;
+        foreach (playerRomanceHandler person in crypids)
+        {
+            if (romancedPlayer1 != person && romancedPlayer2 != person)
+            {
+                thing1 = person;
+                foreach (playerRomanceHandler person2 in crypids)
+                {
+                    if (romancedPlayer1 != person2 && romancedPlayer2 != person2 && thing1 != person2)
+                    {
+                        person.onFull(person2.gameObject, thing1.gameObject, "Team2");
+                        romancedPlayer1.allTeamsSet = true;
+                        romancedPlayer2.allTeamsSet = true;
+                        thing1.allTeamsSet = true;
+                        person2.allTeamsSet = true;
+                    }
+
+                }
+            }
+        }
+    }
+
 
 
     //checks if any of the romance variables are changed and then checks who the player is and changes the other players bar if it is a related player
@@ -582,7 +685,7 @@ public class playerRomanceHandler : NetworkBehaviour
         {
             RPC_SetBar(crypids[1], "player0", romance0_1 / maxRomance);
 
-            RPC_SetBar(crypids[0], "player1", romance0_1/maxRomance);
+            RPC_SetBar(crypids[0], "player1", romance0_1 / maxRomance);
         }
     }
 
