@@ -12,19 +12,19 @@ public class Utils : MonoBehaviour
         playerCnt += 1;
         if (playerCnt == 1)
         {
-            return new Vector3(-10, -10, 0);
+            return new Vector3(-32, 18.92, 0);
         }
         else if(playerCnt == 2)
         {
-            return new Vector3(10, 10, 0);
+            return new Vector3(-35.87, -19.45, 0);
         }
         else if (playerCnt == 3)
         {
-            return new Vector3(-10, 10, 0);
+            return new Vector3(31.66, -17.57, 0);
         }
         else if (playerCnt == 4)
         {
-            return new Vector3(10, -10, 0);
+            return new Vector3(35.39, 9.63, 0);
         }
         else
         {
