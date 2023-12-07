@@ -6,6 +6,7 @@ using Fusion;
 [CreateAssetMenu]
 public class FireProjectileAbility : Ability
 {
+    /*
     public GameObject fireProjectilePrefab;
     public float fireProjectileVelocity;
     public int maxSpeed;
@@ -38,4 +39,5 @@ public class FireProjectileAbility : Ability
     {
         
     }
+    */
 }
