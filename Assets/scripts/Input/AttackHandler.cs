@@ -29,11 +29,11 @@ public class AttackHandler : NetworkBehaviour
     public override void FixedUpdateNetwork()
     {
         bool thing = GetInput(out NetworkInputData networkInputData);
-        Debug.Log("input is :"+thing);
+        //Debug.Log("input is :"+thing);
         if (thing)
         {
 
-            Debug.Log(networkInputData.isAttacking);
+            //Debug.Log(networkInputData.isAttacking);
             if (networkInputData.isAttacking)
                 Attack();
             else if (networkInputData.isRomanceAttk)
@@ -45,7 +45,7 @@ public class AttackHandler : NetworkBehaviour
     {
         if (Time.time - lastTimeAttacked < 0.9f)
         {
-            Debug.Log("WAIT");
+            //Debug.Log("WAIT");
             return;
         }
 
@@ -58,7 +58,7 @@ public class AttackHandler : NetworkBehaviour
     {
         if (Time.time - lastTimeAttacked < 0.9f)
         {
-            Debug.Log("WAIT");
+            //Debug.Log("WAIT");
             return;
         }
 

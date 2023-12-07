@@ -418,7 +418,23 @@ public class playerRomanceHandler : NetworkBehaviour
 
     void heal(playerRomanceHandler other)
     {
-        //other.gameObject.GetComponentInChildren<GameObject>().GetComponentInChildren<CryptidScript>().netHealth += 100;
+        CryptidScript otherCS = null;
+        if(other.transform.Find("Capsule").transform.Find("Jack").gameObject.activeSelf == true)
+            otherCS = other.transform.Find("Capsule").transform.Find("Jack").GetComponent<CryptidScript>();
+        else if(other.transform.Find("Capsule").transform.Find("Sibone").gameObject.activeSelf == true)
+            otherCS = other.transform.Find("Capsule").transform.Find("Sibone").GetComponent<CryptidScript>();
+        else if (other.transform.Find("Capsule").transform.Find("Wendigo").gameObject.activeSelf == true)
+            otherCS = other.transform.Find("Capsule").transform.Find("Wendigo").GetComponent<CryptidScript>();
+        else if (other.transform.Find("Capsule").transform.Find("Dragur").gameObject.activeSelf == true)
+            otherCS = other.transform.Find("Capsule").transform.Find("Dragur").GetComponent<CryptidScript>();
+        if (otherCS != null && otherCS.netHealth < otherCS.maxHealth)
+        {
+            otherCS.netHealth += 100;
+            otherCS.setHealthBarToCurrentHealth();
+            Debug.Log("healed");
+        }
+            
+        Debug.Log(otherCS);
     }
 
 
@@ -623,9 +639,9 @@ public class playerRomanceHandler : NetworkBehaviour
                 }
             }
         }
-        else if (this.gameObject.layer == otherRef.gameObject.layer)
+        else if (isInLove)
         {
-            heal(otherRef);
+            heal(this);
         }
 
     }

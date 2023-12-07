@@ -268,4 +268,9 @@ public class CryptidScript : NetworkBehaviour
         return spawnpoint - wholePlayer.position + new Vector3(0,0,-100);
     }
     
+
+    public void setHealthBarToCurrentHealth()
+    {
+        healthAbove.changeTo(netHealth / maxHealth);
+    }
 }
