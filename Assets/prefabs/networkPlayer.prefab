@@ -2184,6 +2184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  heartParticle: {fileID: 3007695726253398799, guid: ea631c7a8c3166d4eb6e8a5c88b5b1f2, type: 3}
   otherPlayer: {fileID: 0}
   otherPlayer2: {fileID: 0}
   otherPlayer3: {fileID: 0}
@@ -2244,6 +2245,8 @@ MonoBehaviour:
   player: {fileID: 3255338231579511589}
   cih: {fileID: 7489576615223509650}
   cmh: {fileID: 9176944850442220880}
+  _isInLove: 0
+  _allTeamsSet: 0
 --- !u!1 &3290947693431488244
 GameObject:
   m_ObjectHideFlags: 0

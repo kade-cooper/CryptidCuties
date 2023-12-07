@@ -6,8 +6,11 @@ using Fusion;
 
 public class playerRomanceHandler : NetworkBehaviour
 {
+
+
     public static playerRomanceHandler Local { get; set; }
 
+    public GameObject heartParticle;
 
     public playerRomanceHandler otherPlayer;
     public playerRomanceHandler otherPlayer2;
@@ -403,6 +406,9 @@ public class playerRomanceHandler : NetworkBehaviour
             }
         }
         RPC_onRomanceFull();
+        Instantiate(heartParticle,playerThis.transform.position,playerThis.transform.rotation);
+        Instantiate(heartParticle,playerOther.transform.position,playerOther.transform.rotation);
+
     }
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_onRomanceFull()
