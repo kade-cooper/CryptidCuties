@@ -21,7 +21,6 @@ public class AbilityHolder : NetworkBehaviour
     public playerRomanceHandler thisPRH;
 
     public Image fillImage;
-    public Image fillImage2;
 
     NetworkRunner runner;
 
@@ -42,7 +41,6 @@ public class AbilityHolder : NetworkBehaviour
     {
 
             fillImage.fillAmount = fill;
-            fillImage2.fillAmount = fill; 
     }
 
     public void Start()
