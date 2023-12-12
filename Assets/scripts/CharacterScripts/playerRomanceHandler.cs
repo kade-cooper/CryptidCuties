@@ -423,8 +423,9 @@ public class playerRomanceHandler : NetworkBehaviour
             }
         }
         RPC_onRomanceFull();
-        Instantiate(heartParticle,playerThis.transform.position,playerThis.transform.rotation);
-        Instantiate(heartParticle,playerOther.transform.position,playerOther.transform.rotation);
+        NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
+        runner.Spawn(heartParticle,playerThis.transform.position,playerThis.transform.rotation);
+        runner.Spawn(heartParticle,playerOther.transform.position,playerOther.transform.rotation);
         playerThis.GetComponent<playerRomanceHandler>().heartImg.SetActive(true);
         romanceSound.Play();
 
