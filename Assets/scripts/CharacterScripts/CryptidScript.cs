@@ -211,7 +211,6 @@ public class CryptidScript : NetworkBehaviour
         {
             onDie(attacker);
         }
-        cih.canInputNoVelocity = false;
         Destroy(axe.gameObject);
         Debug.Log(netHealth);
     }
