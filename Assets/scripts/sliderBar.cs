@@ -6,11 +6,18 @@ using Fusion;
 public class sliderBar : MonoBehaviour
 {
 
-    public float percentFull;
+    [Networked]
+    public float percentFull { get; set; }
+
     public float maxSize = 4;
+    public bool isR;
     // Start is called before the first frame update
     void Start()
     {
+        if (isR)
+            percentFull = 0;
+        else
+            percentFull = 1;
         this.transform.localScale = new Vector3(percentFull * maxSize, 1, 1);
     }
 

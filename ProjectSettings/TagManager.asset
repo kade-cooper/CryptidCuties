@@ -15,6 +15,7 @@ TagManager:
   - heart
   - trap1Attk
   - lungeAttk
+  - wall
   - axeAttk
   layers:
   - Default

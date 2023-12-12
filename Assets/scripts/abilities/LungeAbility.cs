@@ -17,6 +17,11 @@ public class LungeAbility : Ability
     {
         lungeBool = false;
     }
+
+    public void Update()
+    {
+        //lungeCircle.SetActive(lungeBool);
+    }
     public override void Activate(GameObject thisThing, playerRomanceHandler prh)
     {
         NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
@@ -24,8 +29,8 @@ public class LungeAbility : Ability
         Debug.Log("before activate");
         //CharacterMovementHandler movement = parent.GetComponent<CharacterMovementHandler>();
         lungeBool = true;
-        lungeCircle = thisThing.transform.GetChild(2).gameObject;
-        lungeCircle.SetActive(lungeBool);
+        lungeCircle = thisThing.transform.Find("LungeCircle").gameObject;
+        lungeCircle.SetActive(true);
         NetworkCharacterControllerPrototypeCustom characterCollider = thisThing.GetComponentInParent<Transform>().GetComponentInParent<NetworkCharacterControllerPrototypeCustom>();
         CharacterInputHandler inputHandler = thisThing.GetComponentInParent<Transform>().GetComponentInParent<CharacterInputHandler>();
         Debug.Log(characterCollider);
@@ -33,6 +38,7 @@ public class LungeAbility : Ability
         characterCollider.maxSpeed += lungeVelocity;
         characterCollider.acceleration += alot;
         inputHandler.canInput = false;
+        inputHandler.isAbility1Pressed = true;
 
         // movement.moveDirection.normalized * dashVelocity;
         //characterCollider.Velocity += new Vector3(0, 0, 0);// movement.moveDirection.normalized * dashVelocity;
@@ -48,7 +54,9 @@ public class LungeAbility : Ability
         if (lungeCircle != null)
         {
             lungeCircle.SetActive(lungeBool);
-        }
+        }  
+        inputHandler.isAbility1Pressed = false;
         inputHandler.canInput = true;
+
     }
 }

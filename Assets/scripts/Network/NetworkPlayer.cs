@@ -10,12 +10,15 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
 {
 
     public GameObject canvas;
+    public NetworkCharacterControllerPrototypeCustom controller;
     public GameObject Draguar;
     // ^ this is replacement for blueGuy
     public GameObject Jack;
     // ^ this is replacement for redGuy
     public GameObject wendigo;
     public GameObject elSilbon;
+    public GameObject ghost;
+    public Color clearwhite;
     public Vector3 spawnpoint;
 
     [Networked(OnChanged = nameof(sendSelection))]
@@ -60,18 +63,22 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         if (selectedCharacter == 1)
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(Jack1_attk, Jack1_RomanceAttk, Jack1_Ability1);
+            controller.maxSpeed = 10;
         }
         else if(selectedCharacter == 2)
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(elSilbon2_attk, elSilbon2_RomanceAttk, elSilbon2_Ability1);
+            controller.maxSpeed = 10;
         }
         else if (selectedCharacter == 3)
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(Wendigo3_attk, Wendigo3_RomanceAttk, Wendigo3_Ability1);
+            controller.maxSpeed = 10;
         }
         else if (selectedCharacter == 4)
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(Draguar4_attk, Draguar4_RomanceAttk, Draguar4_Ability1);
+            controller.maxSpeed = 9;
         }
     }
 
@@ -86,19 +93,27 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             {
                 // blueGuy.SetActive(true);
                 Jack.SetActive(true);
+                ghost.GetComponent<SpriteRenderer>().color = Color.clear;
+                controller.maxSpeed = 10;
             }
             else if(selectedCharacter == 2)
             {
                 // redGuy.SetActive(true);
                 elSilbon.SetActive(true);
+                ghost.GetComponent<SpriteRenderer>().color = Color.clear;
+                controller.maxSpeed = 10;
             }
             else if (selectedCharacter == 3)
             {
                 wendigo.SetActive(true);
+                ghost.GetComponent<SpriteRenderer>().color = Color.clear;
+                controller.maxSpeed = 10;
             }
             else if (selectedCharacter == 4)
             {
                 Draguar.SetActive(true);
+                ghost.GetComponent<SpriteRenderer>().color = Color.clear;
+                controller.maxSpeed = 9;
             }
             else if (selectedCharacter == 0)
             {
@@ -106,6 +121,8 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
                 Draguar.SetActive(false);
                 wendigo.SetActive(false);
                 elSilbon.SetActive(false);
+                ghost.GetComponent<SpriteRenderer>().color = clearwhite;
+                controller.maxSpeed = 10;
             }
         }
     }
@@ -113,6 +130,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     public void RPC_CharacterBlueSelected()
     {
+        ghost.GetComponent<SpriteRenderer>().color = Color.clear;
         //blueGuy.SetActive(true);
         Jack.SetActive(true);
         selectedCharacter = 1;
@@ -126,6 +144,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.InputAuthority,RpcTargets.All)]
     public void RPC_CharacterRedSelected()
     {
+        ghost.GetComponent<SpriteRenderer>().color = Color.clear;
         //redGuy.SetActive(true);
         elSilbon.SetActive(true);
        selectedCharacter = 2;
@@ -138,6 +157,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     public void RPC_CharacterWendigoSelected()
     {
+        ghost.GetComponent<SpriteRenderer>().color = Color.clear;
         wendigo.SetActive(true);
         selectedCharacter = 3;
         canvas.SetActive(false);
@@ -150,6 +170,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     public void RPC_CharacterDragurSelected()
     {
+        ghost.GetComponent<SpriteRenderer>().color = Color.clear;
         Draguar.SetActive(true);
         selectedCharacter = 4;
         canvas.SetActive(false);

@@ -21,7 +21,7 @@ public class animScript : NetworkBehaviour
     {
         if (cih.moveInputVector.x > 0 || cih.moveInputVector.y > 0 || cih.moveInputVector.x < 0 || cih.moveInputVector.y < 0)
         {
-            Debug.Log("is Moving");
+            //Debug.Log("is Moving");
             animator.Play("Move");
             //AnimatorControllerParameter[] parameters = animator.parameters;
            // foreach(AnimatorControllerParameter parameter in parameters)

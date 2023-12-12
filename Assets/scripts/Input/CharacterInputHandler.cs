@@ -7,6 +7,8 @@ using Fusion;
 
 public class CharacterInputHandler : MonoBehaviour
 {
+
+    public Camera cam;
     public Vector2 moveInputVector = Vector2.zero;
 
     [Networked]
@@ -19,10 +21,9 @@ public class CharacterInputHandler : MonoBehaviour
 
     bool isAttack1Pressed = false;
     bool isRomanceAttkPressed = false;
-    bool isAbility1Pressed = false;
+    public bool isAbility1Pressed = false;
 
-    float mousex;
-    float mousey;
+    Vector3 mouse;
 
 
     public KeyCode keyAttk1;
@@ -60,8 +61,7 @@ public class CharacterInputHandler : MonoBehaviour
             return;
         }
 
-        mousex = Input.mousePosition.x;
-        mousey = Input.mousePosition.y;
+        mouse = cam.ScreenToWorldPoint(Input.mousePosition);
 
         moveInputVector.x = Input.GetAxis("Horizontal");
         moveInputVector.y = Input.GetAxis("Vertical");
@@ -96,8 +96,7 @@ public class CharacterInputHandler : MonoBehaviour
         networkInputData.isRomanceAttk = isRomanceAttkPressed;
         networkInputData.isAbility1 = isAbility1Pressed;
 
-        networkInputData.mousex = mousex;
-        networkInputData.mousey = mousey;
+        networkInputData.mousepos = mouse;
         //jump data
 
         //attack data

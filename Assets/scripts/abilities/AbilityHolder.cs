@@ -2,15 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using UnityEngine.UI;
 
 public class AbilityHolder : NetworkBehaviour
 {
     public Ability ability;
-    float cooldownTime;
-    float activeTime;
+
+    [Networked]
+    float cooldownTime { get; set; }
+    [Networked]
+    float activeTime { get; set; }
+
+
+    [Networked]
+    public float fill { get; set; }
 
     public GameObject thisThing;
     public playerRomanceHandler thisPRH;
+
+    public Image fillImage;
 
     NetworkRunner runner;
 
@@ -30,6 +40,7 @@ public class AbilityHolder : NetworkBehaviour
     public void Update()
     {
 
+            fillImage.fillAmount = fill;
     }
 
     public void Start()
@@ -63,14 +74,27 @@ public class AbilityHolder : NetworkBehaviour
                 else
                 {
                     ability.OnEnd(thisThing, thisPRH);
-                    state = AbilityState.cooldown;
                     cooldownTime = ability.cooldownTime;
+                    
+                    state = AbilityState.cooldown;
+                    
                 }
                 break;
             case AbilityState.cooldown:
                 if(cooldownTime >= 0)
                 {
                     cooldownTime -= runner.DeltaTime;
+                    //if (HasStateAuthority)
+                    //{
+                        fill = cooldownTime / ability.cooldownTime;
+                        fill = cooldownTime / ability.cooldownTime;
+                    //}
+                    /*
+                    else
+                    {
+                        fill = cooldownTime / ManualSetCT;
+                    }
+                    */
                 }
                 else
                 {

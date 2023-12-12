@@ -6,8 +6,12 @@ using Fusion;
 
 public class playerRomanceHandler : NetworkBehaviour
 {
+
+
     public static playerRomanceHandler Local { get; set; }
 
+    public GameObject heartParticle;
+    public GameObject heartImg;
 
     public playerRomanceHandler otherPlayer;
     public playerRomanceHandler otherPlayer2;
@@ -26,10 +30,13 @@ public class playerRomanceHandler : NetworkBehaviour
 
     public string temptag;
 
+    public AudioSource romanceSound;
+    public AudioSource kissSound;
+
+    
 
     public playerRomanceHandler[] crypids = { null, null, null, null };
     public playerRomanceHandler[] crypidstemp = { null, null, null, null };
-
 
 
     public GameObject[] children;
@@ -356,9 +363,22 @@ public class playerRomanceHandler : NetworkBehaviour
     public void changeLayer(GameObject playerThis, string team)
     {
         Debug.Log("changing layer in children for" + tagthing + "to " + team);
-        foreach (GameObject child in children)
+        foreach (Transform child in playerThis.transform)
         {
             child.gameObject.layer = LayerMask.NameToLayer(team);
+            foreach (Transform child1 in child.transform)
+            {
+                child1.gameObject.layer = LayerMask.NameToLayer(team);
+                foreach (Transform child2 in child1.transform)
+                {
+                    child2.gameObject.layer = LayerMask.NameToLayer(team);
+                    foreach (Transform child3 in child2.transform)
+                    {
+                        if (child3.gameObject.tag != "romanceAttk")
+                            child3.gameObject.layer = LayerMask.NameToLayer(team);
+                    }
+                }
+            }
         }
     }
 
@@ -402,27 +422,51 @@ public class playerRomanceHandler : NetworkBehaviour
                 }
             }
         }
-        RPC_onRomanceFull();
+        RPC_onRomanceFull(playerThis.GetComponent <playerRomanceHandler>());
+        playerThis.GetComponent<playerRomanceHandler>().heartImg.SetActive(true);
+        romanceSound.Play();
+
     }
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_onRomanceFull()
+    public void RPC_onRomanceFull(playerRomanceHandler thing)
     {
         cannotRomance = true;
+        resetTransform heart = Instantiate(heartParticle).GetComponent<resetTransform>();
+        heart.pos = thing.transform.position;
     }
 
     void heal(playerRomanceHandler other)
     {
-        //other.gameObject.GetComponentInChildren<GameObject>().GetComponentInChildren<CryptidScript>().netHealth += 100;
+        CryptidScript otherCS = null;
+        if(other.transform.Find("Capsule").transform.Find("Jack").gameObject.activeSelf == true)
+            otherCS = other.transform.Find("Capsule").transform.Find("Jack").GetComponent<CryptidScript>();
+        else if(other.transform.Find("Capsule").transform.Find("Sibone").gameObject.activeSelf == true)
+            otherCS = other.transform.Find("Capsule").transform.Find("Sibone").GetComponent<CryptidScript>();
+        else if (other.transform.Find("Capsule").transform.Find("Wendigo").gameObject.activeSelf == true)
+            otherCS = other.transform.Find("Capsule").transform.Find("Wendigo").GetComponent<CryptidScript>();
+        else if (other.transform.Find("Capsule").transform.Find("Dragur").gameObject.activeSelf == true)
+            otherCS = other.transform.Find("Capsule").transform.Find("Dragur").GetComponent<CryptidScript>();
+        if (otherCS != null && otherCS.netHealth < otherCS.maxHealth)
+        {
+            kissSound.Play();
+            otherCS.netHealth += 100;
+            otherCS.RPC_setHealthBarToCurrentHealth();
+            Debug.Log("healed");
+        }
+            
+        Debug.Log(otherCS);
     }
 
 
     void onHit(float romancePower, Collider collision)
     {
+        
         int thisArrPos = 0;
         int otherArrPos = 0;
         playerRomanceHandler otherRef = null;
         playerRomanceHandler thirdPlayerRef = null;
         playerRomanceHandler fourthPlayerRef = null;
+        
         for (int i = 0; i < crypids.Length; i++)
         {
             if (crypids[i] == this)
@@ -445,8 +489,13 @@ public class playerRomanceHandler : NetworkBehaviour
                 fourthPlayerRef = crypids[i];
             }
         }
+        if (thisArrPos == otherArrPos)
+        {
+            return;
+        }
         if (cannotRomance == false)
         {
+            kissSound.Play();
             //i tried to make this less messy but i couldn't
             if (thisArrPos == 0)
             {
@@ -617,9 +666,9 @@ public class playerRomanceHandler : NetworkBehaviour
                 }
             }
         }
-        else if (this.gameObject.layer == otherRef.gameObject.layer)
+        else if (isInLove)
         {
-            heal(otherRef);
+            heal(this);
         }
 
     }

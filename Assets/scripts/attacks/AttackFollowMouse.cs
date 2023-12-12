@@ -39,6 +39,7 @@ public class AttackFollowMouse : NetworkBehaviour
         }
         if (GetInput(out NetworkInputData networkInputData))
         {
+            /*
             //Debug.Log("mousex" + networkInputData.mousex);
             if (networkInputData.mousex - (playerRef.transform.position.x + offset) < 0)
             {
@@ -48,6 +49,10 @@ public class AttackFollowMouse : NetworkBehaviour
             {
                 this.transform.eulerAngles = new Vector3(0, 0, 0);
             }
+            */
+            Vector3 rotation = networkInputData.mousepos - playerRef.transform.position;
+            float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            this.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         }
 
     }
