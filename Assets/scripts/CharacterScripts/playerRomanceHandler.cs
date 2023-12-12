@@ -11,6 +11,7 @@ public class playerRomanceHandler : NetworkBehaviour
     public static playerRomanceHandler Local { get; set; }
 
     public GameObject heartParticle;
+    public GameObject heartImg;
 
     public playerRomanceHandler otherPlayer;
     public playerRomanceHandler otherPlayer2;
@@ -424,6 +425,7 @@ public class playerRomanceHandler : NetworkBehaviour
         RPC_onRomanceFull();
         Instantiate(heartParticle,playerThis.transform.position,playerThis.transform.rotation);
         Instantiate(heartParticle,playerOther.transform.position,playerOther.transform.rotation);
+        otherPlayer.heartImg.SetActive(true);
         romanceSound.Play();
 
     }
