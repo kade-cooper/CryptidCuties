@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using UnityEngine.UI;
 
 public class AbilityHolder : NetworkBehaviour
 {
@@ -11,6 +12,9 @@ public class AbilityHolder : NetworkBehaviour
 
     public GameObject thisThing;
     public playerRomanceHandler thisPRH;
+
+    public Image fillImage;
+    public Image fillImage2;
 
     NetworkRunner runner;
 
@@ -71,6 +75,8 @@ public class AbilityHolder : NetworkBehaviour
                 if(cooldownTime >= 0)
                 {
                     cooldownTime -= runner.DeltaTime;
+                    fillImage.fillAmount = cooldownTime/ability.cooldownTime;
+                    fillImage2.fillAmount = cooldownTime/ability.cooldownTime;
                 }
                 else
                 {
