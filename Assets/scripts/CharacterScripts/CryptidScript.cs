@@ -194,7 +194,7 @@ public class CryptidScript : NetworkBehaviour
             hitSound.Play();
         if (netHealth <= 0)
         {
-            onDie(attacker);
+            RPC_onDie(attacker);
 
         }
         Debug.Log(netHealth);
@@ -209,7 +209,7 @@ public class CryptidScript : NetworkBehaviour
         hitSound.Play();
         if (netHealth <= 0)
         {
-            onDie(attacker);
+            RPC_onDie(attacker);
         }
         Destroy(axe.gameObject);
         Debug.Log(netHealth);
@@ -224,7 +224,7 @@ public class CryptidScript : NetworkBehaviour
         trapSound.Play();
         if (netHealth <= 0)
         {
-            onDie(attacker);
+            RPC_onDie(attacker);
         }
         cih.canInputNoVelocity = false;
         StartCoroutine(MoveCor(trapHit.gameObject));
@@ -240,8 +240,8 @@ public class CryptidScript : NetworkBehaviour
 
     }
 
-
-    public void onDie(string attacker)
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_onDie(string attacker)
     {
         cih.canInput = false;
         NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();

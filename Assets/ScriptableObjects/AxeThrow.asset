@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AxeThrow
   m_EditorClassIdentifier: 
   name: Axe
-  cooldownTime: 3
+  cooldownTime: 4
   activeTime: 0
   axePrefab: {fileID: 5084414324723198353, guid: 6f425f9ce76e8ae4d9a7b59e3204dbbe, type: 3}
   rotateObj: {fileID: 0}

@@ -2355,12 +2355,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  maxHealth: 1800
+  maxHealth: 1900
   _netHealth: 0
   health: -1000
   canBeDamaged: 0
   redAttackPower: 10
-  blueAttackPower: 15
+  blueAttackPower: 20
   trapAttkPower: 100
   axeAttkPower: 300
   lungeAttkPower: 300
@@ -4167,7 +4167,7 @@ MonoBehaviour:
   health: -1000
   canBeDamaged: 0
   redAttackPower: 10
-  blueAttackPower: 15
+  blueAttackPower: 20
   trapAttkPower: 100
   axeAttkPower: 300
   lungeAttkPower: 300
@@ -4720,12 +4720,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  maxHealth: 2000
+  maxHealth: 1500
   _netHealth: 0
   health: -1000
   canBeDamaged: 0
   redAttackPower: 10
-  blueAttackPower: 15
+  blueAttackPower: 20
   trapAttkPower: 100
   axeAttkPower: 300
   lungeAttkPower: 300
@@ -6440,12 +6440,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  maxHealth: 2000
+  maxHealth: 1700
   _netHealth: 0
   health: -1000
   canBeDamaged: 0
   redAttackPower: 10
-  blueAttackPower: 15
+  blueAttackPower: 20
   trapAttkPower: 100
   axeAttkPower: 300
   lungeAttkPower: 300
@@ -6610,7 +6610,7 @@ GameObject:
   - component: {fileID: 4431002804313631664}
   m_Layer: 9
   m_Name: Attack1
-  m_TagString: blueAttack1
+  m_TagString: redAttack1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

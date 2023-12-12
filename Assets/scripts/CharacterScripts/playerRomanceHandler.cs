@@ -32,10 +32,10 @@ public class playerRomanceHandler : NetworkBehaviour
     public AudioSource romanceSound;
     public AudioSource kissSound;
 
+    
 
     public playerRomanceHandler[] crypids = { null, null, null, null };
     public playerRomanceHandler[] crypidstemp = { null, null, null, null };
-
 
 
     public GameObject[] children;
