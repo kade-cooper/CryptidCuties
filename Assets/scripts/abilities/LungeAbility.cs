@@ -17,6 +17,11 @@ public class LungeAbility : Ability
     {
         lungeBool = false;
     }
+
+    public void Update()
+    {
+        //lungeCircle.SetActive(lungeBool);
+    }
     public override void Activate(GameObject thisThing, playerRomanceHandler prh)
     {
         NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
@@ -24,7 +29,7 @@ public class LungeAbility : Ability
         Debug.Log("before activate");
         //CharacterMovementHandler movement = parent.GetComponent<CharacterMovementHandler>();
         lungeBool = true;
-        lungeCircle = thisThing.transform.GetChild(2).gameObject;
+        lungeCircle = thisThing.transform.Find("LungeCircle").gameObject;
         lungeCircle.SetActive(lungeBool);
         NetworkCharacterControllerPrototypeCustom characterCollider = thisThing.GetComponentInParent<Transform>().GetComponentInParent<NetworkCharacterControllerPrototypeCustom>();
         CharacterInputHandler inputHandler = thisThing.GetComponentInParent<Transform>().GetComponentInParent<CharacterInputHandler>();
@@ -48,7 +53,9 @@ public class LungeAbility : Ability
         if (lungeCircle != null)
         {
             lungeCircle.SetActive(lungeBool);
-        }
+        }  
+        inputHandler.isAbility1Pressed = false;
         inputHandler.canInput = true;
+
     }
 }

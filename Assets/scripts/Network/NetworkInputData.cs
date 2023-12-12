@@ -11,8 +11,7 @@ public struct NetworkInputData : INetworkInput
  
   public Vector2 movementInput;
 
-  public float mousex;
-  public float mousey;
+    public Vector3 mousepos;
 
 
   public Vector2 aimForwardVector;

@@ -14,7 +14,8 @@ public class syncLayer : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        thisLayer = other.gameObject.layer;
+        if(HasStateAuthority)
+            thisLayer = this.gameObject.layer;
         this.gameObject.layer = thisLayer;
         //this.gameObject.layer = tempLayer;
     }
@@ -22,7 +23,9 @@ public class syncLayer : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(HasStateAuthority)
+            thisLayer = this.gameObject.layer;
+        this.gameObject.layer = thisLayer;
     }
 
 }
