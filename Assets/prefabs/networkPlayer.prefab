@@ -3084,7 +3084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   heartParticle: {fileID: 3007695726253398799, guid: ea631c7a8c3166d4eb6e8a5c88b5b1f2, type: 3}
-  heartImg: {fileID: 0}
+  heartImg: {fileID: 4147763380625348318}
   otherPlayer: {fileID: 0}
   otherPlayer2: {fileID: 0}
   otherPlayer3: {fileID: 0}
