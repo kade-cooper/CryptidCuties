@@ -359,9 +359,22 @@ public class playerRomanceHandler : NetworkBehaviour
     public void changeLayer(GameObject playerThis, string team)
     {
         Debug.Log("changing layer in children for" + tagthing + "to " + team);
-        foreach (GameObject child in children)
+        foreach (Transform child in playerThis.transform)
         {
             child.gameObject.layer = LayerMask.NameToLayer(team);
+            foreach (Transform child1 in child.transform)
+            {
+                child1.gameObject.layer = LayerMask.NameToLayer(team);
+                foreach (Transform child2 in child1.transform)
+                {
+                    child2.gameObject.layer = LayerMask.NameToLayer(team);
+                    foreach (Transform child3 in child2.transform)
+                    {
+                        if (child3.gameObject.tag != "romanceAttk")
+                            child3.gameObject.layer = LayerMask.NameToLayer(team);
+                    }
+                }
+            }
         }
     }
 
