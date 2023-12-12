@@ -141,7 +141,7 @@ public class CryptidScript : NetworkBehaviour
     void Update()
     {
       //  Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+      RPC_setHealthBarToCurrentHealth();
       //  arrow.up = (mousePos - (Vector3)transform.position).normalized;
     }
 

@@ -30,7 +30,7 @@ public class LungeAbility : Ability
         //CharacterMovementHandler movement = parent.GetComponent<CharacterMovementHandler>();
         lungeBool = true;
         lungeCircle = thisThing.transform.Find("LungeCircle").gameObject;
-        lungeCircle.SetActive(lungeBool);
+        lungeCircle.SetActive(true);
         NetworkCharacterControllerPrototypeCustom characterCollider = thisThing.GetComponentInParent<Transform>().GetComponentInParent<NetworkCharacterControllerPrototypeCustom>();
         CharacterInputHandler inputHandler = thisThing.GetComponentInParent<Transform>().GetComponentInParent<CharacterInputHandler>();
         Debug.Log(characterCollider);
