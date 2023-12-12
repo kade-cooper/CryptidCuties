@@ -38,6 +38,7 @@ public class LungeAbility : Ability
         characterCollider.maxSpeed += lungeVelocity;
         characterCollider.acceleration += alot;
         inputHandler.canInput = false;
+        inputHandler.isAbility1Pressed = true;
 
         // movement.moveDirection.normalized * dashVelocity;
         //characterCollider.Velocity += new Vector3(0, 0, 0);// movement.moveDirection.normalized * dashVelocity;
