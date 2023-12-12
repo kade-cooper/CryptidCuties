@@ -29,6 +29,9 @@ public class playerRomanceHandler : NetworkBehaviour
 
     public string temptag;
 
+    public AudioSource romanceSound;
+    public AudioSource kissSound;
+
 
     public playerRomanceHandler[] crypids = { null, null, null, null };
     public playerRomanceHandler[] crypidstemp = { null, null, null, null };
@@ -421,6 +424,7 @@ public class playerRomanceHandler : NetworkBehaviour
         RPC_onRomanceFull();
         Instantiate(heartParticle,playerThis.transform.position,playerThis.transform.rotation);
         Instantiate(heartParticle,playerOther.transform.position,playerOther.transform.rotation);
+        romanceSound.Play();
 
     }
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -442,8 +446,9 @@ public class playerRomanceHandler : NetworkBehaviour
             otherCS = other.transform.Find("Capsule").transform.Find("Dragur").GetComponent<CryptidScript>();
         if (otherCS != null && otherCS.netHealth < otherCS.maxHealth)
         {
+            kissSound.Play();
             otherCS.netHealth += 100;
-            otherCS.setHealthBarToCurrentHealth();
+            otherCS.RPC_setHealthBarToCurrentHealth();
             Debug.Log("healed");
         }
             
@@ -453,11 +458,13 @@ public class playerRomanceHandler : NetworkBehaviour
 
     void onHit(float romancePower, Collider collision)
     {
+        
         int thisArrPos = 0;
         int otherArrPos = 0;
         playerRomanceHandler otherRef = null;
         playerRomanceHandler thirdPlayerRef = null;
         playerRomanceHandler fourthPlayerRef = null;
+        
         for (int i = 0; i < crypids.Length; i++)
         {
             if (crypids[i] == this)
@@ -480,8 +487,13 @@ public class playerRomanceHandler : NetworkBehaviour
                 fourthPlayerRef = crypids[i];
             }
         }
+        if (thisArrPos == otherArrPos)
+        {
+            return;
+        }
         if (cannotRomance == false)
         {
+            kissSound.Play();
             //i tried to make this less messy but i couldn't
             if (thisArrPos == 0)
             {

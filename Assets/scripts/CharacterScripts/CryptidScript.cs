@@ -45,7 +45,11 @@ public class CryptidScript : NetworkBehaviour
 
     public Slider romanceBar;
 
-
+    public AudioSource hitSound;
+    public AudioSource trapSound;
+    public AudioSource dieSound;
+    //for sounds
+    public int timesHit;
 
     public Vector3 spawnpoint;
     public Transform wholePlayer;
@@ -182,9 +186,12 @@ public class CryptidScript : NetworkBehaviour
 
     void onHit(float attackPower, string attacker)
     {
+        timesHit += 1;
         netHealth -= attackPower;
         healhBar.value = netHealth / maxHealth;
         healthAbove.changeTo(netHealth/maxHealth);
+        if(timesHit%2 == 0)
+            hitSound.Play();
         if (netHealth <= 0)
         {
             onDie(attacker);
@@ -199,6 +206,7 @@ public class CryptidScript : NetworkBehaviour
         netHealth -= attackPower;
         healhBar.value = netHealth / maxHealth;
         healthAbove.changeTo(netHealth / maxHealth);
+        hitSound.Play();
         if (netHealth <= 0)
         {
             onDie(attacker);
@@ -214,6 +222,7 @@ public class CryptidScript : NetworkBehaviour
         netHealth -= attackPower;
         healhBar.value = netHealth / maxHealth;
         healthAbove.changeTo(netHealth/maxHealth);
+        trapSound.Play();
         if (netHealth <= 0)
         {
             onDie(attacker);
@@ -236,11 +245,14 @@ public class CryptidScript : NetworkBehaviour
     public void onDie(string attacker)
     {
         cih.canInput = false;
+        NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
+        runner.Spawn(blood,this.transform.position);
+        dieSound.Play();
         wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, -100));
         wholePlayer.GetComponent<CharacterController>().Move(getRespawnVector());
         wholePlayer.GetComponent<CharacterController>().Move(new Vector3(0, 0, 100));
-        NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
-        runner.Spawn(blood,this.transform.position);
+        
+        
         if (attacker == "player0")
         {
             player0Score += 1;
@@ -287,9 +299,9 @@ public class CryptidScript : NetworkBehaviour
     {
         return spawnpoint - wholePlayer.position + new Vector3(0,0,-100);
     }
-    
 
-    public void setHealthBarToCurrentHealth()
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_setHealthBarToCurrentHealth()
     {
         healthAbove.changeTo(netHealth / maxHealth);
     }
