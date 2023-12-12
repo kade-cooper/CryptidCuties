@@ -431,7 +431,7 @@ public class playerRomanceHandler : NetworkBehaviour
     public void RPC_onRomanceFull(playerRomanceHandler thing)
     {
         cannotRomance = true;
-        Instantiate(heartParticle, thing.transform);
+        Instantiate(heartParticle, thing.gameObject.transform);
     }
 
     void heal(playerRomanceHandler other)
