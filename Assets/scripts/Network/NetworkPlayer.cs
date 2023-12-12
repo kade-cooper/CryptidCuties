@@ -16,6 +16,8 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     // ^ this is replacement for redGuy
     public GameObject wendigo;
     public GameObject elSilbon;
+    public GameObject ghost;
+    public Color clearwhite;
     public Vector3 spawnpoint;
 
     [Networked(OnChanged = nameof(sendSelection))]
@@ -86,19 +88,23 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
             {
                 // blueGuy.SetActive(true);
                 Jack.SetActive(true);
+                ghost.GetComponent<SpriteRenderer>().color = Color.clear;
             }
             else if(selectedCharacter == 2)
             {
                 // redGuy.SetActive(true);
                 elSilbon.SetActive(true);
+                ghost.GetComponent<SpriteRenderer>().color = Color.clear;
             }
             else if (selectedCharacter == 3)
             {
                 wendigo.SetActive(true);
+                ghost.GetComponent<SpriteRenderer>().color = Color.clear;
             }
             else if (selectedCharacter == 4)
             {
                 Draguar.SetActive(true);
+                ghost.GetComponent<SpriteRenderer>().color = Color.clear;
             }
             else if (selectedCharacter == 0)
             {
@@ -106,6 +112,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
                 Draguar.SetActive(false);
                 wendigo.SetActive(false);
                 elSilbon.SetActive(false);
+                ghost.GetComponent<SpriteRenderer>().color = clearwhite;
             }
         }
     }
@@ -113,6 +120,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     public void RPC_CharacterBlueSelected()
     {
+        ghost.GetComponent<SpriteRenderer>().color = Color.clear;
         //blueGuy.SetActive(true);
         Jack.SetActive(true);
         selectedCharacter = 1;
@@ -126,6 +134,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.InputAuthority,RpcTargets.All)]
     public void RPC_CharacterRedSelected()
     {
+        ghost.GetComponent<SpriteRenderer>().color = Color.clear;
         //redGuy.SetActive(true);
         elSilbon.SetActive(true);
        selectedCharacter = 2;
@@ -138,6 +147,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     public void RPC_CharacterWendigoSelected()
     {
+        ghost.GetComponent<SpriteRenderer>().color = Color.clear;
         wendigo.SetActive(true);
         selectedCharacter = 3;
         canvas.SetActive(false);
@@ -150,6 +160,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
     [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
     public void RPC_CharacterDragurSelected()
     {
+        ghost.GetComponent<SpriteRenderer>().color = Color.clear;
         Draguar.SetActive(true);
         selectedCharacter = 4;
         canvas.SetActive(false);

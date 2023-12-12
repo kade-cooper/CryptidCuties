@@ -193,7 +193,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _thisLayer: 0
   velocity: 10
-  angVelocity: -500
+  angVelocity: -700
 --- !u!58 &1877778255880439873
 CircleCollider2D:
   m_ObjectHideFlags: 0
