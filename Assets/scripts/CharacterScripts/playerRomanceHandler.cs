@@ -425,7 +425,7 @@ public class playerRomanceHandler : NetworkBehaviour
         RPC_onRomanceFull();
         Instantiate(heartParticle,playerThis.transform.position,playerThis.transform.rotation);
         Instantiate(heartParticle,playerOther.transform.position,playerOther.transform.rotation);
-        otherPlayer.heartImg.SetActive(true);
+        playerThis.GetComponent<playerRomanceHandler>().heartImg.SetActive(true);
         romanceSound.Play();
 
     }
