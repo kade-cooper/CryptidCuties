@@ -10,6 +10,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
 {
 
     public GameObject canvas;
+    public NetworkCharacterControllerPrototypeCustom controller;
     public GameObject Draguar;
     // ^ this is replacement for blueGuy
     public GameObject Jack;
@@ -62,18 +63,22 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         if (selectedCharacter == 1)
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(Jack1_attk, Jack1_RomanceAttk, Jack1_Ability1);
+            controller.maxSpeed = 10;
         }
         else if(selectedCharacter == 2)
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(elSilbon2_attk, elSilbon2_RomanceAttk, elSilbon2_Ability1);
+            controller.maxSpeed = 10;
         }
         else if (selectedCharacter == 3)
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(Wendigo3_attk, Wendigo3_RomanceAttk, Wendigo3_Ability1);
+            controller.maxSpeed = 10;
         }
         else if (selectedCharacter == 4)
         {
             this.GetComponent<CharacterInputHandler>().cryptidSelected(Draguar4_attk, Draguar4_RomanceAttk, Draguar4_Ability1);
+            controller.maxSpeed = 9;
         }
     }
 
@@ -89,22 +94,26 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
                 // blueGuy.SetActive(true);
                 Jack.SetActive(true);
                 ghost.GetComponent<SpriteRenderer>().color = Color.clear;
+                controller.maxSpeed = 10;
             }
             else if(selectedCharacter == 2)
             {
                 // redGuy.SetActive(true);
                 elSilbon.SetActive(true);
                 ghost.GetComponent<SpriteRenderer>().color = Color.clear;
+                controller.maxSpeed = 10;
             }
             else if (selectedCharacter == 3)
             {
                 wendigo.SetActive(true);
                 ghost.GetComponent<SpriteRenderer>().color = Color.clear;
+                controller.maxSpeed = 10;
             }
             else if (selectedCharacter == 4)
             {
                 Draguar.SetActive(true);
                 ghost.GetComponent<SpriteRenderer>().color = Color.clear;
+                controller.maxSpeed = 9;
             }
             else if (selectedCharacter == 0)
             {
@@ -113,6 +122,7 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
                 wendigo.SetActive(false);
                 elSilbon.SetActive(false);
                 ghost.GetComponent<SpriteRenderer>().color = clearwhite;
+                controller.maxSpeed = 10;
             }
         }
     }
