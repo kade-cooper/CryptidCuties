@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3007695725337188465}
   - component: {fileID: 3007695725337188471}
   - component: {fileID: 3007695725337188464}
-  - component: {fileID: 1943093911227922502}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -4871,29 +4870,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1943093911227922502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3007695725337188466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 3073
-  NetworkGuid:
-    RawGuidValue: 00000000000000000000000000000000
-  NestedObjects: []
-  NetworkedBehaviours: []
-  SimulationBehaviours: []
 --- !u!1 &3007695726253398799
 GameObject:
   m_ObjectHideFlags: 0
@@ -4903,7 +4879,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3007695726253398798}
-  - component: {fileID: 1551641598075442816}
   m_Layer: 0
   m_Name: heartParticle
   m_TagString: Untagged
@@ -4927,27 +4902,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1551641598075442816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3007695726253398799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2305
-  NetworkGuid:
-    RawGuidValue: ea631c7a8c3166d4eb6e8a5c88b5b1f2
-  NestedObjects:
-  - {fileID: 1943093911227922502}
-  NetworkedBehaviours: []
-  SimulationBehaviours: []

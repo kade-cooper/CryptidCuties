@@ -422,18 +422,18 @@ public class playerRomanceHandler : NetworkBehaviour
                 }
             }
         }
-        RPC_onRomanceFull();
-        NetworkRunner runner = GameObject.FindObjectOfType<NetworkRunner>();
-        runner.Spawn(heartParticle,playerThis.transform.position,playerThis.transform.rotation);
-        runner.Spawn(heartParticle,playerOther.transform.position,playerOther.transform.rotation);
+        RPC_onRomanceFull(playerThis.transform);
+        Instantiate(heartParticle,playerThis.transform.position,playerThis.transform.rotation);
+        Instantiate(heartParticle,playerOther.transform.position,playerOther.transform.rotation);
         playerThis.GetComponent<playerRomanceHandler>().heartImg.SetActive(true);
         romanceSound.Play();
 
     }
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_onRomanceFull()
+    public void RPC_onRomanceFull(Transform place)
     {
         cannotRomance = true;
+        Instantiate(heartParticle, place);
     }
 
     void heal(playerRomanceHandler other)
