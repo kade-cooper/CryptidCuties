@@ -2361,10 +2361,10 @@ MonoBehaviour:
   canBeDamaged: 0
   redAttackPower: 10
   blueAttackPower: 20
-  trapAttkPower: 100
-  axeAttkPower: 300
+  trapAttkPower: 300
+  axeAttkPower: 200
   lungeAttkPower: 300
-  trapTime: 2
+  trapTime: 2.5
   healhBar: {fileID: 5644648380919094907}
   healthAbove: {fileID: 7932903119834918317}
   maxRomance: 1000
@@ -4169,9 +4169,9 @@ MonoBehaviour:
   redAttackPower: 10
   blueAttackPower: 20
   trapAttkPower: 100
-  axeAttkPower: 300
+  axeAttkPower: 200
   lungeAttkPower: 300
-  trapTime: 1
+  trapTime: 2
   healhBar: {fileID: 5644648380919094907}
   healthAbove: {fileID: 8515124647104368579}
   maxRomance: 1000
@@ -4726,10 +4726,10 @@ MonoBehaviour:
   canBeDamaged: 0
   redAttackPower: 10
   blueAttackPower: 20
-  trapAttkPower: 100
+  trapAttkPower: 300
   axeAttkPower: 300
   lungeAttkPower: 300
-  trapTime: 2
+  trapTime: 2.5
   healhBar: {fileID: 5644648380919094907}
   healthAbove: {fileID: 1988523717358293279}
   maxRomance: 1000
@@ -6446,10 +6446,10 @@ MonoBehaviour:
   canBeDamaged: 0
   redAttackPower: 10
   blueAttackPower: 20
-  trapAttkPower: 100
-  axeAttkPower: 300
+  trapAttkPower: 300
+  axeAttkPower: 200
   lungeAttkPower: 300
-  trapTime: 2
+  trapTime: 2.5
   healhBar: {fileID: 5644648380919094907}
   healthAbove: {fileID: 915931165564870839}
   maxRomance: 1000
