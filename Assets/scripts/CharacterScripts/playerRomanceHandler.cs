@@ -431,7 +431,8 @@ public class playerRomanceHandler : NetworkBehaviour
     public void RPC_onRomanceFull(playerRomanceHandler thing)
     {
         cannotRomance = true;
-        Instantiate(heartParticle);
+        resetTransform heart = Instantiate(heartParticle).GetComponent<resetTransform>();
+        heart.pos = thing.transform.position;
     }
 
     void heal(playerRomanceHandler other)

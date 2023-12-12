@@ -4879,6 +4879,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3007695726253398798}
+  - component: {fileID: 7300520564892689445}
+  - component: {fileID: 5671814975182332928}
   m_Layer: 0
   m_Name: heartParticle
   m_TagString: Untagged
@@ -4902,3 +4904,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7300520564892689445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3007695726253398799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ba02f3458c7034885fcd2ecf3c7236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0, z: 0}
+--- !u!114 &5671814975182332928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3007695726253398799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1040bf3723d0dea4aa92c79a03d92f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 5
