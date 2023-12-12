@@ -9165,7 +9165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7960176497343953461, guid: ec9ab6bad825d7b4e8ad2ddda6d27e08, type: 3}
       propertyPath: m_text
-      value: El Sibone
+      value: El Silbone
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3641874917129716548, guid: ec9ab6bad825d7b4e8ad2ddda6d27e08, type: 3}
