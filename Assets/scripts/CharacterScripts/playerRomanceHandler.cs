@@ -422,18 +422,16 @@ public class playerRomanceHandler : NetworkBehaviour
                 }
             }
         }
-        RPC_onRomanceFull(playerThis.transform);
-        Instantiate(heartParticle,playerThis.transform.position,playerThis.transform.rotation);
-        Instantiate(heartParticle,playerOther.transform.position,playerOther.transform.rotation);
+        RPC_onRomanceFull(playerThis.GetComponent <playerRomanceHandler>());
         playerThis.GetComponent<playerRomanceHandler>().heartImg.SetActive(true);
         romanceSound.Play();
 
     }
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_onRomanceFull(Transform place)
+    public void RPC_onRomanceFull(playerRomanceHandler thing)
     {
         cannotRomance = true;
-        Instantiate(heartParticle, place);
+        Instantiate(heartParticle, thing.transform);
     }
 
     void heal(playerRomanceHandler other)
