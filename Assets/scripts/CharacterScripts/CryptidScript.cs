@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Fusion;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 
 public class CryptidScript : NetworkBehaviour
 {
@@ -20,6 +21,7 @@ public class CryptidScript : NetworkBehaviour
     public float redAttackPower = 10;
     public float blueAttackPower = 15;
     public float trapAttkPower = 150;
+    public float axeAttkPower = 300;
     public float lungeAttkPower = 300;
     public float trapTime = 2;
     public Slider healhBar;
@@ -167,6 +169,10 @@ public class CryptidScript : NetworkBehaviour
             Debug.Log("entered trap1");
             onTrapHit(trapAttkPower, collision.GetComponent<attackScript>().tagthing.ToString(), collision);
         }
+        if(collision.gameObject.CompareTag("axeAttk") && collision.GetComponent<attackScript>())
+        {
+            onAxeHit(axeAttkPower, collision.GetComponent<attackScript>().tagthing.ToString(), collision);
+        }
         if(collision.gameObject.CompareTag("lungeAttk") && collision.GetComponent<attackScript>())
         {
             onHit(lungeAttkPower, collision.GetComponent<attackScript>().tagthing.ToString());
@@ -187,6 +193,20 @@ public class CryptidScript : NetworkBehaviour
         Debug.Log(netHealth);
     }
 
+    void onAxeHit(float attackPower, string attacker, Collider2D axe)
+    {
+        Debug.Log("axeHit");
+        netHealth -= attackPower;
+        healhBar.value = netHealth / maxHealth;
+        healthAbove.changeTo(netHealth / maxHealth);
+        if (netHealth <= 0)
+        {
+            onDie(attacker);
+        }
+        cih.canInputNoVelocity = false;
+        Destroy(axe.gameObject);
+        Debug.Log(netHealth);
+    }
 
     void onTrapHit(float attackPower, string attacker, Collider2D trapHit)
     {

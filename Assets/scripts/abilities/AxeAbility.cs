@@ -23,7 +23,7 @@ public class AxeAbility : Ability
         //thing.GetComponent<Renderer>().material.color = Color.green;
         thing.GetComponent<attackScript>().prh = PRH;
         RPC_AdjustAxe(thing, thisThing, PRH);
-        thing.gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+        thing.gameObject.GetComponent<CircleCollider2D>().enabled = true;
     }
 
     /*
@@ -39,7 +39,7 @@ public class AxeAbility : Ability
         axe.gameObject.layer = sender.gameObject.layer;
         //thing.GetComponent<Renderer>().material.color = Color.green;
         axe.GetComponent<attackScript>().prh = senderPRH;
-        axe.gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+        axe.gameObject.GetComponent<CircleCollider2D>().enabled = true;
     }
 
     public override void OnEnd(GameObject thisThing, playerRomanceHandler PRH)

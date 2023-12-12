@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0003e7ce61a4e488b4eea11e84c9ed, type: 3}
   m_Name: AxeThrow
   m_EditorClassIdentifier: 
-  name: 
+  name: Axe
   cooldownTime: 3
   activeTime: 0
   axePrefab: {fileID: 5084414324723198353, guid: 6f425f9ce76e8ae4d9a7b59e3204dbbe, type: 3}

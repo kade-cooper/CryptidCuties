@@ -27,7 +27,7 @@ public class axeScript : NetworkBehaviour
     {
         yield return new WaitForSeconds(.1f);
         this.gameObject.layer = thisLayer;
-        this.gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = true;
 
 
     }
@@ -37,6 +37,13 @@ public class axeScript : NetworkBehaviour
     {
 
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "wall")
+            Destroy(this.gameObject);
+    }
+    
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     public void RPC_SendLayer(int layer)
